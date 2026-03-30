@@ -1,5 +1,8 @@
 # Business Context: Web Portal
 
+## Decision References
+- [ADR-0001: Local Data Serving with S3 Sync Refresh](./decisions/0001-local-data-serving-with-s3-sync-refresh.md)
+
 ## Purpose
 The web portal turns upstream apnea analysis artifacts into practical, athlete-facing feedback.
 

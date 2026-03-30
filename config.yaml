@@ -1,0 +1,8 @@
+# Local defaults for data sync scripts.
+# Override any value via CLI arguments.
+
+# stream: athens-2025-day1
+# category: seniors-male
+bucket: apnea-signal-videos
+cache_root: cache
+# aws_profile: default
