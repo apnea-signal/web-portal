@@ -1,0 +1,3 @@
+# stream,category
+athens-2025-day1,seniors-male
+

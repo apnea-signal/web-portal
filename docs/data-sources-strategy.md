@@ -12,8 +12,8 @@ Define how the web portal can progressively use all available upstream data sour
 
 ## Initial Source Inventory
 - `video-annotation`: `*.annotations.json`
-- `propulsion-solver`: `*.propulsion.json`, `*.propulsion.refined.json`, `*.propulsion.stats.json`
-- `propulsion-solver` derived analysis artifacts: checkpoint/cohort summaries and distribution outputs
+- `propulsion-solver` (portal baseline): `*.propulsion.refined.json`, `*.propulsion.stats.json`
+- `propulsion-solver` derived analysis artifacts: checkpoint/cohort summary JSON and distribution outputs
 - legacy inspiration: `energy-model-old` dashboard datasets and presentation patterns
 
 ## Decision Targets

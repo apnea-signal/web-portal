@@ -26,7 +26,7 @@ This portal is a downstream visualization layer in the apnea-signal pipeline.
 
 Upstream sources:
 - `video-annotation` produces `*.annotations.json` with metadata and frame labels,
-- `propulsion-solver` produces `*.propulsion.json`, `*.propulsion.refined.json`, and `*.propulsion.stats.json`.
+- `propulsion-solver` provides `*.propulsion.refined.json` and `*.propulsion.stats.json` for portal consumption.
 - additional solver-derived analysis artifacts (summaries and distributions) support cohort and benchmark views.
 
 Contract precedence for portal metrics:
