@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="portal-base" content="../../" />
+    <title>DNF Athlete Explorer · Apnea Signal</title>
+    <link rel="stylesheet" href="../../assets/css/site.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container">
+        <div class="brand-row">
+          <div>
+            <p class="brand-title">Apnea Signal · DNF</p>
+            <p class="brand-subtitle" id="scopeLabel">Loading scope...</p>
+          </div>
+          <nav class="nav-tabs" aria-label="DNF pages">
+            <a class="nav-tab" data-page="overview" href="../overview/">Overview</a>
+            <a class="nav-tab" data-page="athletes" href="../athletes/">Athlete Explorer</a>
+            <a class="nav-tab" href="../../">Discipline Fork</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h1>Athlete Explorer</h1>
+        <p>
+          Search athletes across all curated streams/events, pick a primary athlete, and compare against selected peers.
+        </p>
+      </section>
+
+      <section class="controls-bar" aria-label="Dataset scope">
+        <div class="control">
+          <label for="streamSelect">Stream</label>
+          <select id="streamSelect"></select>
+        </div>
+        <div class="control">
+          <label for="categorySelect">Category</label>
+          <select id="categorySelect"></select>
+        </div>
+        <div class="control">
+          <label for="athleteSearchInput">Athlete Search</label>
+          <input id="athleteSearchInput" type="search" placeholder="Search by name or slug" />
+        </div>
+      </section>
+
+      <section class="card split">
+        <div>
+          <h2>Search Results</h2>
+          <p class="note">Click a stream/event entry to set the primary athlete context.</p>
+          <div id="searchResults" class="list-panel"></div>
+        </div>
+        <div>
+          <h2>Selected Athlete</h2>
+          <p class="note">Primary athlete: <strong id="selectedAthleteLabel">No athlete selected</strong></p>
+          <p id="athleteStatus" class="note">Select an athlete to start.</p>
+
+          <h3>Peer Selection</h3>
+          <p class="note">Default peer universe is all athletes in all curated data.</p>
+          <div id="peerChecklist" class="peer-grid"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Comparison Table</h2>
+        <div id="comparisonTable" class="table-wrap"></div>
+      </section>
+
+      <footer>Athlete explorer supports cross-event selection and peer comparison for PR feedback demos.</footer>
+    </main>
+
+    <script type="module" src="../../assets/js/dnf-athletes.js"></script>
+  </body>
+</html>

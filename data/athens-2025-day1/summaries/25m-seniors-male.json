@@ -1,0 +1,1357 @@
+{
+  "stream": "athens-2025-day1",
+  "category": "seniors-male",
+  "checkpoint": "25m",
+  "athletes": [
+    {
+      "athlete": "ahmed-elkholy",
+      "time_s": 32.97,
+      "distance_m": 25.0,
+      "total_impulse": 8.02,
+      "avg_speed_mps": 0.76,
+      "cycle": {
+        "avg_combined_impulse": 1.53,
+        "glide_distance_m": 4.79,
+        "glide_time_s": 7.18,
+        "avg_speed_mps": 0.67
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.02,
+          "time_s": 4.37
+        },
+        "LEG_KICK": {
+          "distance_m": 1.77,
+          "time_s": 2.81
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.33,
+          "time_s": 4.24
+        }
+      }
+    },
+    {
+      "athlete": "aleksandr-maksimov",
+      "time_s": 27.29,
+      "distance_m": 25.0,
+      "total_impulse": 8.74,
+      "avg_speed_mps": 0.92,
+      "cycle": {
+        "avg_combined_impulse": 2.27,
+        "glide_distance_m": 6.03,
+        "glide_time_s": 7.14,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.45,
+          "time_s": 5.23
+        },
+        "LEG_KICK": {
+          "distance_m": 1.58,
+          "time_s": 1.91
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.38,
+          "time_s": 5.16
+        }
+      }
+    },
+    {
+      "athlete": "andras-sopronyi",
+      "time_s": 27.33,
+      "distance_m": 25.0,
+      "total_impulse": 7.33,
+      "avg_speed_mps": 0.91,
+      "cycle": {
+        "avg_combined_impulse": 1.7,
+        "glide_distance_m": 5.62,
+        "glide_time_s": 7.04,
+        "avg_speed_mps": 0.8
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.08,
+          "time_s": 5.11
+        },
+        "LEG_KICK": {
+          "distance_m": 1.54,
+          "time_s": 1.93
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.62,
+          "time_s": 6.2
+        }
+      }
+    },
+    {
+      "athlete": "andreas-taleryd",
+      "time_s": 27.28,
+      "distance_m": 25.0,
+      "total_impulse": 7.56,
+      "avg_speed_mps": 0.92,
+      "cycle": {
+        "avg_combined_impulse": 1.76,
+        "glide_distance_m": 5.83,
+        "glide_time_s": 6.92,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.04,
+          "time_s": 4.71
+        },
+        "LEG_KICK": {
+          "distance_m": 1.79,
+          "time_s": 2.21
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.99,
+          "time_s": 4.84
+        }
+      }
+    },
+    {
+      "athlete": "anton-de-wet",
+      "time_s": 26.44,
+      "distance_m": 25.0,
+      "total_impulse": 8.0,
+      "avg_speed_mps": 0.95,
+      "cycle": {
+        "avg_combined_impulse": 1.72,
+        "glide_distance_m": 5.28,
+        "glide_time_s": 6.24,
+        "avg_speed_mps": 0.85
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.87,
+          "time_s": 3.23
+        },
+        "LEG_KICK": {
+          "distance_m": 2.41,
+          "time_s": 3.01
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.77,
+          "time_s": 4.48
+        }
+      }
+    },
+    {
+      "athlete": "arnaud-collard",
+      "time_s": 30.88,
+      "distance_m": 25.0,
+      "total_impulse": 7.96,
+      "avg_speed_mps": 0.81,
+      "cycle": {
+        "avg_combined_impulse": 1.84,
+        "glide_distance_m": 5.57,
+        "glide_time_s": 7.6,
+        "avg_speed_mps": 0.73
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.18,
+          "time_s": 4.34
+        },
+        "LEG_KICK": {
+          "distance_m": 2.39,
+          "time_s": 3.26
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.16,
+          "time_s": 5.8
+        }
+      }
+    },
+    {
+      "athlete": "artiom-chidic",
+      "time_s": 24.48,
+      "distance_m": 25.0,
+      "total_impulse": 7.23,
+      "avg_speed_mps": 1.02,
+      "cycle": {
+        "avg_combined_impulse": 1.84,
+        "glide_distance_m": 5.81,
+        "glide_time_s": 6.29,
+        "avg_speed_mps": 0.92
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.3,
+          "time_s": 3.61
+        },
+        "LEG_KICK": {
+          "distance_m": 2.51,
+          "time_s": 2.68
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.04,
+          "time_s": 5.6
+        }
+      }
+    },
+    {
+      "athlete": "boris-milosic",
+      "time_s": 31.26,
+      "distance_m": 25.0,
+      "total_impulse": 6.61,
+      "avg_speed_mps": 0.8,
+      "cycle": {
+        "avg_combined_impulse": 1.63,
+        "glide_distance_m": 7.19,
+        "glide_time_s": 9.99,
+        "avg_speed_mps": 0.72
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.89,
+          "time_s": 5.68
+        },
+        "LEG_KICK": {
+          "distance_m": 3.3,
+          "time_s": 4.31
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.4,
+          "time_s": 8.32
+        }
+      }
+    },
+    {
+      "athlete": "carl-oscar-nymo",
+      "time_s": 28.08,
+      "distance_m": 25.0,
+      "total_impulse": 6.1,
+      "avg_speed_mps": 0.89,
+      "cycle": {
+        "avg_combined_impulse": 2.02,
+        "glide_distance_m": 8.08,
+        "glide_time_s": 10.1,
+        "avg_speed_mps": 0.8
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 5.38,
+          "time_s": 6.64
+        },
+        "LEG_KICK": {
+          "distance_m": 2.7,
+          "time_s": 3.46
+        },
+        "WALL_PUSH": {
+          "distance_m": 7.32,
+          "time_s": 7.88
+        }
+      }
+    },
+    {
+      "athlete": "christos-karelos",
+      "time_s": 26.31,
+      "distance_m": 25.0,
+      "total_impulse": 7.2,
+      "avg_speed_mps": 0.95,
+      "cycle": {
+        "avg_combined_impulse": 1.74,
+        "glide_distance_m": 6.08,
+        "glide_time_s": 7.21,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.29,
+          "time_s": 4.8
+        },
+        "LEG_KICK": {
+          "distance_m": 1.79,
+          "time_s": 2.41
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.23,
+          "time_s": 4.68
+        }
+      }
+    },
+    {
+      "athlete": "daniel-losinski",
+      "time_s": 24.66,
+      "distance_m": 25.0,
+      "total_impulse": 8.83,
+      "avg_speed_mps": 1.01,
+      "cycle": {
+        "avg_combined_impulse": 2.0,
+        "glide_distance_m": 5.01,
+        "glide_time_s": 5.32,
+        "avg_speed_mps": 0.94
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.19,
+          "time_s": 3.4
+        },
+        "LEG_KICK": {
+          "distance_m": 1.82,
+          "time_s": 1.92
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.26,
+          "time_s": 5.28
+        }
+      }
+    },
+    {
+      "athlete": "david-enav",
+      "time_s": 23.36,
+      "distance_m": 25.0,
+      "total_impulse": 8.68,
+      "avg_speed_mps": 1.07,
+      "cycle": {
+        "avg_combined_impulse": 2.13,
+        "glide_distance_m": 5.99,
+        "glide_time_s": 6.39,
+        "avg_speed_mps": 0.94
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.71,
+          "time_s": 3.84
+        },
+        "LEG_KICK": {
+          "distance_m": 2.28,
+          "time_s": 2.55
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.52,
+          "time_s": 4.2
+        }
+      }
+    },
+    {
+      "athlete": "dmitrii-smetankin",
+      "time_s": 26.32,
+      "distance_m": 25.0,
+      "total_impulse": 9.61,
+      "avg_speed_mps": 0.95,
+      "cycle": {
+        "avg_combined_impulse": 2.03,
+        "glide_distance_m": 5.17,
+        "glide_time_s": 6.12,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.93,
+          "time_s": 3.47
+        },
+        "LEG_KICK": {
+          "distance_m": 2.24,
+          "time_s": 2.65
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.03,
+          "time_s": 4.48
+        }
+      }
+    },
+    {
+      "athlete": "enes-cerimagic",
+      "time_s": 25.21,
+      "distance_m": 25.0,
+      "total_impulse": 7.68,
+      "avg_speed_mps": 0.99,
+      "cycle": {
+        "avg_combined_impulse": 1.76,
+        "glide_distance_m": 5.6,
+        "glide_time_s": 6.2,
+        "avg_speed_mps": 0.9
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.16,
+          "time_s": 3.39
+        },
+        "LEG_KICK": {
+          "distance_m": 2.44,
+          "time_s": 2.81
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.7,
+          "time_s": 6.6
+        }
+      }
+    },
+    {
+      "athlete": "erik-cintra",
+      "time_s": 30.8,
+      "distance_m": 25.0,
+      "total_impulse": 9.25,
+      "avg_speed_mps": 0.81,
+      "cycle": {
+        "avg_combined_impulse": 1.76,
+        "glide_distance_m": 4.84,
+        "glide_time_s": 6.68,
+        "avg_speed_mps": 0.72
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.45,
+          "time_s": 4.64
+        },
+        "LEG_KICK": {
+          "distance_m": 1.39,
+          "time_s": 2.04
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.09,
+          "time_s": 4.08
+        }
+      }
+    },
+    {
+      "athlete": "fernando-ruland",
+      "time_s": 30.15,
+      "distance_m": 25.0,
+      "total_impulse": 5.54,
+      "avg_speed_mps": 0.83,
+      "cycle": {
+        "avg_combined_impulse": 1.45,
+        "glide_distance_m": 7.09,
+        "glide_time_s": 9.7,
+        "avg_speed_mps": 0.73
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.93,
+          "time_s": 5.38
+        },
+        "LEG_KICK": {
+          "distance_m": 3.16,
+          "time_s": 4.32
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.37,
+          "time_s": 5.36
+        }
+      }
+    },
+    {
+      "athlete": "gi-mun-kwak",
+      "time_s": 31.82,
+      "distance_m": 25.0,
+      "total_impulse": 8.94,
+      "avg_speed_mps": 0.79,
+      "cycle": {
+        "avg_combined_impulse": 2.31,
+        "glide_distance_m": 5.97,
+        "glide_time_s": 8.45,
+        "avg_speed_mps": 0.71
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.62,
+          "time_s": 6.76
+        },
+        "LEG_KICK": {
+          "distance_m": 1.35,
+          "time_s": 1.69
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.56,
+          "time_s": 6.44
+        }
+      }
+    },
+    {
+      "athlete": "guillaume-bourdila",
+      "time_s": 25.94,
+      "distance_m": 25.0,
+      "total_impulse": 5.31,
+      "avg_speed_mps": 0.96,
+      "cycle": {
+        "avg_combined_impulse": 1.88,
+        "glide_distance_m": 9.79,
+        "glide_time_s": 11.98,
+        "avg_speed_mps": 0.82
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 6.12,
+          "time_s": 7.4
+        },
+        "LEG_KICK": {
+          "distance_m": 3.67,
+          "time_s": 4.58
+        },
+        "WALL_PUSH": {
+          "distance_m": 10.02,
+          "time_s": 9.36
+        }
+      }
+    },
+    {
+      "athlete": "hakyong-kim",
+      "time_s": 27.4,
+      "distance_m": 25.0,
+      "total_impulse": 8.83,
+      "avg_speed_mps": 0.91,
+      "cycle": {
+        "avg_combined_impulse": 1.57,
+        "glide_distance_m": 4.31,
+        "glide_time_s": 5.14,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.37,
+          "time_s": 4.02
+        },
+        "LEG_KICK": {
+          "distance_m": 0.94,
+          "time_s": 1.12
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.88,
+          "time_s": 2.8
+        }
+      }
+    },
+    {
+      "athlete": "hamad-ismaeel",
+      "time_s": 30.63,
+      "distance_m": 25.0,
+      "total_impulse": 8.48,
+      "avg_speed_mps": 0.82,
+      "cycle": {
+        "avg_combined_impulse": 1.9,
+        "glide_distance_m": 6.5,
+        "glide_time_s": 9.48,
+        "avg_speed_mps": 0.69
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.59,
+          "time_s": 6.4
+        },
+        "LEG_KICK": {
+          "distance_m": 1.91,
+          "time_s": 3.08
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.66,
+          "time_s": 5.52
+        }
+      }
+    },
+    {
+      "athlete": "jonas-plu\u0308ss",
+      "time_s": 31.87,
+      "distance_m": 25.0,
+      "total_impulse": 8.33,
+      "avg_speed_mps": 0.78,
+      "cycle": {
+        "avg_combined_impulse": 1.22,
+        "glide_distance_m": 3.94,
+        "glide_time_s": 5.4,
+        "avg_speed_mps": 0.73
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.9,
+          "time_s": 3.94
+        },
+        "LEG_KICK": {
+          "distance_m": 1.04,
+          "time_s": 1.46
+        },
+        "WALL_PUSH": {
+          "distance_m": 1.72,
+          "time_s": 1.96
+        }
+      }
+    },
+    {
+      "athlete": "joost-rothweiler",
+      "time_s": 31.37,
+      "distance_m": 25.0,
+      "total_impulse": 6.21,
+      "avg_speed_mps": 0.8,
+      "cycle": {
+        "avg_combined_impulse": 1.8,
+        "glide_distance_m": 7.28,
+        "glide_time_s": 10.43,
+        "avg_speed_mps": 0.7
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.13,
+          "time_s": 6.0
+        },
+        "LEG_KICK": {
+          "distance_m": 3.15,
+          "time_s": 4.43
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.74,
+          "time_s": 7.64
+        }
+      }
+    },
+    {
+      "athlete": "jose-plaza",
+      "time_s": 28.38,
+      "distance_m": 25.0,
+      "total_impulse": 8.98,
+      "avg_speed_mps": 0.88,
+      "cycle": {
+        "avg_combined_impulse": 1.97,
+        "glide_distance_m": 5.69,
+        "glide_time_s": 6.92,
+        "avg_speed_mps": 0.82
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.59,
+          "time_s": 4.44
+        },
+        "LEG_KICK": {
+          "distance_m": 2.1,
+          "time_s": 2.48
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.81,
+          "time_s": 7.12
+        }
+      }
+    },
+    {
+      "athlete": "kai-hsiang-chan",
+      "time_s": 24.98,
+      "distance_m": 25.0,
+      "total_impulse": 6.56,
+      "avg_speed_mps": 1.0,
+      "cycle": {
+        "avg_combined_impulse": 2.21,
+        "glide_distance_m": 8.46,
+        "glide_time_s": 9.8,
+        "avg_speed_mps": 0.86
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 5.27,
+          "time_s": 5.98
+        },
+        "LEG_KICK": {
+          "distance_m": 3.19,
+          "time_s": 3.82
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.56,
+          "time_s": 5.36
+        }
+      }
+    },
+    {
+      "athlete": "karol-karcz",
+      "time_s": 22.91,
+      "distance_m": 25.0,
+      "total_impulse": 7.65,
+      "avg_speed_mps": 1.09,
+      "cycle": {
+        "avg_combined_impulse": 1.65,
+        "glide_distance_m": 5.22,
+        "glide_time_s": 5.43,
+        "avg_speed_mps": 0.96
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.48,
+          "time_s": 3.4
+        },
+        "LEG_KICK": {
+          "distance_m": 1.74,
+          "time_s": 2.03
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.36,
+          "time_s": 3.24
+        }
+      }
+    },
+    {
+      "athlete": "klaus-kasten",
+      "time_s": 31.77,
+      "distance_m": 25.0,
+      "total_impulse": 8.32,
+      "avg_speed_mps": 0.79,
+      "cycle": {
+        "avg_combined_impulse": 2.22,
+        "glide_distance_m": 6.54,
+        "glide_time_s": 9.59,
+        "avg_speed_mps": 0.68
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.81,
+          "time_s": 5.41
+        },
+        "LEG_KICK": {
+          "distance_m": 2.73,
+          "time_s": 4.18
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.61,
+          "time_s": 7.16
+        }
+      }
+    },
+    {
+      "athlete": "lancelot-hubert",
+      "time_s": 24.7,
+      "distance_m": 25.0,
+      "total_impulse": 8.35,
+      "avg_speed_mps": 1.01,
+      "cycle": {
+        "avg_combined_impulse": 1.87,
+        "glide_distance_m": 5.54,
+        "glide_time_s": 5.95,
+        "avg_speed_mps": 0.93
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.27,
+          "time_s": 3.32
+        },
+        "LEG_KICK": {
+          "distance_m": 2.27,
+          "time_s": 2.63
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.61,
+          "time_s": 4.2
+        }
+      }
+    },
+    {
+      "athlete": "lars-andersen",
+      "time_s": 28.43,
+      "distance_m": 25.0,
+      "total_impulse": 9.26,
+      "avg_speed_mps": 0.88,
+      "cycle": {
+        "avg_combined_impulse": 1.38,
+        "glide_distance_m": 3.55,
+        "glide_time_s": 4.44,
+        "avg_speed_mps": 0.8
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.31,
+          "time_s": 4.12
+        },
+        "LEG_KICK": {
+          "distance_m": 0.24,
+          "time_s": 0.32
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.46,
+          "time_s": 2.12
+        }
+      }
+    },
+    {
+      "athlete": "leander-modersohn",
+      "time_s": 25.66,
+      "distance_m": 25.0,
+      "total_impulse": 7.25,
+      "avg_speed_mps": 0.97,
+      "cycle": {
+        "avg_combined_impulse": 1.97,
+        "glide_distance_m": 6.66,
+        "glide_time_s": 7.97,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.11,
+          "time_s": 4.95
+        },
+        "LEG_KICK": {
+          "distance_m": 2.55,
+          "time_s": 3.02
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.04,
+          "time_s": 4.76
+        }
+      }
+    },
+    {
+      "athlete": "matej-majling",
+      "time_s": 24.65,
+      "distance_m": 25.0,
+      "total_impulse": 7.45,
+      "avg_speed_mps": 1.01,
+      "cycle": {
+        "avg_combined_impulse": 1.85,
+        "glide_distance_m": 6.43,
+        "glide_time_s": 7.12,
+        "avg_speed_mps": 0.9
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.85,
+          "time_s": 5.32
+        },
+        "LEG_KICK": {
+          "distance_m": 1.58,
+          "time_s": 1.8
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.9,
+          "time_s": 5.0
+        }
+      }
+    },
+    {
+      "athlete": "mateusz-malina",
+      "time_s": 24.64,
+      "distance_m": 25.0,
+      "total_impulse": 8.99,
+      "avg_speed_mps": 1.01,
+      "cycle": {
+        "avg_combined_impulse": 2.26,
+        "glide_distance_m": 6.17,
+        "glide_time_s": 6.83,
+        "avg_speed_mps": 0.9
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.96,
+          "time_s": 5.53
+        },
+        "LEG_KICK": {
+          "distance_m": 1.21,
+          "time_s": 1.3
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.97,
+          "time_s": 4.12
+        }
+      }
+    },
+    {
+      "athlete": "mauro-generali",
+      "time_s": 30.52,
+      "distance_m": 25.0,
+      "total_impulse": 5.69,
+      "avg_speed_mps": 0.82,
+      "cycle": {
+        "avg_combined_impulse": 1.31,
+        "glide_distance_m": 6.81,
+        "glide_time_s": 8.8,
+        "avg_speed_mps": 0.77
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.08,
+          "time_s": 5.08
+        },
+        "LEG_KICK": {
+          "distance_m": 2.73,
+          "time_s": 3.72
+        },
+        "WALL_PUSH": {
+          "distance_m": 5.74,
+          "time_s": 6.84
+        }
+      }
+    },
+    {
+      "athlete": "michael-nix",
+      "time_s": 28.21,
+      "distance_m": 25.0,
+      "total_impulse": 9.06,
+      "avg_speed_mps": 0.89,
+      "cycle": {
+        "avg_combined_impulse": 2.06,
+        "glide_distance_m": 5.56,
+        "glide_time_s": 6.88,
+        "avg_speed_mps": 0.81
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.67,
+          "time_s": 4.48
+        },
+        "LEG_KICK": {
+          "distance_m": 1.89,
+          "time_s": 2.4
+        },
+        "WALL_PUSH": {
+          "distance_m": 3.14,
+          "time_s": 3.08
+        }
+      }
+    },
+    {
+      "athlete": "michal-bochenek",
+      "time_s": 27.45,
+      "distance_m": 25.0,
+      "total_impulse": 6.37,
+      "avg_speed_mps": 0.91,
+      "cycle": {
+        "avg_combined_impulse": 2.29,
+        "glide_distance_m": 8.26,
+        "glide_time_s": 10.14,
+        "avg_speed_mps": 0.81
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.55,
+          "time_s": 5.5
+        },
+        "LEG_KICK": {
+          "distance_m": 3.71,
+          "time_s": 4.64
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.97,
+          "time_s": 7.16
+        }
+      }
+    },
+    {
+      "athlete": "miguel-oliveira",
+      "time_s": 22.38,
+      "distance_m": 25.0,
+      "total_impulse": 6.58,
+      "avg_speed_mps": 1.12,
+      "cycle": {
+        "avg_combined_impulse": 1.87,
+        "glide_distance_m": 6.97,
+        "glide_time_s": 6.63,
+        "avg_speed_mps": 1.05
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.59,
+          "time_s": 3.7
+        },
+        "LEG_KICK": {
+          "distance_m": 2.38,
+          "time_s": 2.93
+        },
+        "WALL_PUSH": {
+          "distance_m": 7.15,
+          "time_s": 6.16
+        }
+      }
+    },
+    {
+      "athlete": "mikhail-briantsev",
+      "time_s": 25.76,
+      "distance_m": 25.0,
+      "total_impulse": 8.21,
+      "avg_speed_mps": 0.97,
+      "cycle": {
+        "avg_combined_impulse": 1.96,
+        "glide_distance_m": 6.25,
+        "glide_time_s": 7.83,
+        "avg_speed_mps": 0.8
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.17,
+          "time_s": 4.97
+        },
+        "LEG_KICK": {
+          "distance_m": 2.08,
+          "time_s": 2.86
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.81,
+          "time_s": 5.12
+        }
+      }
+    },
+    {
+      "athlete": "miro-suonpera",
+      "time_s": 24.34,
+      "distance_m": 25.0,
+      "total_impulse": 8.0,
+      "avg_speed_mps": 1.03,
+      "cycle": {
+        "avg_combined_impulse": 2.23,
+        "glide_distance_m": 6.6,
+        "glide_time_s": 7.4,
+        "avg_speed_mps": 0.89
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.07,
+          "time_s": 4.42
+        },
+        "LEG_KICK": {
+          "distance_m": 2.53,
+          "time_s": 2.98
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.21,
+          "time_s": 5.12
+        }
+      }
+    },
+    {
+      "athlete": "moosa-aljadeedi",
+      "time_s": 28.53,
+      "distance_m": 25.0,
+      "total_impulse": 8.86,
+      "avg_speed_mps": 0.88,
+      "cycle": {
+        "avg_combined_impulse": 1.39,
+        "glide_distance_m": 3.84,
+        "glide_time_s": 4.98,
+        "avg_speed_mps": 0.77
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.36,
+          "time_s": 4.36
+        },
+        "LEG_KICK": {
+          "distance_m": 0.48,
+          "time_s": 0.62
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.76,
+          "time_s": 4.24
+        }
+      }
+    },
+    {
+      "athlete": "nazar-levytskyi",
+      "time_s": 28.26,
+      "distance_m": 25.0,
+      "total_impulse": 7.68,
+      "avg_speed_mps": 0.88,
+      "cycle": {
+        "avg_combined_impulse": 1.55,
+        "glide_distance_m": 5.23,
+        "glide_time_s": 6.36,
+        "avg_speed_mps": 0.82
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.42,
+          "time_s": 4.15
+        },
+        "LEG_KICK": {
+          "distance_m": 1.81,
+          "time_s": 2.21
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.57,
+          "time_s": 2.8
+        }
+      }
+    },
+    {
+      "athlete": "nenad-pavkovic",
+      "time_s": 27.69,
+      "distance_m": 25.0,
+      "total_impulse": 5.34,
+      "avg_speed_mps": 0.9,
+      "cycle": {
+        "avg_combined_impulse": 1.63,
+        "glide_distance_m": 7.27,
+        "glide_time_s": 8.51,
+        "avg_speed_mps": 0.85
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.98,
+          "time_s": 3.16
+        },
+        "LEG_KICK": {
+          "distance_m": 4.29,
+          "time_s": 5.35
+        },
+        "WALL_PUSH": {
+          "distance_m": 7.65,
+          "time_s": 8.48
+        }
+      }
+    },
+    {
+      "athlete": "olivier-elu",
+      "time_s": 25.13,
+      "distance_m": 25.0,
+      "total_impulse": 6.62,
+      "avg_speed_mps": 0.99,
+      "cycle": {
+        "avg_combined_impulse": 2.26,
+        "glide_distance_m": 7.15,
+        "glide_time_s": 7.64,
+        "avg_speed_mps": 0.94
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.61,
+          "time_s": 4.54
+        },
+        "LEG_KICK": {
+          "distance_m": 2.54,
+          "time_s": 3.1
+        },
+        "WALL_PUSH": {
+          "distance_m": 9.18,
+          "time_s": 9.84
+        }
+      }
+    },
+    {
+      "athlete": "pan-ming-chou",
+      "time_s": 30.95,
+      "distance_m": 25.0,
+      "total_impulse": 8.79,
+      "avg_speed_mps": 0.81,
+      "cycle": {
+        "avg_combined_impulse": 1.57,
+        "glide_distance_m": 4.74,
+        "glide_time_s": 6.42,
+        "avg_speed_mps": 0.74
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.46,
+          "time_s": 3.28
+        },
+        "LEG_KICK": {
+          "distance_m": 2.28,
+          "time_s": 3.14
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.07,
+          "time_s": 1.96
+        }
+      }
+    },
+    {
+      "athlete": "paolo-fontana",
+      "time_s": 26.01,
+      "distance_m": 25.0,
+      "total_impulse": 6.99,
+      "avg_speed_mps": 0.96,
+      "cycle": {
+        "avg_combined_impulse": 2.03,
+        "glide_distance_m": 6.81,
+        "glide_time_s": 8.11,
+        "avg_speed_mps": 0.84
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.67,
+          "time_s": 4.27
+        },
+        "LEG_KICK": {
+          "distance_m": 3.14,
+          "time_s": 3.84
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.2,
+          "time_s": 5.52
+        }
+      }
+    },
+    {
+      "athlete": "piotr-kubiak",
+      "time_s": 25.5,
+      "distance_m": 25.0,
+      "total_impulse": 6.16,
+      "avg_speed_mps": 0.98,
+      "cycle": {
+        "avg_combined_impulse": 1.84,
+        "glide_distance_m": 7.32,
+        "glide_time_s": 8.25,
+        "avg_speed_mps": 0.89
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.25,
+          "time_s": 4.63
+        },
+        "LEG_KICK": {
+          "distance_m": 3.07,
+          "time_s": 3.62
+        },
+        "WALL_PUSH": {
+          "distance_m": 4.61,
+          "time_s": 4.36
+        }
+      }
+    },
+    {
+      "athlete": "roman-cuhari",
+      "time_s": 31.1,
+      "distance_m": 25.0,
+      "total_impulse": 9.12,
+      "avg_speed_mps": 0.8,
+      "cycle": {
+        "avg_combined_impulse": 1.85,
+        "glide_distance_m": 5.44,
+        "glide_time_s": 7.11,
+        "avg_speed_mps": 0.77
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 3.86,
+          "time_s": 4.73
+        },
+        "LEG_KICK": {
+          "distance_m": 1.58,
+          "time_s": 2.38
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.45,
+          "time_s": 2.6
+        }
+      }
+    },
+    {
+      "athlete": "taek-gyu-lee",
+      "time_s": 28.74,
+      "distance_m": 25.0,
+      "total_impulse": 11.11,
+      "avg_speed_mps": 0.87,
+      "cycle": {
+        "avg_combined_impulse": 1.48,
+        "glide_distance_m": 3.15,
+        "glide_time_s": 3.91,
+        "avg_speed_mps": 0.81
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.5,
+          "time_s": 3.09
+        },
+        "LEG_KICK": {
+          "distance_m": 0.65,
+          "time_s": 0.82
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.04,
+          "time_s": 2.12
+        }
+      }
+    },
+    {
+      "athlete": "valentin-sadan",
+      "time_s": 26.17,
+      "distance_m": 25.0,
+      "total_impulse": 9.8,
+      "avg_speed_mps": 0.96,
+      "cycle": {
+        "avg_combined_impulse": 1.71,
+        "glide_distance_m": 4.33,
+        "glide_time_s": 4.69,
+        "avg_speed_mps": 0.92
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.76,
+          "time_s": 3.0
+        },
+        "LEG_KICK": {
+          "distance_m": 1.57,
+          "time_s": 1.69
+        },
+        "WALL_PUSH": {
+          "distance_m": 3.03,
+          "time_s": 4.0
+        }
+      }
+    },
+    {
+      "athlete": "vanja-peles",
+      "time_s": 25.39,
+      "distance_m": 25.0,
+      "total_impulse": 6.32,
+      "avg_speed_mps": 0.98,
+      "cycle": {
+        "avg_combined_impulse": 2.02,
+        "glide_distance_m": 8.3,
+        "glide_time_s": 9.77,
+        "avg_speed_mps": 0.85
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.91,
+          "time_s": 5.34
+        },
+        "LEG_KICK": {
+          "distance_m": 3.39,
+          "time_s": 4.43
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.9,
+          "time_s": 5.84
+        }
+      }
+    },
+    {
+      "athlete": "walter-strumbichler",
+      "time_s": 26.19,
+      "distance_m": 25.0,
+      "total_impulse": 7.44,
+      "avg_speed_mps": 0.95,
+      "cycle": {
+        "avg_combined_impulse": 2.1,
+        "glide_distance_m": 6.63,
+        "glide_time_s": 8.12,
+        "avg_speed_mps": 0.82
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 4.0,
+          "time_s": 4.78
+        },
+        "LEG_KICK": {
+          "distance_m": 2.63,
+          "time_s": 3.34
+        },
+        "WALL_PUSH": {
+          "distance_m": 6.22,
+          "time_s": 5.16
+        }
+      }
+    },
+    {
+      "athlete": "yevhen-muraviov",
+      "time_s": 31.96,
+      "distance_m": 25.0,
+      "total_impulse": 10.46,
+      "avg_speed_mps": 0.78,
+      "cycle": {
+        "avg_combined_impulse": 1.57,
+        "glide_distance_m": 3.95,
+        "glide_time_s": 5.46,
+        "avg_speed_mps": 0.72
+      },
+      "glide_avg_by_label": {
+        "ARM_PULL": {
+          "distance_m": 2.66,
+          "time_s": 3.68
+        },
+        "LEG_KICK": {
+          "distance_m": 1.29,
+          "time_s": 1.78
+        },
+        "WALL_PUSH": {
+          "distance_m": 2.51,
+          "time_s": 3.0
+        }
+      }
+    }
+  ]
+}

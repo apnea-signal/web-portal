@@ -1,0 +1,1015 @@
+{
+  "generated_at": "2026-03-31T16:44:26.791045+00:00",
+  "streams": [
+    {
+      "id": "athens-2025-day1",
+      "categories": [
+        {
+          "id": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ],
+          "summary_files": {
+            "25m": "data/athens-2025-day1/summaries/25m-seniors-male.json",
+            "50m": "data/athens-2025-day1/summaries/50m-seniors-male.json",
+            "overview": "data/athens-2025-day1/summaries/overview-seniors-male.json",
+            "total": "data/athens-2025-day1/summaries/total-seniors-male.json"
+          },
+          "distribution_images": {
+            "25m": [
+              "data/athens-2025-day1/distributions/25m/seniors-male/arm-pull-glide-2d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/avg-speed-1d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-glide-2d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-impulse-1d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-speed-1d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/leg-kick-glide-2d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/time-1d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/total-impulse-1d.png",
+              "data/athens-2025-day1/distributions/25m/seniors-male/wall-push-glide-2d.png"
+            ],
+            "50m": [
+              "data/athens-2025-day1/distributions/50m/seniors-male/arm-pull-glide-2d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/avg-speed-1d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-glide-2d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-impulse-1d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-speed-1d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/leg-kick-glide-2d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/time-1d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/total-impulse-1d.png",
+              "data/athens-2025-day1/distributions/50m/seniors-male/wall-push-glide-2d.png"
+            ],
+            "total": [
+              "data/athens-2025-day1/distributions/total/seniors-male/arm-pull-glide-2d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/cycle-glide-2d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/cycle-impulse-1d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/cycle-speed-1d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/drag-1d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/leg-kick-glide-2d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/ref-arm-pull-1d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/ref-leg-kick-1d.png",
+              "data/athens-2025-day1/distributions/total/seniors-male/wall-push-glide-2d.png"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "athletes": [
+    {
+      "slug": "ahmed-elkholy",
+      "display_name": "Ahmed Elkholy",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "aleksandr-maksimov",
+      "display_name": "Aleksandr Maksimov",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "andras-sopronyi",
+      "display_name": "Andras Sopronyi",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "andreas-taleryd",
+      "display_name": "Andreas Taleryd",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "anton-de-wet",
+      "display_name": "Anton De Wet",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "arnaud-collard",
+      "display_name": "Arnaud Collard",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "artiom-chidic",
+      "display_name": "Artiom Chidic",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "boris-milosic",
+      "display_name": "Boris Milosic",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "carl-oscar-nymo",
+      "display_name": "Carl Oscar Nymo",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "christos-karelos",
+      "display_name": "Christos Karelos",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "daniel-losinski",
+      "display_name": "Daniel Losinski",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "david-enav",
+      "display_name": "David Enav",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "dmitrii-smetankin",
+      "display_name": "Dmitrii Smetankin",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "enes-cerimagic",
+      "display_name": "Enes Cerimagic",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "erik-cintra",
+      "display_name": "Erik Cintra",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "fernando-ruland",
+      "display_name": "Fernando Ruland",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "gi-mun-kwak",
+      "display_name": "Gi Mun Kwak",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "guillaume-bourdila",
+      "display_name": "Guillaume Bourdila",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hakyong-kim",
+      "display_name": "Hakyong Kim",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "hamad-ismaeel",
+      "display_name": "Hamad Ismaeel",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "jonas-plu\u0308ss",
+      "display_name": "Jonas Plu\u0308ss",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "joost-rothweiler",
+      "display_name": "Joost Rothweiler",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "jose-plaza",
+      "display_name": "Jose Plaza",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kai-hsiang-chan",
+      "display_name": "Kai Hsiang Chan",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "karol-karcz",
+      "display_name": "Karol Karcz",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "klaus-kasten",
+      "display_name": "Klaus Kasten",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "lancelot-hubert",
+      "display_name": "Lancelot Hubert",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "lars-andersen",
+      "display_name": "Lars Andersen",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "leander-modersohn",
+      "display_name": "Leander Modersohn",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "matej-majling",
+      "display_name": "Matej Majling",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mateusz-malina",
+      "display_name": "Mateusz Malina",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mauro-generali",
+      "display_name": "Mauro Generali",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "michael-nix",
+      "display_name": "Michael Nix",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "michal-bochenek",
+      "display_name": "Michal Bochenek",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "miguel-oliveira",
+      "display_name": "Miguel Oliveira",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "mikhail-briantsev",
+      "display_name": "Mikhail Briantsev",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "miro-suonpera",
+      "display_name": "Miro Suonpera",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "moosa-aljadeedi",
+      "display_name": "Moosa Aljadeedi",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "nazar-levytskyi",
+      "display_name": "Nazar Levytskyi",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "nenad-pavkovic",
+      "display_name": "Nenad Pavkovic",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "olivier-elu",
+      "display_name": "Olivier Elu",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "pan-ming-chou",
+      "display_name": "Pan Ming Chou",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "paolo-fontana",
+      "display_name": "Paolo Fontana",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "piotr-kubiak",
+      "display_name": "Piotr Kubiak",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "roman-cuhari",
+      "display_name": "Roman Cuhari",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "taek-gyu-lee",
+      "display_name": "Taek Gyu Lee",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "valentin-sadan",
+      "display_name": "Valentin Sadan",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "vanja-peles",
+      "display_name": "Vanja Peles",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "walter-strumbichler",
+      "display_name": "Walter Strumbichler",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "yevhen-muraviov",
+      "display_name": "Yevhen Muraviov",
+      "entries": [
+        {
+          "stream": "athens-2025-day1",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [
+            "25m",
+            "50m",
+            "overview",
+            "total"
+          ]
+        }
+      ]
+    }
+  ]
+}

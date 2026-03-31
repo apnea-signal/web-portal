@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="portal-base" content="./" />
+    <title>Apnea Signal Portal</title>
+    <link rel="stylesheet" href="./assets/css/site.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero">
+        <h1>Apnea Signal Web Portal</h1>
+        <p>
+          Choose a discipline branch. DNF is active with benchmark and athlete-explorer views.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Discipline Fork</h2>
+        <p class="note">Select the discipline to enter its analysis pages.</p>
+        <div class="discipline-grid">
+          <a class="discipline-card" href="./dnf/overview/">
+            <h3>DNF</h3>
+            <p>Active branch: overview benchmarks + athlete explorer comparison.</p>
+            <p class="discipline-state">Available</p>
+          </a>
+          <article class="discipline-card is-disabled" aria-disabled="true">
+            <h3>DYNB</h3>
+            <p>Discipline route reserved.</p>
+            <p class="discipline-state">Disabled</p>
+          </article>
+          <article class="discipline-card is-disabled" aria-disabled="true">
+            <h3>DYN</h3>
+            <p>Discipline route reserved.</p>
+            <p class="discipline-state">Disabled</p>
+          </article>
+        </div>
+      </section>
+
+      <footer>
+        Static-first build for GitHub Pages previews. Data artifacts are served from <code>public/data</code>.
+      </footer>
+    </main>
+  </body>
+</html>
