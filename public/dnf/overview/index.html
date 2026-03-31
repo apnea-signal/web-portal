@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="portal-base" content="../../" />
+    <title>DNF Overview · Apnea Signal</title>
+    <link rel="stylesheet" href="../../assets/css/site.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="container">
+        <div class="brand-row">
+          <div>
+            <p class="brand-title">Apnea Signal · DNF</p>
+            <p class="brand-subtitle" id="scopeLabel">Loading scope...</p>
+          </div>
+          <nav class="nav-tabs" aria-label="DNF pages">
+            <a class="nav-tab" data-page="overview" href="../overview/">Overview</a>
+            <a class="nav-tab" data-page="athletes" href="../athletes/">Athlete Explorer</a>
+            <a class="nav-tab" href="../../">Discipline Fork</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <h1>DNF Overview</h1>
+        <p>
+          Benchmark-first event summary using curated checkpoint summaries and pre-rendered distribution artifacts.
+        </p>
+      </section>
+
+      <section class="controls-bar" aria-label="Dataset scope">
+        <div class="control">
+          <label for="streamSelect">Stream</label>
+          <select id="streamSelect"></select>
+        </div>
+        <div class="control">
+          <label for="categorySelect">Category</label>
+          <select id="categorySelect"></select>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Benchmark Snapshot</h2>
+        <p id="overviewStatus" class="note">Loading...</p>
+        <div id="kpiGrid" class="grid kpi"></div>
+      </section>
+
+      <section class="card">
+        <h2>Checkpoint Summary</h2>
+        <div id="checkpointTable" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <h2>Simple Trend Strips</h2>
+        <div class="chart-strip">
+          <div>
+            <h3>Average Speed by Checkpoint</h3>
+            <div id="speedBars" class="bar-chart"></div>
+          </div>
+          <div>
+            <h3>Average Total Impulse by Checkpoint</h3>
+            <div id="impulseBars" class="bar-chart"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Distribution Gallery</h2>
+        <p class="note">Complex distributions are rendered upstream and shown directly here.</p>
+        <div id="distributionGallery" class="gallery"></div>
+      </section>
+
+      <footer>DNF overview is static and branch-preview friendly for PR feedback.</footer>
+    </main>
+
+    <script type="module" src="../../assets/js/dnf-overview.js"></script>
+  </body>
+</html>
