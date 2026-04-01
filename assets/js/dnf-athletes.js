@@ -3,16 +3,16 @@ import { initDnfShell } from "./dnf-shell.js";
 
 const bundleCache = new Map();
 
-function cacheKey(stream, category) {
-  return `${stream}::${category}`;
+function cacheKey(eventId, category) {
+  return `${eventId}::${category}`;
 }
 
-async function getBundle(manifest, stream, category) {
-  const key = cacheKey(stream, category);
+async function getBundle(manifest, eventId, category) {
+  const key = cacheKey(eventId, category);
   if (bundleCache.has(key)) {
     return bundleCache.get(key);
   }
-  const bundle = await loadSummaryBundle(manifest, stream, category);
+  const bundle = await loadSummaryBundle(manifest, eventId, category);
   bundleCache.set(key, bundle);
   return bundle;
 }
@@ -49,14 +49,14 @@ function median(values) {
   return sorted[middle];
 }
 
-function findAthleteEntry(manifest, slug, preferredStream, preferredCategory) {
+function findAthleteEntry(manifest, slug, preferredEvent, preferredCategory) {
   const athlete = (manifest.athletes || []).find((row) => row.slug === slug);
   if (!athlete) {
     return null;
   }
 
   const preferred = (athlete.entries || []).find(
-    (entry) => entry.stream === preferredStream && entry.category === preferredCategory
+    (entry) => (entry.event || entry.stream) === preferredEvent && entry.category === preferredCategory
   );
   if (preferred) {
     return preferred;
@@ -104,12 +104,13 @@ function renderSearchResults(manifest, searchTerm, onSelect) {
 
   results.slice(0, 80).forEach((athlete) => {
     (athlete.entries || []).forEach((entry) => {
+      const eventId = entry.event || entry.stream;
       const button = document.createElement("button");
       button.className = "list-item";
       button.type = "button";
       button.innerHTML = `
         <span class="title">${athlete.display_name}</span>
-        <span class="meta">${entry.stream} / ${entry.category}</span>
+        <span class="meta">${eventId} / ${entry.category}</span>
       `;
       button.addEventListener("click", () => onSelect(athlete.slug, entry));
       container.appendChild(button);
@@ -194,7 +195,7 @@ function computeReferenceRows(currentSummary, peerRows) {
   return [
     {
       name: "Current Cohort Median",
-      context: "Selected stream/category",
+      context: "Selected event/category",
       distance: cohortDistance,
       time: cohortTime,
       speed: cohortSpeed,
@@ -213,13 +214,14 @@ function computeReferenceRows(currentSummary, peerRows) {
   ];
 }
 
-async function buildAthleteRow(manifest, slug, preferredStream, preferredCategory, labelPrefix = "") {
-  const entry = findAthleteEntry(manifest, slug, preferredStream, preferredCategory);
+async function buildAthleteRow(manifest, slug, preferredEvent, preferredCategory, labelPrefix = "") {
+  const entry = findAthleteEntry(manifest, slug, preferredEvent, preferredCategory);
   if (!entry) {
     return null;
   }
 
-  const bundle = await getBundle(manifest, entry.stream, entry.category);
+  const eventId = entry.event || entry.stream;
+  const bundle = await getBundle(manifest, eventId, entry.category);
   const total = findAthleteRecord(bundle.total, slug);
   const overview = findAthleteRecord(bundle.overview, slug);
 
@@ -230,7 +232,7 @@ async function buildAthleteRow(manifest, slug, preferredStream, preferredCategor
   return {
     slug,
     name: slugToDisplay(slug),
-    context: `${labelPrefix}${entry.stream} / ${entry.category}`,
+    context: `${labelPrefix}${eventId} / ${entry.category}`,
     distance: toNumber(total?.distance_m),
     time: toNumber(total?.time_s),
     speed: toNumber(total?.avg_speed_mps),
@@ -239,9 +241,9 @@ async function buildAthleteRow(manifest, slug, preferredStream, preferredCategor
   };
 }
 
-async function renderPageState({ manifest, stream, category, selectedAthlete, selectedPeers }) {
+async function renderPageState({ manifest, eventId, category, selectedAthlete, selectedPeers }) {
   const primaryRow = selectedAthlete
-    ? await buildAthleteRow(manifest, selectedAthlete, stream, category, "Primary · ")
+    ? await buildAthleteRow(manifest, selectedAthlete, eventId, category, "Primary · ")
     : null;
 
   if (!primaryRow) {
@@ -255,13 +257,13 @@ async function renderPageState({ manifest, stream, category, selectedAthlete, se
     if (peerSlug === selectedAthlete) {
       continue;
     }
-    const peer = await buildAthleteRow(manifest, peerSlug, stream, category, "Peer · ");
+    const peer = await buildAthleteRow(manifest, peerSlug, eventId, category, "Peer · ");
     if (peer) {
       peerRows.push(peer);
     }
   }
 
-  const currentBundle = await getBundle(manifest, stream, category);
+  const currentBundle = await getBundle(manifest, eventId, category);
   const referenceRows = computeReferenceRows(currentBundle.total, peerRows);
 
   renderComparisonTable([primaryRow, ...peerRows, ...referenceRows]);
@@ -292,7 +294,7 @@ async function main() {
     syncAthleteQuery(selectedAthlete, [...selectedPeers]);
     await renderPageState({
       manifest,
-      stream: context.stream,
+      eventId: context.event,
       category: context.category,
       selectedAthlete,
       selectedPeers,
@@ -301,12 +303,13 @@ async function main() {
 
   renderSearchResults(manifest, "", (slug, entry) => {
     selectedAthlete = slug;
+    const eventId = entry.event || entry.stream;
 
-    const streamSelect = document.getElementById("streamSelect");
+    const eventSelect = document.getElementById("eventSelect") || document.getElementById("streamSelect");
     const categorySelect = document.getElementById("categorySelect");
-    if (streamSelect && categorySelect) {
-      streamSelect.value = entry.stream;
-      streamSelect.dispatchEvent(new Event("change"));
+    if (eventSelect && categorySelect) {
+      eventSelect.value = eventId;
+      eventSelect.dispatchEvent(new Event("change"));
       categorySelect.value = entry.category;
       categorySelect.dispatchEvent(new Event("change"));
     }
@@ -318,11 +321,12 @@ async function main() {
     searchInput.addEventListener("input", () => {
       renderSearchResults(manifest, searchInput.value, (slug, entry) => {
         selectedAthlete = slug;
-        const streamSelect = document.getElementById("streamSelect");
+        const eventId = entry.event || entry.stream;
+        const eventSelect = document.getElementById("eventSelect") || document.getElementById("streamSelect");
         const categorySelect = document.getElementById("categorySelect");
-        if (streamSelect && categorySelect) {
-          streamSelect.value = entry.stream;
-          streamSelect.dispatchEvent(new Event("change"));
+        if (eventSelect && categorySelect) {
+          eventSelect.value = eventId;
+          eventSelect.dispatchEvent(new Event("change"));
           categorySelect.value = entry.category;
           categorySelect.dispatchEvent(new Event("change"));
         }
