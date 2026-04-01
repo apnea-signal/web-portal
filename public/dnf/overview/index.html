@@ -12,13 +12,13 @@
       <div class="container">
         <div class="brand-row">
           <div>
-            <p class="brand-title">Apnea Signal · DNF</p>
-            <p class="brand-subtitle" id="scopeLabel">Loading scope...</p>
+            <a class="brand-title" href="../../">Apnea Signal · DNF</a>
+            <p class="brand-subtitle">All Events Aggregate View</p>
           </div>
           <nav class="nav-tabs" aria-label="DNF pages">
-            <a class="nav-tab" data-page="overview" href="../overview/">Overview</a>
+            <a class="nav-tab is-active" data-page="overview" href="../overview/" aria-current="page">Overview</a>
+            <a class="nav-tab" data-page="events" href="../events/">Event Explorer</a>
             <a class="nav-tab" data-page="athletes" href="../athletes/">Athlete Explorer</a>
-            <a class="nav-tab" href="../../">Discipline Fork</a>
           </nav>
         </div>
       </div>
@@ -28,55 +28,65 @@
       <section class="hero">
         <h1>DNF Overview</h1>
         <p>
-          Benchmark-first event summary using curated checkpoint summaries and pre-rendered distribution artifacts.
+          Aggregate benchmarks across all DNF events and categories in the curated dataset.
         </p>
       </section>
 
-      <section class="controls-bar" aria-label="Dataset scope">
-        <div class="control">
-          <label for="streamSelect">Stream</label>
-          <select id="streamSelect"></select>
-        </div>
-        <div class="control">
-          <label for="categorySelect">Category</label>
-          <select id="categorySelect"></select>
-        </div>
-      </section>
-
       <section class="card">
-        <h2>Benchmark Snapshot</h2>
+        <h2>Cross-Event Benchmark Snapshot</h2>
         <p id="overviewStatus" class="note">Loading...</p>
         <div id="kpiGrid" class="grid kpi"></div>
       </section>
 
       <section class="card">
-        <h2>Checkpoint Summary</h2>
-        <div id="checkpointTable" class="table-wrap"></div>
+        <h2>Key Performance Answers</h2>
+        <p class="note">Discipline-wide highlights across all events/categories.</p>
+        <div id="performanceAnswers" class="grid kpi"></div>
       </section>
 
       <section class="card">
-        <h2>Simple Trend Strips</h2>
+        <h2>Milestone Times (Training Suggestions)</h2>
+        <p id="milestoneStatus" class="note">Calculating milestone targets...</p>
+        <div id="milestoneTable" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <h2>Technique Relationships</h2>
+        <p id="techniqueStatus" class="note">Calculating technique relationships...</p>
         <div class="chart-strip">
-          <div>
-            <h3>Average Speed by Checkpoint</h3>
-            <div id="speedBars" class="bar-chart"></div>
+          <div class="plot-card">
+            <h3>Cycle Glide Share vs Total Distance</h3>
+            <div id="cycleGlideChart" class="scatter-plot"></div>
           </div>
-          <div>
-            <h3>Average Total Impulse by Checkpoint</h3>
-            <div id="impulseBars" class="bar-chart"></div>
+          <div class="plot-card">
+            <h3>Wall Push Glide Distance vs Total Distance</h3>
+            <div id="wallPushChart" class="scatter-plot"></div>
+          </div>
+          <div class="plot-card">
+            <h3>Estimated Cycle Count vs Total Distance</h3>
+            <div id="cyclesChart" class="scatter-plot"></div>
           </div>
         </div>
+        <div id="techniqueTable" class="table-wrap"></div>
       </section>
 
       <section class="card">
-        <h2>Distribution Gallery</h2>
-        <p class="note">Complex distributions are rendered upstream and shown directly here.</p>
-        <div id="distributionGallery" class="gallery"></div>
+        <h2>Event / Category Summary</h2>
+        <div id="eventTable" class="table-wrap"></div>
+      </section>
+
+      <section class="card">
+        <h2>Cross-Event Distributions</h2>
+        <p id="crossEventDistributionStatus" class="note">
+          Aggregated distribution artifacts across events (from the data pipeline).
+        </p>
+        <div id="crossEventDistributionGallery" class="gallery"></div>
       </section>
 
       <footer>DNF overview is static and branch-preview friendly for PR feedback.</footer>
     </main>
 
+    <script src="../../assets/js/dev-live-reload.js"></script>
     <script type="module" src="../../assets/js/dnf-overview.js"></script>
   </body>
 </html>

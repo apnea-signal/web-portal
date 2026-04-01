@@ -1,27 +1,27 @@
-# Data Sources Strategy (Planned)
+# Data Sources Strategy
 
 ## Goal
-Define how the web portal can progressively use all available upstream data sources while keeping one clear source of truth for athlete-visible metrics.
+Define how source integrations evolve over time while the portal keeps one stable consumer contract.
 
-## Scope for This Future Document
-- inventory every upstream artifact and owner,
-- classify each field as authoritative metric, contextual metadata, or optional enrichment,
-- define join keys and freshness expectations,
-- document fallback behavior when inputs are missing or stale,
-- prioritize integrations by athlete/coaching impact.
+The canonical contract and availability matrix live in:
+- [`docs/data-contract.md`](./data-contract.md)
 
-## Initial Source Inventory
-- `video-annotation`: `*.annotations.json`
-- `propulsion-solver` (portal baseline): `*.propulsion.refined.json`, `*.propulsion.stats.json`
-- `propulsion-solver` derived analysis artifacts: checkpoint/cohort summary JSON and distribution outputs
-- legacy inspiration: `energy-model-old` dashboard datasets and presentation patterns
+## Strategy Focus
+- prioritize producer work that removes UI placeholders with high athlete/coaching value,
+- keep manifest and artifact paths stable to avoid consumer churn,
+- isolate compatibility bridges (`streams` -> `events`) and remove them only after migration.
+
+## Current Priorities
+1. Fill DNF cross-event distributions (`cross_event_distributions.DNF`) so Overview can replace placeholders with real artifacts.
+2. Keep event/category summary and distribution production stable for Event Explorer.
+3. Extend the same contract shape for DYNB and DYN once those disciplines activate.
 
 ## Decision Targets
-- when to show benchmark-only vs personalized views,
-- where derived portal metrics are allowed and how they are labeled,
-- how cohort definitions evolve beyond the default same-discipline rule.
+- source freshness policy for curated snapshots,
+- ownership per artifact family (annotation vs solver outputs),
+- deprecation date for compatibility keys in manifest.
 
 ## Done Criteria
-- clear data contract map for each portal section,
-- explicit source-of-truth statement per displayed metric,
-- implementation-ready backlog for staged data-source adoption.
+- all required items in [`docs/data-contract.md`](./data-contract.md) are producer-backed,
+- Overview has no placeholder cards for active disciplines,
+- compatibility keys are formally deprecated and removed with a migration note.

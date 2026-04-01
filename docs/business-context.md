@@ -33,6 +33,9 @@ Contract precedence for portal metrics:
 - solver outputs are the source of truth for displayed performance metrics,
 - annotation output is contextual metadata and provenance.
 
+Canonical consumer contract details are documented in
+[`docs/data-contract.md`](./data-contract.md).
+
 ## Product Behavior
 ### Mode A: No processed video for the athlete
 - show benchmark targets only,
@@ -68,4 +71,5 @@ Default comparison cohort is athletes in the same discipline.
 - automatic coaching prescriptions without coach interpretation.
 
 ## Future Work
-We plan a dedicated source-integration document at [`docs/data-sources-strategy.md`](./data-sources-strategy.md) to evaluate how to use all available data sources in future portal iterations.
+- source-integration roadmap: [`docs/data-sources-strategy.md`](./data-sources-strategy.md),
+- canonical consumer contract: [`docs/data-contract.md`](./data-contract.md).

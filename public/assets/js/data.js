@@ -23,27 +23,35 @@ export async function loadManifest() {
   if (manifestCache.payload) {
     return manifestCache.payload;
   }
-  manifestCache.payload = await fetchJson("data/manifest.json");
+  const payload = await fetchJson("data/manifest.json");
+  if (!payload.events && Array.isArray(payload.streams)) {
+    payload.events = payload.streams;
+  }
+  manifestCache.payload = payload;
   return manifestCache.payload;
 }
 
-export function getStreamIds(manifest) {
-  return (manifest.streams || []).map((stream) => stream.id);
+function eventRows(manifest) {
+  return manifest.events || manifest.streams || [];
 }
 
-export function getCategoryRows(manifest, streamId) {
-  const stream = (manifest.streams || []).find((row) => row.id === streamId);
-  return stream?.categories || [];
+export function getEventIds(manifest) {
+  return eventRows(manifest).map((event) => event.id);
 }
 
-export function findCategoryRow(manifest, streamId, categoryId) {
-  return getCategoryRows(manifest, streamId).find((row) => row.id === categoryId) || null;
+export function getCategoryRows(manifest, eventId) {
+  const event = eventRows(manifest).find((row) => row.id === eventId);
+  return event?.categories || [];
 }
 
-export async function loadSummaryBundle(manifest, streamId, categoryId) {
-  const category = findCategoryRow(manifest, streamId, categoryId);
+export function findCategoryRow(manifest, eventId, categoryId) {
+  return getCategoryRows(manifest, eventId).find((row) => row.id === categoryId) || null;
+}
+
+export async function loadSummaryBundle(manifest, eventId, categoryId) {
+  const category = findCategoryRow(manifest, eventId, categoryId);
   if (!category) {
-    throw new Error(`Missing category ${streamId}/${categoryId}`);
+    throw new Error(`Missing category ${eventId}/${categoryId}`);
   }
 
   const summaryFiles = category.summary_files || {};

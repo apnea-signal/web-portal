@@ -183,16 +183,16 @@ def curate_target(
 
 
 def build_manifest(curated_targets: Iterable[Dict]) -> Dict:
-    stream_rows: Dict[str, List[Dict]] = defaultdict(list)
+    event_rows: Dict[str, List[Dict]] = defaultdict(list)
     athlete_index: Dict[str, Dict] = {}
 
     for target in curated_targets:
-        stream = target["stream"]
+        event_id = target["stream"]
         category = target["category"]
         checkpoints = target["checkpoints"]
         disciplines = target["disciplines"]
 
-        stream_rows[stream].append(
+        event_rows[event_id].append(
             {
                 "id": category,
                 "disciplines": disciplines,
@@ -211,26 +211,31 @@ def build_manifest(curated_targets: Iterable[Dict]) -> Dict:
                 }
             athlete_index[slug]["entries"].append(
                 {
-                    "stream": stream,
+                    "event": event_id,
+                    "stream": event_id,
                     "category": category,
                     "disciplines": disciplines,
                     "checkpoints": checkpoints,
                 }
             )
 
-    streams = [
+    events = [
         {
-            "id": stream,
+            "id": event_id,
             "categories": sorted(categories, key=lambda row: row["id"]),
         }
-        for stream, categories in sorted(stream_rows.items(), key=lambda item: item[0])
+        for event_id, categories in sorted(event_rows.items(), key=lambda item: item[0])
     ]
 
     athletes = sorted(athlete_index.values(), key=lambda row: row["slug"])
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "streams": streams,
+        "events": events,
+        "streams": events,
+        "cross_event_distributions": {
+            "DNF": []
+        },
         "athletes": athletes,
     }
 

@@ -1,9 +1,9 @@
-import { findCategoryRow, getCategoryRows, getStreamIds, loadManifest } from "./data.js";
+import { findCategoryRow, getCategoryRows, getEventIds, loadManifest } from "./data.js";
 
 function getQuerySelection() {
   const params = new URLSearchParams(window.location.search);
   return {
-    stream: params.get("stream") || "",
+    event: params.get("event") || params.get("stream") || "",
     category: params.get("category") || "",
   };
 }
@@ -16,58 +16,63 @@ function supportsDnf(categoryRow) {
   return disciplines.includes("DNF");
 }
 
-function getDnfCategoryRows(manifest, streamId) {
-  return getCategoryRows(manifest, streamId).filter((row) => supportsDnf(row));
+function getDnfCategoryRows(manifest, eventId) {
+  return getCategoryRows(manifest, eventId).filter((row) => supportsDnf(row));
 }
 
-function updateQuery(stream, category) {
+function updateQuery(eventId, category) {
   const params = new URLSearchParams(window.location.search);
-  params.set("stream", stream);
+  params.set("event", eventId);
+  params.delete("stream");
   params.set("category", category);
   const nextUrl = `${window.location.pathname}?${params.toString()}`;
   history.replaceState({}, "", nextUrl);
 }
 
-function updateNavLinks(stream, category) {
+function updateNavLinks(eventId, category) {
   const tabs = document.querySelectorAll(".nav-tab[data-page]");
   tabs.forEach((tab) => {
     const page = tab.getAttribute("data-page");
     if (!page) {
       return;
     }
-    const params = new URLSearchParams({ stream, category });
+    if (page === "overview") {
+      tab.setAttribute("href", "../overview/");
+      return;
+    }
+    const params = new URLSearchParams({ event: eventId, category });
     tab.setAttribute("href", `../${page}/?${params.toString()}`);
   });
 }
 
 export async function initDnfShell({ activePage }) {
   const manifest = await loadManifest();
-  const streamSelect = document.getElementById("streamSelect");
+  const eventSelect = document.getElementById("eventSelect") || document.getElementById("streamSelect");
   const categorySelect = document.getElementById("categorySelect");
   const scopeLabel = document.getElementById("scopeLabel");
 
-  if (!streamSelect || !categorySelect || !scopeLabel) {
+  if (!eventSelect || !categorySelect || !scopeLabel) {
     throw new Error("Missing required shell controls in page");
   }
 
-  const streamIds = getStreamIds(manifest).filter((streamId) => getDnfCategoryRows(manifest, streamId).length > 0);
-  if (!streamIds.length) {
-    throw new Error("No DNF-capable streams found in manifest");
+  const eventIds = getEventIds(manifest).filter((eventId) => getDnfCategoryRows(manifest, eventId).length > 0);
+  if (!eventIds.length) {
+    throw new Error("No DNF-capable events found in manifest");
   }
 
-  streamSelect.textContent = "";
-  streamIds.forEach((streamId) => {
+  eventSelect.textContent = "";
+  eventIds.forEach((eventId) => {
     const option = document.createElement("option");
-    option.value = streamId;
-    option.textContent = streamId;
-    streamSelect.appendChild(option);
+    option.value = eventId;
+    option.textContent = eventId;
+    eventSelect.appendChild(option);
   });
 
   const requested = getQuerySelection();
-  let currentStream = streamIds.includes(requested.stream) ? requested.stream : streamIds[0];
+  let currentEvent = eventIds.includes(requested.event) ? requested.event : eventIds[0];
 
   function repopulateCategories() {
-    const categories = getDnfCategoryRows(manifest, currentStream);
+    const categories = getDnfCategoryRows(manifest, currentEvent);
     categorySelect.textContent = "";
     categories.forEach((row) => {
       const option = document.createElement("option");
@@ -82,31 +87,31 @@ export async function initDnfShell({ activePage }) {
     categorySelect.value = preferred;
   }
 
-  streamSelect.value = currentStream;
+  eventSelect.value = currentEvent;
   repopulateCategories();
 
   const listeners = [];
   let lastContext = null;
 
   function emitChange() {
-    const stream = streamSelect.value;
+    const eventId = eventSelect.value;
     const category = categorySelect.value;
-    updateQuery(stream, category);
-    updateNavLinks(stream, category);
+    updateQuery(eventId, category);
+    updateNavLinks(eventId, category);
 
-    const row = findCategoryRow(manifest, stream, category);
+    const row = findCategoryRow(manifest, eventId, category);
     const checkpointCount = Object.keys(row?.summary_files || {}).length;
-    scopeLabel.textContent = `${stream} / ${category} · ${checkpointCount} checkpoint views`;
+    scopeLabel.textContent = `${eventId} / ${category} · ${checkpointCount} checkpoint views`;
 
-    lastContext = { manifest, stream, category, categoryRow: row };
+    lastContext = { manifest, event: eventId, category, categoryRow: row };
 
     listeners.forEach((listener) => {
       listener(lastContext);
     });
   }
 
-  streamSelect.addEventListener("change", () => {
-    currentStream = streamSelect.value;
+  eventSelect.addEventListener("change", () => {
+    currentEvent = eventSelect.value;
     repopulateCategories();
     emitChange();
   });
@@ -129,7 +134,7 @@ export async function initDnfShell({ activePage }) {
       listeners.push(callback);
     },
     getSelection() {
-      return { stream: streamSelect.value, category: categorySelect.value };
+      return { event: eventSelect.value, category: categorySelect.value };
     },
     getContext() {
       return lastContext;
