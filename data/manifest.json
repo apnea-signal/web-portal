@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T00:38:45.181891+00:00",
+  "generated_at": "2026-04-04T09:51:26.391194+00:00",
   "events": [
     {
       "id": "athens-2025-day1",
@@ -44,6 +44,20 @@
           "id": "seniors-male",
           "speed_profile_chart": "data/analysis/DNF/seniors-male/charts/speed-profile-top-athletes.png",
           "speed_profile_overlay_path": "data/analysis/DNF/seniors-male/charts/speed-profile-top-athletes.overlay.json",
+          "technique_charts": {
+            "wall_push_glide_2d_25m": {
+              "chart_path": "data/analysis/DNF/seniors-male/charts/wall-push-glide-2d-25m.png",
+              "overlay_path": "data/analysis/DNF/seniors-male/charts/wall-push-glide-2d-25m.overlay.json"
+            },
+            "cycle_glide_2d_25m": {
+              "chart_path": "data/analysis/DNF/seniors-male/charts/cycle-glide-2d-25m.png",
+              "overlay_path": "data/analysis/DNF/seniors-male/charts/cycle-glide-2d-25m.overlay.json"
+            },
+            "leg_kick_glide_2d_50m": {
+              "chart_path": "data/analysis/DNF/seniors-male/charts/leg-kick-glide-2d-50m.png",
+              "overlay_path": "data/analysis/DNF/seniors-male/charts/leg-kick-glide-2d-50m.overlay.json"
+            }
+          },
           "athlete_rows_path": "data/analysis/DNF/seniors-male/athletes.json"
         }
       ]
