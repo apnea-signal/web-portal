@@ -7,81 +7,105 @@
     <title>DNF Overview · Apnea Signal</title>
     <link rel="stylesheet" href="../../assets/css/site.css" />
   </head>
-  <body>
+  <body class="overview-page">
     <header class="page-header">
       <div class="container">
         <div class="brand-row">
-          <div>
-            <a class="brand-title" href="../../">Apnea Signal · DNF</a>
-            <p class="brand-subtitle">All Events Aggregate View</p>
+          <div class="overview-header-left">
+            <a class="brand-title" href="../../">Apnea Signal</a>
           </div>
-          <nav class="nav-tabs" aria-label="DNF pages">
-            <a class="nav-tab is-active" data-page="overview" href="../overview/" aria-current="page">Overview</a>
-            <a class="nav-tab" data-page="events" href="../events/">Event Explorer</a>
-            <a class="nav-tab" data-page="athletes" href="../athletes/">Athlete Explorer</a>
-          </nav>
+          <h1 class="overview-header-title">DNF Overview</h1>
+          <div class="header-controls" aria-label="Overview controls">
+            <div class="header-control header-control-inline">
+              <select id="categorySelect" aria-label="Category"></select>
+              <span class="header-inline-label">Category</span>
+            </div>
+          </div>
         </div>
       </div>
     </header>
 
     <main class="container">
-      <section class="hero">
-        <h1>DNF Overview</h1>
-        <p>
-          Aggregate benchmarks across all DNF events and categories in the curated dataset.
-        </p>
-      </section>
+      <div class="overview-layout">
+        <section class="card speed-profile-section">
+          <h2>Speed Profile: Top Athletes</h2>
+          <p id="overviewStatus" class="note">Loading analysis charts...</p>
+          <div id="speedProfileSections" class="speed-profile-grid"></div>
+        </section>
 
-      <section class="card">
-        <h2>Cross-Event Benchmark Snapshot</h2>
-        <p id="overviewStatus" class="note">Loading...</p>
-        <div id="kpiGrid" class="grid kpi"></div>
-      </section>
-
-      <section class="card">
-        <h2>Key Performance Answers</h2>
-        <p class="note">Discipline-wide highlights across all events/categories.</p>
-        <div id="performanceAnswers" class="grid kpi"></div>
-      </section>
-
-      <section class="card">
-        <h2>Milestone Times (Training Suggestions)</h2>
-        <p id="milestoneStatus" class="note">Calculating milestone targets...</p>
-        <div id="milestoneTable" class="table-wrap"></div>
-      </section>
-
-      <section class="card">
-        <h2>Technique Relationships</h2>
-        <p id="techniqueStatus" class="note">Calculating technique relationships...</p>
-        <div class="chart-strip">
-          <div class="plot-card">
-            <h3>Cycle Glide Share vs Total Distance</h3>
-            <div id="cycleGlideChart" class="scatter-plot"></div>
+        <aside class="card athlete-sidebar">
+          <div class="sidebar-head">
+            <h2>Athlete Controls</h2>
+            <button
+              id="sidebarToggleButton"
+              type="button"
+              class="sidebar-toggle-button"
+              aria-expanded="true"
+              aria-label="Collapse athlete controls panel"
+              title="Fold/unfold panel"
+            >
+              <span class="sidebar-toggle-icon" aria-hidden="true">&lt;</span>
+              <span class="sidebar-toggle-text">Fold</span>
+            </button>
           </div>
-          <div class="plot-card">
-            <h3>Wall Push Glide Distance vs Total Distance</h3>
-            <div id="wallPushChart" class="scatter-plot"></div>
+          <div id="sidebarResizeHandle" class="sidebar-resize-handle" aria-hidden="true"></div>
+          <div id="athleteSidebarBody" class="athlete-sidebar-body">
+            <div class="sidebar-controls">
+              <div class="control">
+                <label for="topEventChecklist">Top Events</label>
+                <div id="topEventChecklist" class="event-filter-checklist"></div>
+              </div>
+              <div class="control">
+                <label for="trainingEventChecklist">Training Events</label>
+                <div id="trainingEventChecklist" class="event-filter-checklist"></div>
+              </div>
+              <div class="control">
+                <label for="sortSelect">Sort</label>
+                <select id="sortSelect">
+                  <option value="performance_desc">Performance (High to Low)</option>
+                  <option value="performance_asc">Performance (Low to High)</option>
+                  <option value="name_asc">Athlete Name (A-Z)</option>
+                  <option value="name_desc">Athlete Name (Z-A)</option>
+                </select>
+              </div>
+              <div class="control">
+                <label for="athleteSearchInput">Search Athlete</label>
+                <input id="athleteSearchInput" type="search" placeholder="Type a name..." />
+              </div>
+            </div>
+            <div class="sidebar-actions">
+              <button id="top5Button" type="button">Top 5</button>
+              <button id="clearSelectionButton" type="button">Clear Selection</button>
+            </div>
+            <p id="selectionStatus" class="note">Selected athletes: 0</p>
+            <div class="sidebar-pagination">
+              <button id="tablePrevPage" type="button" class="sidebar-pagination-button">Prev</button>
+              <span id="tablePageStatus" class="sidebar-pagination-status">Page 1 / 1</span>
+              <button id="tableNextPage" type="button" class="sidebar-pagination-button">Next</button>
+              <label for="tablePageSizeSelect" class="sidebar-pagination-label">Rows</label>
+              <select id="tablePageSizeSelect" class="sidebar-pagination-size">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <div class="table-wrap mini-table-wrap">
+              <table class="mini-table">
+                <thead>
+                  <tr>
+                    <th>Sel</th>
+                    <th>Ath</th>
+                    <th>Evt</th>
+                    <th>Perf</th>
+                    <th>Vid</th>
+                  </tr>
+                </thead>
+                <tbody id="athleteTableBody"></tbody>
+              </table>
+            </div>
           </div>
-          <div class="plot-card">
-            <h3>Estimated Cycle Count vs Total Distance</h3>
-            <div id="cyclesChart" class="scatter-plot"></div>
-          </div>
-        </div>
-        <div id="techniqueTable" class="table-wrap"></div>
-      </section>
-
-      <section class="card">
-        <h2>Event / Category Summary</h2>
-        <div id="eventTable" class="table-wrap"></div>
-      </section>
-
-      <section class="card">
-        <h2>Cross-Event Distributions</h2>
-        <p id="crossEventDistributionStatus" class="note">
-          Aggregated distribution artifacts across events (from the data pipeline).
-        </p>
-        <div id="crossEventDistributionGallery" class="gallery"></div>
-      </section>
+        </aside>
+      </div>
 
       <footer>DNF overview is static and branch-preview friendly for PR feedback.</footer>
     </main>
