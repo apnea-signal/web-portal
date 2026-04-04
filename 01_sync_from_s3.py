@@ -22,6 +22,7 @@ KNOWN_DISCIPLINE = "DNF"
 ATHLETE_INCLUDE_PATTERNS = (
     "*.annotations.json",
     "*.propulsion.refined.json",
+    "*.propulsion.refined.event-strip.png",
     "*.propulsion.stats.json",
 )
 

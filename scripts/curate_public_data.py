@@ -14,6 +14,11 @@ DEFAULT_PUBLIC_DATA_ROOT = Path("public/data")
 DEFAULT_TARGETS_FILE = Path("sync-targets.txt")
 KNOWN_DISCIPLINE = "DNF"
 DEFAULT_EVENT_TYPE = "competition"
+TECHNIQUE_CHART_ARTIFACTS = {
+    "wall_push_glide_2d_25m": "wall-push-glide-2d-25m.png",
+    "cycle_glide_2d_25m": "cycle-glide-2d-25m.png",
+    "leg_kick_glide_2d_50m": "leg-kick-glide-2d-50m.png",
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -107,11 +112,60 @@ def to_float(value: object) -> Optional[float]:
     return number if number == number else None
 
 
+def stats_checkpoints(stats_payload: Dict) -> List[Dict]:
+    checkpoints = stats_payload.get("checkpoints")
+    if not isinstance(checkpoints, list):
+        return []
+    return [checkpoint for checkpoint in checkpoints if isinstance(checkpoint, dict)]
+
+
+def checkpoint_has_tag(checkpoint: Dict, tag: str) -> bool:
+    tags = checkpoint.get("tags")
+    if not isinstance(tags, list):
+        return False
+    lowered = [str(item).strip().lower() for item in tags]
+    return tag.lower() in lowered
+
+
+def nested_float(data: Dict, path: Tuple[str, ...]) -> Optional[float]:
+    current: object = data
+    for key in path:
+        if not isinstance(current, dict):
+            return None
+        current = current.get(key)
+    return to_float(current)
+
+
+def pick_metric_pair(
+    checkpoints: List[Dict],
+    *,
+    preferred_tag: str,
+    x_path: Tuple[str, ...],
+    y_path: Tuple[str, ...],
+) -> Tuple[Optional[float], Optional[float]]:
+    def extract_pair(checkpoint: Dict) -> Tuple[Optional[float], Optional[float]]:
+        return nested_float(checkpoint, x_path), nested_float(checkpoint, y_path)
+
+    for checkpoint in checkpoints:
+        if not checkpoint_has_tag(checkpoint, preferred_tag):
+            continue
+        x_value, y_value = extract_pair(checkpoint)
+        if x_value is not None and y_value is not None:
+            return x_value, y_value
+
+    for checkpoint in checkpoints:
+        x_value, y_value = extract_pair(checkpoint)
+        if x_value is not None and y_value is not None:
+            return x_value, y_value
+
+    return None, None
+
+
 def parse_speed_profile_stats(
     stats_payload: Dict,
 ) -> Tuple[List[Dict[str, float]], Optional[float], Optional[float], Optional[float], Optional[float]]:
-    checkpoints = stats_payload.get("checkpoints")
-    if not isinstance(checkpoints, list):
+    checkpoints = stats_checkpoints(stats_payload)
+    if not checkpoints:
         return [], None, None, None, None
 
     points: List[Dict[str, float]] = []
@@ -159,10 +213,63 @@ def parse_speed_profile_stats(
     return points, speed_mps, time_25m_s, time_50m_s, time_100m_s
 
 
+def parse_technique_stats(stats_payload: Dict) -> Dict[str, Optional[float]]:
+    checkpoints = stats_checkpoints(stats_payload)
+    if not checkpoints:
+        return {
+            "technique_wall_push_glide_distance_m": None,
+            "technique_wall_push_glide_time_s": None,
+            "technique_cycle_glide_distance_m": None,
+            "technique_cycle_glide_time_s": None,
+            "technique_leg_kick_glide_distance_m": None,
+            "technique_leg_kick_glide_time_s": None,
+        }
+
+    wall_distance, wall_time = pick_metric_pair(
+        checkpoints,
+        preferred_tag="25m",
+        x_path=("glide_avg_by_label", "WALL_PUSH", "distance_m"),
+        y_path=("glide_avg_by_label", "WALL_PUSH", "time_s"),
+    )
+    cycle_distance, cycle_time = pick_metric_pair(
+        checkpoints,
+        preferred_tag="25m",
+        x_path=("cycle", "glide_distance_m"),
+        y_path=("cycle", "glide_time_s"),
+    )
+    leg_distance, leg_time = pick_metric_pair(
+        checkpoints,
+        preferred_tag="50m",
+        x_path=("glide_avg_by_label", "LEG_KICK", "distance_m"),
+        y_path=("glide_avg_by_label", "LEG_KICK", "time_s"),
+    )
+    return {
+        "technique_wall_push_glide_distance_m": wall_distance,
+        "technique_wall_push_glide_time_s": wall_time,
+        "technique_cycle_glide_distance_m": cycle_distance,
+        "technique_cycle_glide_time_s": cycle_time,
+        "technique_leg_kick_glide_distance_m": leg_distance,
+        "technique_leg_kick_glide_time_s": leg_time,
+    }
+
+
 def load_stats_for_slug(
     athlete_videos_dir: Path,
     slug: str,
-) -> Tuple[List[Dict[str, float]], Optional[float], Optional[float], Optional[float], Optional[float]]:
+) -> Dict[str, object]:
+    empty_result: Dict[str, object] = {
+        "speed_profile_points": [],
+        "speed_mps": None,
+        "time_25m_s": None,
+        "time_50m_s": None,
+        "time_100m_s": None,
+        "technique_wall_push_glide_distance_m": None,
+        "technique_wall_push_glide_time_s": None,
+        "technique_cycle_glide_distance_m": None,
+        "technique_cycle_glide_time_s": None,
+        "technique_leg_kick_glide_distance_m": None,
+        "technique_leg_kick_glide_time_s": None,
+    }
     for suffix in (".refined.propulsion.stats.json", ".propulsion.stats.json"):
         stats_path = athlete_videos_dir / f"{slug}{suffix}"
         if not stats_path.exists():
@@ -171,8 +278,18 @@ def load_stats_for_slug(
             payload = read_json(stats_path)
         except (json.JSONDecodeError, OSError):
             continue
-        return parse_speed_profile_stats(payload)
-    return [], None, None, None, None
+        speed_profile_points, speed_mps, time_25m_s, time_50m_s, time_100m_s = parse_speed_profile_stats(
+            payload
+        )
+        return {
+            "speed_profile_points": speed_profile_points,
+            "speed_mps": speed_mps,
+            "time_25m_s": time_25m_s,
+            "time_50m_s": time_50m_s,
+            "time_100m_s": time_100m_s,
+            **parse_technique_stats(payload),
+        }
+    return empty_result
 
 
 def detect_athlete_slugs(cache_root: Path, stream: str, category: str) -> Set[str]:
@@ -183,6 +300,7 @@ def detect_athlete_slugs(cache_root: Path, stream: str, category: str) -> Set[st
     suffixes = (
         ".annotations.json",
         ".propulsion.refined.json",
+        ".propulsion.refined.event-strip.png",
         ".refined.propulsion.stats.json",
         ".propulsion.stats.json",
     )
@@ -316,6 +434,19 @@ def curate_analysis(
                 elif source_artifact.name == "speed-profile-top-athletes.overlay.json":
                     speed_profile_overlay_path = to_public_relative(destination_artifact, public_data_root)
 
+        technique_charts: Dict[str, Dict[str, str]] = {}
+        for chart_id, chart_filename in TECHNIQUE_CHART_ARTIFACTS.items():
+            chart_destination = destination_dir / chart_filename
+            overlay_destination = destination_dir / chart_filename.replace(".png", ".overlay.json")
+            technique_charts[chart_id] = {
+                "chart_path": to_public_relative(chart_destination, public_data_root)
+                if chart_destination.exists()
+                else "",
+                "overlay_path": to_public_relative(overlay_destination, public_data_root)
+                if overlay_destination.exists()
+                else "",
+            }
+
         athlete_rows: List[Dict[str, object]] = []
         for stream in sorted(targets_by_category[category]):
             performance_by_slug: Dict[str, Optional[float]] = {}
@@ -348,11 +479,18 @@ def curate_analysis(
 
             for slug in sorted(set(performance_by_slug.keys()) | set(annotation_by_slug.keys())):
                 annotation = annotation_by_slug.get(slug, {})
-                speed_profile_points, speed_mps, time_25m_s, time_50m_s, time_100m_s = load_stats_for_slug(
-                    athlete_videos_dir, slug
-                )
+                stats = load_stats_for_slug(athlete_videos_dir, slug)
                 summary_performance = performance_by_slug.get(slug)
                 annotation_performance = to_float(annotation.get("performance_m"))
+                event_strip_source = athlete_videos_dir / f"{slug}.propulsion.refined.event-strip.png"
+                event_strip_destination = (
+                    destination_category_root / "event-strips" / stream / event_strip_source.name
+                )
+                event_strip_path = (
+                    to_public_relative(event_strip_destination, public_data_root)
+                    if copy_if_exists(event_strip_source, event_strip_destination)
+                    else ""
+                )
                 athlete_rows.append(
                     {
                         "athlete_slug": slug,
@@ -360,11 +498,18 @@ def curate_analysis(
                         "event": stream,
                         "category": category,
                         "performance_m": summary_performance if summary_performance is not None else annotation_performance,
-                        "speed_mps": speed_mps,
-                        "time_25m_s": time_25m_s,
-                        "time_50m_s": time_50m_s,
-                        "time_100m_s": time_100m_s,
-                        "speed_profile_points": speed_profile_points,
+                        "speed_mps": stats.get("speed_mps"),
+                        "time_25m_s": stats.get("time_25m_s"),
+                        "time_50m_s": stats.get("time_50m_s"),
+                        "time_100m_s": stats.get("time_100m_s"),
+                        "speed_profile_points": stats.get("speed_profile_points"),
+                        "technique_wall_push_glide_distance_m": stats.get("technique_wall_push_glide_distance_m"),
+                        "technique_wall_push_glide_time_s": stats.get("technique_wall_push_glide_time_s"),
+                        "technique_cycle_glide_distance_m": stats.get("technique_cycle_glide_distance_m"),
+                        "technique_cycle_glide_time_s": stats.get("technique_cycle_glide_time_s"),
+                        "technique_leg_kick_glide_distance_m": stats.get("technique_leg_kick_glide_distance_m"),
+                        "technique_leg_kick_glide_time_s": stats.get("technique_leg_kick_glide_time_s"),
+                        "event_strip_path": event_strip_path,
                         "video_url": annotation.get("video_url") or "",
                     }
                 )
@@ -388,6 +533,7 @@ def curate_analysis(
                 "id": category,
                 "speed_profile_chart": speed_profile_chart,
                 "speed_profile_overlay_path": speed_profile_overlay_path,
+                "technique_charts": technique_charts,
                 "athlete_rows_path": to_public_relative(athlete_rows_path, public_data_root),
             }
         )
