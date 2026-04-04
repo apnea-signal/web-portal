@@ -10,7 +10,7 @@ python3 01_sync_from_s3.py
 ```
 
 ### 2) Curate tracked web snapshot (when cache changes)
-Copies selected event/category artifacts from `cache/` into `public/data/` and builds `public/data/manifest.json`.
+Copies selected event/category and analysis artifacts from `cache/` into `public/data/` and builds `public/data/manifest.json`.
 
 ```bash
 python3 scripts/curate_public_data.py --clear
@@ -24,7 +24,6 @@ python3 scripts/dev_server.py --port 8000
 Open:
 - `http://localhost:8000/` (discipline fork)
 - `http://localhost:8000/dnf/overview/`
-- `http://localhost:8000/dnf/athletes/`
 
 Files under `public/` auto-refresh automatically in the browser.
 

@@ -1,0 +1,21 @@
+{
+  "schema_version": "2.0",
+  "plot_area": {
+    "normalized": {
+      "left": 0.062731,
+      "top": 0.057083,
+      "right": 0.834913,
+      "bottom": 0.927153
+    }
+  },
+  "axes": {
+    "x": {
+      "min": 95.0,
+      "max": 270.0
+    },
+    "y": {
+      "min": 90.0,
+      "max": 289.212
+    }
+  }
+}

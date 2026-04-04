@@ -1,0 +1,402 @@
+[
+  {
+    "athlete_slug": "mateusz-malina",
+    "athlete_name": "Mateusz Malina",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 239.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9657.220"
+  },
+  {
+    "athlete_slug": "kai-hsiang-chan",
+    "athlete_name": "Kai-Hsiang Chan",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 235.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9255.840"
+  },
+  {
+    "athlete_slug": "piotr-kubiak",
+    "athlete_name": "Piotr Kubiak",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 225.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7249.600"
+  },
+  {
+    "athlete_slug": "guillaume-bourdila",
+    "athlete_name": "Guillaume Bourdila",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 221.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8868.840"
+  },
+  {
+    "athlete_slug": "vanja-peles",
+    "athlete_name": "Vanja Peles",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 203.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9657.220"
+  },
+  {
+    "athlete_slug": "olivier-elu",
+    "athlete_name": "Olivier Elu",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 203.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8131.840"
+  },
+  {
+    "athlete_slug": "paolo-fontana",
+    "athlete_name": "Paolo Fontana",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 202.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9255.840"
+  },
+  {
+    "athlete_slug": "enes-cerimagic",
+    "athlete_name": "Enes Cerimagic",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 202.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6334.680"
+  },
+  {
+    "athlete_slug": "nenad-pavkovic",
+    "athlete_name": "Nenad Pavkovic",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 200.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7839.480"
+  },
+  {
+    "athlete_slug": "karol-karcz",
+    "athlete_name": "Karol Karcz",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 199.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8131.840"
+  },
+  {
+    "athlete_slug": "mikhail-briantsev",
+    "athlete_name": "Mikhail Briantsev",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 195.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7530.600"
+  },
+  {
+    "athlete_slug": "boris-milosic",
+    "athlete_name": "Boris Milosic",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 182.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8868.840"
+  },
+  {
+    "athlete_slug": "andras-sopronyi",
+    "athlete_name": "Andras Sopronyi",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 180.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7249.600"
+  },
+  {
+    "athlete_slug": "michal-bochenek",
+    "athlete_name": "Michal Bochenek",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 180.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6644.680"
+  },
+  {
+    "athlete_slug": "aleksandr-maksimov",
+    "athlete_name": "Aleksandr Maksimov",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 175.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7530.600"
+  },
+  {
+    "athlete_slug": "fernando-ruland",
+    "athlete_name": "Fernando Ruland",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 175.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6025.380"
+  },
+  {
+    "athlete_slug": "anton-de-wet",
+    "athlete_name": "Anton De Wet",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 168.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4848.080"
+  },
+  {
+    "athlete_slug": "mauro-generali",
+    "athlete_name": "Mauro Generali",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 167.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7839.480"
+  },
+  {
+    "athlete_slug": "carl-oscar-nymo",
+    "athlete_name": "Carl-Oscar Nymo",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 165.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5754.800"
+  },
+  {
+    "athlete_slug": "hakyong-kim",
+    "athlete_name": "Hakyong Kim",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 164.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6644.680"
+  },
+  {
+    "athlete_slug": "daniel-losinski",
+    "athlete_name": "Daniel Losinski",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 159.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=1856.000"
+  },
+  {
+    "athlete_slug": "christos-karelos",
+    "athlete_name": "Christos Karelos",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 159.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4602.420"
+  },
+  {
+    "athlete_slug": "klaus-kasten",
+    "athlete_name": "Klaus Kasten",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 159.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5754.800"
+  },
+  {
+    "athlete_slug": "erik-cintra",
+    "athlete_name": "Erik Cintra",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 158.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2701.300"
+  },
+  {
+    "athlete_slug": "lancelot-hubert",
+    "athlete_name": "Lancelot Hubert",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 158.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4602.420"
+  },
+  {
+    "athlete_slug": "dmitrii-smetankin",
+    "athlete_name": "Dmitrii Smetankin",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 156.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6334.680"
+  },
+  {
+    "athlete_slug": "matej-majling",
+    "athlete_name": "Matej Majling",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 156.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4848.080"
+  },
+  {
+    "athlete_slug": "david-enav",
+    "athlete_name": "David Enav",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 154.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6950.680"
+  },
+  {
+    "athlete_slug": "miro-suonpera",
+    "athlete_name": "Miro Suonpera",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 149.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5138.880"
+  },
+  {
+    "athlete_slug": "joost-rothweiler",
+    "athlete_name": "Joost Rothweiler",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 148.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5138.880"
+  },
+  {
+    "athlete_slug": "nazar-levytskyi",
+    "athlete_name": "Nazar Levytskyi",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 144.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5406.340"
+  },
+  {
+    "athlete_slug": "michael-nix",
+    "athlete_name": "Michael Nix",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 142.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4351.960"
+  },
+  {
+    "athlete_slug": "leander-modersohn",
+    "athlete_name": "Leander Modersohn",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 141.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4095.800"
+  },
+  {
+    "athlete_slug": "jose-plaza",
+    "athlete_name": "Jose Plaza",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 138.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4351.960"
+  },
+  {
+    "athlete_slug": "valentin-sadan",
+    "athlete_name": "Valentin Sadan",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 132.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3893.260"
+  },
+  {
+    "athlete_slug": "gi-mun-kwak",
+    "athlete_name": "Gi Mun Kwak",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 131.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5406.340"
+  },
+  {
+    "athlete_slug": "walter-strumbichler",
+    "athlete_name": "Walter Strumbichler",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 128.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3662.540"
+  },
+  {
+    "athlete_slug": "andreas-taleryd",
+    "athlete_name": "Andreas Taleryd",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 127.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6025.380"
+  },
+  {
+    "athlete_slug": "arnaud-collard",
+    "athlete_name": "Arnaud Collard",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 127.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2701.300"
+  },
+  {
+    "athlete_slug": "miguel-oliveira",
+    "athlete_name": "Miguel Oliveira",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 126.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3662.540"
+  },
+  {
+    "athlete_slug": "lars-andersen",
+    "athlete_name": "Lars Andersen",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 126.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3181.880"
+  },
+  {
+    "athlete_slug": "taek-gyu-lee",
+    "athlete_name": "Taek Gyu Lee",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 126.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4095.800"
+  },
+  {
+    "athlete_slug": "artiom-chidic",
+    "athlete_name": "Artiom Chidic",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 124.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2457.080"
+  },
+  {
+    "athlete_slug": "yevhen-muraviov",
+    "athlete_name": "Yevhen Muraviov",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 122.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3420.400"
+  },
+  {
+    "athlete_slug": "pan-ming-chou",
+    "athlete_name": "Pan Ming-Chou",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 104.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3893.260"
+  },
+  {
+    "athlete_slug": "roman-cuhari",
+    "athlete_name": "Roman Cuhari",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 92.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2214.100"
+  },
+  {
+    "athlete_slug": "moosa-aljadeedi",
+    "athlete_name": "Moosa Aljadeedi",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 81.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2457.080"
+  },
+  {
+    "athlete_slug": "hamad-ismaeel",
+    "athlete_name": "Hamad Ismaeel",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 72.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3420.400"
+  },
+  {
+    "athlete_slug": "jonas-plu\u0308ss",
+    "athlete_name": "Jonas Pl\u00fcss",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 71.0,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=1856.000"
+  },
+  {
+    "athlete_slug": "ahmed-elkholy",
+    "athlete_name": "Ahmed Elkholy",
+    "event": "athens-2025-day1",
+    "category": "seniors-male",
+    "performance_m": 70.5,
+    "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2214.100"
+  }
+]

@@ -1,61 +1,18 @@
 {
-  "generated_at": "2026-03-31T18:06:55.171067+00:00",
+  "generated_at": "2026-04-03T23:51:34.068895+00:00",
   "events": [
     {
       "id": "athens-2025-day1",
+      "event_type": "competition",
       "categories": [
         {
           "id": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ],
-          "summary_files": {
-            "25m": "data/athens-2025-day1/summaries/25m-seniors-male.json",
-            "50m": "data/athens-2025-day1/summaries/50m-seniors-male.json",
-            "overview": "data/athens-2025-day1/summaries/overview-seniors-male.json",
-            "total": "data/athens-2025-day1/summaries/total-seniors-male.json"
-          },
-          "distribution_images": {
-            "25m": [
-              "data/athens-2025-day1/distributions/25m/seniors-male/arm-pull-glide-2d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/avg-speed-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-glide-2d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-impulse-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-speed-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/leg-kick-glide-2d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/time-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/total-impulse-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/wall-push-glide-2d.png"
-            ],
-            "50m": [
-              "data/athens-2025-day1/distributions/50m/seniors-male/arm-pull-glide-2d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/avg-speed-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-glide-2d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-impulse-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-speed-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/leg-kick-glide-2d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/time-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/total-impulse-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/wall-push-glide-2d.png"
-            ],
-            "total": [
-              "data/athens-2025-day1/distributions/total/seniors-male/arm-pull-glide-2d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/cycle-glide-2d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/cycle-impulse-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/cycle-speed-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/drag-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/leg-kick-glide-2d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/ref-arm-pull-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/ref-leg-kick-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/wall-push-glide-2d.png"
-            ]
-          }
+          "checkpoints": [],
+          "summary_files": {},
+          "distribution_images": {}
         }
       ]
     }
@@ -63,65 +20,33 @@
   "streams": [
     {
       "id": "athens-2025-day1",
+      "event_type": "competition",
       "categories": [
         {
           "id": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ],
-          "summary_files": {
-            "25m": "data/athens-2025-day1/summaries/25m-seniors-male.json",
-            "50m": "data/athens-2025-day1/summaries/50m-seniors-male.json",
-            "overview": "data/athens-2025-day1/summaries/overview-seniors-male.json",
-            "total": "data/athens-2025-day1/summaries/total-seniors-male.json"
-          },
-          "distribution_images": {
-            "25m": [
-              "data/athens-2025-day1/distributions/25m/seniors-male/arm-pull-glide-2d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/avg-speed-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-glide-2d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-impulse-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/cycle-speed-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/leg-kick-glide-2d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/time-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/total-impulse-1d.png",
-              "data/athens-2025-day1/distributions/25m/seniors-male/wall-push-glide-2d.png"
-            ],
-            "50m": [
-              "data/athens-2025-day1/distributions/50m/seniors-male/arm-pull-glide-2d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/avg-speed-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-glide-2d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-impulse-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/cycle-speed-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/leg-kick-glide-2d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/time-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/total-impulse-1d.png",
-              "data/athens-2025-day1/distributions/50m/seniors-male/wall-push-glide-2d.png"
-            ],
-            "total": [
-              "data/athens-2025-day1/distributions/total/seniors-male/arm-pull-glide-2d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/cycle-glide-2d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/cycle-impulse-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/cycle-speed-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/drag-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/leg-kick-glide-2d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/ref-arm-pull-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/ref-leg-kick-1d.png",
-              "data/athens-2025-day1/distributions/total/seniors-male/wall-push-glide-2d.png"
-            ]
-          }
+          "checkpoints": [],
+          "summary_files": {},
+          "distribution_images": {}
         }
       ]
     }
   ],
   "cross_event_distributions": {
     "DNF": []
+  },
+  "analysis": {
+    "DNF": {
+      "categories": [
+        {
+          "id": "seniors-male",
+          "speed_profile_chart": "data/analysis/DNF/seniors-male/charts/speed-profile-top-athletes.png",
+          "athlete_rows_path": "data/analysis/DNF/seniors-male/athletes.json"
+        }
+      ]
+    }
   },
   "athletes": [
     {
@@ -131,16 +56,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -151,16 +72,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -171,16 +88,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -191,16 +104,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -211,16 +120,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -231,16 +136,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -251,16 +152,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -271,16 +168,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -291,16 +184,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -311,16 +200,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -331,16 +216,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -351,16 +232,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -371,16 +248,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -391,16 +264,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -411,16 +280,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -431,16 +296,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -451,16 +312,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -471,16 +328,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -491,16 +344,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -511,16 +360,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -531,16 +376,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -551,16 +392,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -571,16 +408,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -591,16 +424,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -611,16 +440,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -631,16 +456,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -651,16 +472,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -671,16 +488,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -691,16 +504,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -711,16 +520,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -731,16 +536,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -751,16 +552,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -771,16 +568,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -791,16 +584,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -811,16 +600,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -831,16 +616,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -851,16 +632,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -871,16 +648,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -891,16 +664,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -911,16 +680,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -931,16 +696,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -951,16 +712,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -971,16 +728,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -991,16 +744,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -1011,16 +760,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -1031,16 +776,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -1051,16 +792,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -1071,16 +808,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -1091,16 +824,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     },
@@ -1111,16 +840,12 @@
         {
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
+          "event_type": "competition",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
           ],
-          "checkpoints": [
-            "25m",
-            "50m",
-            "overview",
-            "total"
-          ]
+          "checkpoints": []
         }
       ]
     }

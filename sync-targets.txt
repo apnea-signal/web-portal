@@ -1,3 +1,2 @@
-# stream,category
-athens-2025-day1,seniors-male
-
+# stream,category[,event_type]
+athens-2025-day1,seniors-male,competition

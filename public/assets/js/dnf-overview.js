@@ -1,527 +1,20 @@
-import { formatNumber, getCategoryRows, getEventIds, loadManifest, loadSummaryBundle, toNumber } from "./data.js";
+import { fetchJson, loadManifest } from "./data.js";
 
-function supportsDnf(categoryRow) {
-  const disciplines = categoryRow?.disciplines || [];
-  if (!disciplines.length) {
-    return true;
-  }
-  return disciplines.includes("DNF");
-}
+const SPEED_BAND_MPS = {
+  min: 0.81,
+  max: 0.94,
+};
 
-function median(values) {
-  if (!values.length) {
-    return Number.NaN;
-  }
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  if (sorted.length % 2 === 0) {
-    return (sorted[mid - 1] + sorted[mid]) / 2;
-  }
-  return sorted[mid];
-}
+const SIDEBAR_MIN_WIDTH = 380;
+const SIDEBAR_MAX_WIDTH = 860;
+const DEFAULT_TABLE_PAGE_SIZE = 10;
 
-function minValue(values) {
-  if (!values.length) {
-    return Number.NaN;
-  }
-  return Math.min(...values);
-}
-
-function maxValue(values) {
-  if (!values.length) {
-    return Number.NaN;
-  }
-  return Math.max(...values);
-}
-
-function formatDuration(seconds) {
-  const value = toNumber(seconds);
-  if (!Number.isFinite(value) || value <= 0) {
-    return "-";
-  }
-  const minutes = Math.floor(value / 60);
-  const sec = value - minutes * 60;
-  if (minutes <= 0) {
-    return `${sec.toFixed(2)} s`;
-  }
-  return `${minutes}:${sec.toFixed(2).padStart(5, "0")}`;
-}
-
-function formatPercent(ratio, digits = 1) {
-  const value = toNumber(ratio);
-  if (!Number.isFinite(value)) {
-    return "-";
-  }
-  return `${(value * 100).toFixed(digits)}%`;
-}
-
-function compareByDistanceThenTime(a, b) {
-  const distanceA = toNumber(a?.distance);
-  const distanceB = toNumber(b?.distance);
-  if (Number.isFinite(distanceA) && Number.isFinite(distanceB) && distanceA !== distanceB) {
-    return distanceB - distanceA;
-  }
-
-  const timeA = toNumber(a?.time);
-  const timeB = toNumber(b?.time);
-  if (Number.isFinite(timeA) && Number.isFinite(timeB) && timeA !== timeB) {
-    return timeA - timeB;
-  }
-  return 0;
-}
-
-function pickLongestRow(rows) {
-  return rows.filter((row) => Number.isFinite(row.distance)).sort(compareByDistanceThenTime)[0];
-}
-
-function getDnfSlices(manifest) {
-  const slices = [];
-  getEventIds(manifest).forEach((eventId) => {
-    getCategoryRows(manifest, eventId)
-      .filter((categoryRow) => supportsDnf(categoryRow))
-      .forEach((categoryRow) => {
-        slices.push({ event: eventId, category: categoryRow.id });
-      });
-  });
-  return slices;
-}
-
-async function loadSlices(manifest) {
-  const slices = getDnfSlices(manifest);
-  const loaded = await Promise.all(
-    slices.map(async (slice) => {
-      const bundle = await loadSummaryBundle(manifest, slice.event, slice.category);
-      return { ...slice, bundle };
-    })
-  );
-  return loaded;
-}
-
-function indexByAthlete(rows) {
-  const map = new Map();
-  (rows || []).forEach((row) => {
-    if (row && typeof row.athlete === "string" && row.athlete) {
-      map.set(row.athlete, row);
-    }
-  });
-  return map;
-}
-
-function flattenAthleteRows(slices) {
-  const all = [];
-  slices.forEach((slice) => {
-    const overviewByAthlete = indexByAthlete(slice.bundle.overview?.athletes || []);
-    const twentyFiveByAthlete = indexByAthlete(slice.bundle["25m"]?.athletes || []);
-    const fiftyByAthlete = indexByAthlete(slice.bundle["50m"]?.athletes || []);
-
-    (slice.bundle.total?.athletes || []).forEach((totalRow) => {
-      const athlete = totalRow?.athlete;
-      if (!athlete) {
-        return;
-      }
-
-      const overview = overviewByAthlete.get(athlete);
-      const row25 = twentyFiveByAthlete.get(athlete);
-      const row50 = fiftyByAthlete.get(athlete);
-
-      const distance = toNumber(totalRow.distance_m);
-      const time = toNumber(totalRow.time_s);
-      const speed = toNumber(totalRow.avg_speed_mps);
-
-      const cycleTime = toNumber(overview?.cycle_time_s);
-      const cycleDistance = toNumber(overview?.cycle_distance_m);
-      const cycleGlideTime = toNumber(totalRow?.cycle?.glide_time_s);
-      const wallPushGlideDistance = toNumber(totalRow?.glide_avg_by_label?.WALL_PUSH?.distance_m);
-
-      const glideShare =
-        Number.isFinite(cycleTime) && cycleTime > 0 && Number.isFinite(cycleGlideTime)
-          ? cycleGlideTime / cycleTime
-          : Number.NaN;
-      const cyclesEstimate =
-        Number.isFinite(distance) && Number.isFinite(cycleDistance) && cycleDistance > 0
-          ? distance / cycleDistance
-          : Number.NaN;
-
-      all.push({
-        event: slice.event,
-        category: slice.category,
-        athlete,
-        distance,
-        time,
-        speed,
-        time25: toNumber(row25?.time_s),
-        time50: toNumber(row50?.time_s),
-        cycleTime,
-        cycleDistance,
-        cycleGlideTime,
-        glideShare,
-        wallPushGlideDistance,
-        cyclesEstimate,
-      });
-    });
-  });
-  return all;
-}
-
-function eventSummaryRow(slice) {
-  const totalRows = slice.bundle.total?.athletes || [];
-  const rows = totalRows.map((row) => ({
-    distance: toNumber(row.distance_m),
-    speed: toNumber(row.avg_speed_mps),
-  }));
-
-  return {
-    event: slice.event,
-    category: slice.category,
-    athletes: totalRows.length,
-    longestDistance: maxValue(rows.map((row) => row.distance).filter(Number.isFinite)),
-    medianDistance: median(rows.map((row) => row.distance).filter(Number.isFinite)),
-    medianSpeed: median(rows.map((row) => row.speed).filter(Number.isFinite)),
-  };
-}
-
-function topDistanceRows(rows, share = 0.15) {
-  const valid = rows.filter((row) => Number.isFinite(row.distance)).sort(compareByDistanceThenTime);
-  if (!valid.length) {
-    return [];
-  }
-  const count = Math.max(5, Math.floor(valid.length * share));
-  return valid.slice(0, count);
-}
-
-function renderKpis(summaryRows, athleteRows) {
-  const container = document.getElementById("kpiGrid");
-  if (!container) {
-    return;
-  }
-
-  const uniqueEvents = new Set(summaryRows.map((row) => row.event));
-  const uniqueAthletes = new Set(athleteRows.map((row) => row.athlete));
-
-  const distances = athleteRows.map((row) => row.distance).filter(Number.isFinite);
-  const fastest25 = minValue(athleteRows.map((row) => row.time25).filter(Number.isFinite));
-  const fastest50 = minValue(athleteRows.map((row) => row.time50).filter(Number.isFinite));
-
-  const longest = pickLongestRow(athleteRows);
-
-  const rows = [
-    { label: "Events", value: String(uniqueEvents.size) },
-    { label: "Event Categories", value: String(summaryRows.length) },
-    { label: "Athlete Entries", value: String(athleteRows.length) },
-    { label: "Unique Athletes", value: String(uniqueAthletes.size) },
-    { label: "Longest Distance", value: `${formatNumber(longest?.distance, 2)} m` },
-    { label: "Best 25m", value: formatDuration(fastest25) },
-    { label: "Best 50m", value: formatDuration(fastest50) },
-    { label: "Median Distance", value: `${formatNumber(median(distances), 2)} m` },
-  ];
-
-  container.textContent = "";
-  rows.forEach((row) => {
-    const tile = document.createElement("article");
-    tile.className = "kpi-tile";
-    tile.innerHTML = `<p class="kpi-label">${row.label}</p><p class="kpi-value">${row.value}</p>`;
-    container.appendChild(tile);
-  });
-}
-
-function renderPerformanceAnswers(rows) {
-  const container = document.getElementById("performanceAnswers");
-  if (!container) {
-    return;
-  }
-
-  const longest = pickLongestRow(rows);
-  const topRows = topDistanceRows(rows, 0.15);
-  const topSpeeds = topRows.map((row) => row.speed).filter(Number.isFinite);
-  const topPacePer25 = topRows
-    .map((row) => (Number.isFinite(row.time) && Number.isFinite(row.distance) && row.distance > 0 ? (row.time / row.distance) * 25 : Number.NaN))
-    .filter(Number.isFinite);
-
-  const cards = [
-    {
-      label: "Longest Distance + Associated Time",
-      value: longest ? `${formatNumber(longest.distance, 2)} m in ${formatDuration(longest.time)}` : "-",
-    },
-    {
-      label: "Speed at Longest Distance",
-      value: longest ? `${formatNumber(longest.speed, 3)} m/s` : "-",
-    },
-    {
-      label: "Median Speed (Top 15% Distances)",
-      value: `${formatNumber(median(topSpeeds), 3)} m/s`,
-    },
-    {
-      label: "Median 25m Split Pace (Top Distances)",
-      value: `${formatDuration(median(topPacePer25))}`,
-    },
-  ];
-
-  container.textContent = "";
-  cards.forEach((card) => {
-    const tile = document.createElement("article");
-    tile.className = "kpi-tile";
-    tile.innerHTML = `<p class="kpi-label">${card.label}</p><p class="kpi-value">${card.value}</p>`;
-    container.appendChild(tile);
-  });
-}
-
-function renderMilestones(rows) {
-  const status = document.getElementById("milestoneStatus");
-  const container = document.getElementById("milestoneTable");
-  if (!container) {
-    return;
-  }
-
-  const topRows = topDistanceRows(rows, 0.2);
-  const pacePerM = topRows
-    .map((row) => (Number.isFinite(row.time) && Number.isFinite(row.distance) && row.distance > 0 ? row.time / row.distance : Number.NaN))
-    .filter(Number.isFinite);
-  const basePace = median(pacePerM);
-
-  const actual25 = median(topRows.map((row) => row.time25).filter(Number.isFinite));
-  const actual50 = median(topRows.map((row) => row.time50).filter(Number.isFinite));
-
-  const milestones = [25, 50, 75, 100, 125, 150, 175, 200].map((distance) => {
-    let targetTime = Number.NaN;
-    let source = "insufficient data";
-
-    if (distance === 25 && Number.isFinite(actual25)) {
-      targetTime = actual25;
-      source = "actual 25m median";
-    } else if (distance === 50 && Number.isFinite(actual50)) {
-      targetTime = actual50;
-      source = "actual 50m median";
-    } else if (Number.isFinite(basePace)) {
-      targetTime = basePace * distance;
-      source = "pace projection";
-    }
-
-    const split25 = Number.isFinite(targetTime) ? (targetTime / distance) * 25 : Number.NaN;
-    return { distance, targetTime, split25, source };
-  });
-
-  container.innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <th>Milestone</th>
-          <th>Target Time</th>
-          <th>Target 25m Split</th>
-          <th>Source</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${milestones
-          .map(
-            (row) => `
-          <tr>
-            <td>${row.distance} m</td>
-            <td>${formatDuration(row.targetTime)}</td>
-            <td>${formatDuration(row.split25)}</td>
-            <td>${row.source}</td>
-          </tr>`
-          )
-          .join("")}
-      </tbody>
-    </table>
-  `;
-
-  if (status) {
-    status.textContent = "Suggested milestone targets are derived from the top 20% longest-distance entries across events.";
-  }
-}
-
-function scaleLinear(value, domainMin, domainMax, rangeMin, rangeMax) {
-  if (!Number.isFinite(value) || !Number.isFinite(domainMin) || !Number.isFinite(domainMax) || domainMax === domainMin) {
-    return (rangeMin + rangeMax) / 2;
-  }
-  const ratio = (value - domainMin) / (domainMax - domainMin);
-  return rangeMin + ratio * (rangeMax - rangeMin);
-}
-
-function renderScatterPlot({ containerId, points, xLabel, yLabel }) {
-  const container = document.getElementById(containerId);
-  if (!container) {
-    return;
-  }
-
-  container.textContent = "";
-  if (!points.length) {
-    container.innerHTML = '<p class="note">Not enough data points for this relationship.</p>';
-    return;
-  }
-
-  const width = 360;
-  const height = 240;
-  const padding = { top: 16, right: 14, bottom: 34, left: 42 };
-
-  const xValues = points.map((point) => point.x);
-  const yValues = points.map((point) => point.y);
-  const xMin = Math.min(...xValues);
-  const xMax = Math.max(...xValues);
-  const yMin = Math.min(...yValues);
-  const yMax = Math.max(...yValues);
-
-  const svgParts = [];
-  svgParts.push(`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${xLabel} vs ${yLabel}">`);
-  svgParts.push(`<rect x="0" y="0" width="${width}" height="${height}" fill="#f7fbff" />`);
-  svgParts.push(`<line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" stroke="#93b9d5" stroke-width="1" />`);
-  svgParts.push(`<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" stroke="#93b9d5" stroke-width="1" />`);
-
-  points.forEach((point) => {
-    const x = scaleLinear(point.x, xMin, xMax, padding.left, width - padding.right);
-    const y = scaleLinear(point.y, yMin, yMax, height - padding.bottom, padding.top);
-    const tooltip = `${point.label} · x=${point.x.toFixed(2)} y=${point.y.toFixed(2)}`;
-    svgParts.push(`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="3.2" fill="#177ec7"><title>${tooltip}</title></circle>`);
-  });
-
-  svgParts.push(`<text x="${width / 2}" y="${height - 8}" text-anchor="middle" font-size="11" fill="#496178">${xLabel}</text>`);
-  svgParts.push(`<text x="12" y="${height / 2}" transform="rotate(-90 12 ${height / 2})" text-anchor="middle" font-size="11" fill="#496178">${yLabel}</text>`);
-  svgParts.push("</svg>");
-
-  container.innerHTML = svgParts.join("");
-}
-
-function renderTechnique(rows) {
-  const status = document.getElementById("techniqueStatus");
-
-  const cycleGlidePoints = rows
-    .filter((row) => Number.isFinite(row.distance) && Number.isFinite(row.glideShare))
-    .map((row) => ({
-      x: row.distance,
-      y: row.glideShare,
-      label: `${row.athlete} (${row.event}/${row.category})`,
-    }));
-
-  const wallPushPoints = rows
-    .filter((row) => Number.isFinite(row.distance) && Number.isFinite(row.wallPushGlideDistance))
-    .map((row) => ({
-      x: row.distance,
-      y: row.wallPushGlideDistance,
-      label: `${row.athlete} (${row.event}/${row.category})`,
-    }));
-
-  const cyclesPoints = rows
-    .filter((row) => Number.isFinite(row.distance) && Number.isFinite(row.cyclesEstimate))
-    .map((row) => ({
-      x: row.distance,
-      y: row.cyclesEstimate,
-      label: `${row.athlete} (${row.event}/${row.category})`,
-    }));
-
-  renderScatterPlot({
-    containerId: "cycleGlideChart",
-    points: cycleGlidePoints,
-    xLabel: "Total Distance (m)",
-    yLabel: "Cycle Glide Share",
-  });
-
-  renderScatterPlot({
-    containerId: "wallPushChart",
-    points: wallPushPoints,
-    xLabel: "Total Distance (m)",
-    yLabel: "Wall Push Glide Distance (m)",
-  });
-
-  renderScatterPlot({
-    containerId: "cyclesChart",
-    points: cyclesPoints,
-    xLabel: "Total Distance (m)",
-    yLabel: "Estimated Cycles",
-  });
-
-  const table = document.getElementById("techniqueTable");
-  if (table) {
-    const top = rows
-      .filter((row) => Number.isFinite(row.distance))
-      .sort((a, b) => b.distance - a.distance)
-      .slice(0, 12);
-
-    table.innerHTML = `
-      <table>
-        <thead>
-          <tr>
-            <th>Athlete</th>
-            <th>Event</th>
-            <th>Category</th>
-            <th>Total Distance (m)</th>
-            <th>Cycle Time (s)</th>
-            <th>Cycle Glide Share</th>
-            <th>Wall Push Glide (m)</th>
-            <th>Estimated Cycles</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${top
-            .map(
-              (row) => `
-            <tr>
-              <td>${row.athlete}</td>
-              <td>${row.event}</td>
-              <td>${row.category}</td>
-              <td>${formatNumber(row.distance, 2)}</td>
-              <td>${formatNumber(row.cycleTime, 2)}</td>
-              <td>${formatPercent(row.glideShare, 1)}</td>
-              <td>${formatNumber(row.wallPushGlideDistance, 2)}</td>
-              <td>${formatNumber(row.cyclesEstimate, 1)}</td>
-            </tr>`
-            )
-            .join("")}
-        </tbody>
-      </table>
-    `;
-  }
-
-  if (status) {
-    status.textContent = `Technique relationships across all event/category athlete entries. Points: glide share ${cycleGlidePoints.length}, wall push ${wallPushPoints.length}, cycle count ${cyclesPoints.length}.`;
-  }
-}
-
-function renderEventTable(summaryRows) {
-  const container = document.getElementById("eventTable");
-  if (!container) {
-    return;
-  }
-
-  const ordered = [...summaryRows].sort((a, b) => {
-    const eventCmp = a.event.localeCompare(b.event);
-    if (eventCmp !== 0) {
-      return eventCmp;
-    }
-    return a.category.localeCompare(b.category);
-  });
-
-  container.innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <th>Event</th>
-          <th>Category</th>
-          <th>Athletes</th>
-          <th>Longest Distance (m)</th>
-          <th>Median Distance (m)</th>
-          <th>Median Speed (m/s)</th>
-          <th>Open Event Explorer</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${ordered
-          .map(
-            (row) => `
-          <tr>
-            <td>${row.event}</td>
-            <td>${row.category}</td>
-            <td>${row.athletes}</td>
-            <td>${formatNumber(row.longestDistance, 2)}</td>
-            <td>${formatNumber(row.medianDistance, 2)}</td>
-            <td>${formatNumber(row.medianSpeed, 3)}</td>
-            <td><a href="../events/?event=${encodeURIComponent(row.event)}&category=${encodeURIComponent(row.category)}">Event Explorer</a></td>
-          </tr>`
-          )
-          .join("")}
-      </tbody>
-    </table>
-  `;
+function slugToLabel(slug) {
+  return String(slug || "")
+    .split(/[-_]+/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join(" ");
 }
 
 function toPortalAssetPath(path) {
@@ -535,99 +28,660 @@ function toPortalAssetPath(path) {
   return normalized;
 }
 
-function placeholderDistributionEntries() {
-  return [
-    {
-      key: "distance-cross-event-1d",
-      label: "Total Distance Distribution",
-      note: "Expected aggregated density/histogram across all event categories.",
-    },
-    {
-      key: "speed-cross-event-1d",
-      label: "Total Speed Distribution",
-      note: "Expected pooled speed distribution aligned with Overview KPIs.",
-    },
-    {
-      key: "impulse-cross-event-1d",
-      label: "Total Impulse Distribution",
-      note: "Expected pooled impulse distribution across event categories.",
-    },
-  ];
+function getRequestedCategory() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("category") || "";
 }
 
-function renderCrossEventDistributions(manifest) {
-  const container = document.getElementById("crossEventDistributionGallery");
-  const status = document.getElementById("crossEventDistributionStatus");
+function updateCategoryQuery(category) {
+  const params = new URLSearchParams(window.location.search);
+  if (category) {
+    params.set("category", category);
+  } else {
+    params.delete("category");
+  }
+  params.delete("event");
+  params.delete("stream");
+  const query = params.toString();
+  history.replaceState({}, "", query ? `${window.location.pathname}?${query}` : window.location.pathname);
+}
+
+function formatDuration(seconds) {
+  if (!Number.isFinite(seconds) || seconds <= 0) {
+    return "-";
+  }
+  const rounded = Math.round(seconds);
+  const minutes = Math.floor(rounded / 60);
+  const sec = rounded - minutes * 60;
+  return `${minutes}:${String(sec).padStart(2, "0")}`;
+}
+
+function timeForDistanceAtSpeed(distanceMeters, speedMps) {
+  if (!Number.isFinite(distanceMeters) || !Number.isFinite(speedMps) || speedMps <= 0) {
+    return Number.NaN;
+  }
+  return distanceMeters / speedMps;
+}
+
+function toPerformanceNumber(value) {
+  if (value === null || value === undefined || value === "") {
+    return Number.NaN;
+  }
+  const number = Number(value);
+  return Number.isFinite(number) ? number : Number.NaN;
+}
+
+function formatPerformance(value) {
+  const number = toPerformanceNumber(value);
+  return Number.isFinite(number) ? `${Math.round(number)} m` : "-";
+}
+
+function rowKey(row) {
+  return `${row.event}::${row.athlete_slug}`;
+}
+
+function sortRows(rows, sortMode) {
+  const ordered = [...rows];
+  ordered.sort((a, b) => {
+    const performanceA = toPerformanceNumber(a.performance_m);
+    const performanceB = toPerformanceNumber(b.performance_m);
+    const nameA = String(a.athlete_name || "");
+    const nameB = String(b.athlete_name || "");
+
+    if (sortMode === "performance_desc" || sortMode === "performance_asc") {
+      const bothFinite = Number.isFinite(performanceA) && Number.isFinite(performanceB);
+      if (bothFinite && performanceA !== performanceB) {
+        return sortMode === "performance_desc" ? performanceB - performanceA : performanceA - performanceB;
+      }
+      if (Number.isFinite(performanceA) && !Number.isFinite(performanceB)) {
+        return -1;
+      }
+      if (!Number.isFinite(performanceA) && Number.isFinite(performanceB)) {
+        return 1;
+      }
+      const nameCompare = nameA.localeCompare(nameB);
+      if (nameCompare !== 0) {
+        return nameCompare;
+      }
+      return String(a.event || "").localeCompare(String(b.event || ""));
+    }
+
+    if (sortMode === "name_desc") {
+      const cmp = nameB.localeCompare(nameA);
+      if (cmp !== 0) {
+        return cmp;
+      }
+      return performanceB - performanceA;
+    }
+
+    const cmp = nameA.localeCompare(nameB);
+    if (cmp !== 0) {
+      return cmp;
+    }
+    return performanceB - performanceA;
+  });
+  return ordered;
+}
+
+function renderSpeedProfileCard(container, categoryEntry) {
+  const categoryId = categoryEntry?.id || "unknown";
+  const chartPath = toPortalAssetPath(categoryEntry?.speed_profile_chart || "");
+
+  const chartMarkup = chartPath
+    ? `<figure class="speed-profile-figure">
+         <img src="${chartPath}" alt="Speed profile top athletes for ${slugToLabel(categoryId)}" loading="lazy" />
+         <figcaption class="figure-caption">Category: ${slugToLabel(categoryId)}</figcaption>
+       </figure>`
+    : `<div class="speed-profile-missing">
+         <p class="note">Chart not available yet for ${slugToLabel(categoryId)}.</p>
+       </div>`;
+
+  container.innerHTML = `
+    <article class="speed-profile-card">
+      <div class="speed-profile-visual">${chartMarkup}</div>
+      <div class="speed-profile-notes">
+        <h3>Training Notes</h3>
+        <p class="note">Top athletes speeds range between <strong>${SPEED_BAND_MPS.min.toFixed(2)} and ${SPEED_BAND_MPS.max.toFixed(2)} m/s</strong>.</p>
+        <div class="table-wrap speed-reference-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Speed</th>
+                <th>Time to 25m</th>
+                <th>Time to 50m</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>${SPEED_BAND_MPS.min.toFixed(2)} m/s</td>
+                <td>${formatDuration(timeForDistanceAtSpeed(25, SPEED_BAND_MPS.min))}</td>
+                <td>${formatDuration(timeForDistanceAtSpeed(50, SPEED_BAND_MPS.min))}</td>
+              </tr>
+              <tr>
+                <td>${SPEED_BAND_MPS.max.toFixed(2)} m/s</td>
+                <td>${formatDuration(timeForDistanceAtSpeed(25, SPEED_BAND_MPS.max))}</td>
+                <td>${formatDuration(timeForDistanceAtSpeed(50, SPEED_BAND_MPS.max))}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function uniqueEvents(rows) {
+  return [...new Set(rows.map((row) => String(row.event || "")).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function buildEventTypeByEventId(manifest) {
+  const map = new Map();
+  (manifest?.events || []).forEach((eventRow) => {
+    const eventId = String(eventRow?.id || "").trim();
+    if (!eventId) {
+      return;
+    }
+    const eventType = String(eventRow?.event_type || "competition").trim().toLowerCase();
+    map.set(eventId, eventType || "competition");
+  });
+  return map;
+}
+
+function splitEventsByType(availableEvents, eventTypeByEventId) {
+  const trainingEvents = availableEvents.filter((eventId) => eventTypeByEventId.get(eventId) === "training");
+  const topEvents = availableEvents.filter((eventId) => eventTypeByEventId.get(eventId) !== "training");
+  return { topEvents, trainingEvents };
+}
+
+function applyFiltersAndSort(rows, selectedTopEventIds, selectedTrainingEventIds, sortMode) {
+  const mergedEventIds = new Set([...selectedTopEventIds, ...selectedTrainingEventIds]);
+  const filtered = mergedEventIds.size
+    ? rows.filter((row) => mergedEventIds.has(String(row.event || "")))
+    : [];
+  return sortRows(filtered, sortMode);
+}
+
+function filterRowsByName(rows, query) {
+  const normalized = String(query || "").trim().toLowerCase();
+  if (!normalized) {
+    return rows;
+  }
+  return rows.filter((row) => {
+    const name = String(row.athlete_name || row.athlete_slug || "").toLowerCase();
+    return name.includes(normalized);
+  });
+}
+
+function paginateRows(rows, page, pageSize) {
+  const safePageSize = Number.isFinite(pageSize) && pageSize > 0 ? Math.floor(pageSize) : DEFAULT_TABLE_PAGE_SIZE;
+  const totalRows = rows.length;
+  const totalPages = Math.max(1, Math.ceil(totalRows / safePageSize));
+  const currentPage = Math.min(Math.max(1, page), totalPages);
+  const startIndex = (currentPage - 1) * safePageSize;
+  const endIndex = startIndex + safePageSize;
+  return {
+    pageRows: rows.slice(startIndex, endIndex),
+    currentPage,
+    totalPages,
+    totalRows,
+    startIndex,
+    endIndex: Math.min(endIndex, totalRows),
+    pageSize: safePageSize,
+  };
+}
+
+function applyTop5Preset(rows, selectedKeys) {
+  selectedKeys.clear();
+  const topRows = sortRows(rows, "performance_desc").slice(0, 5);
+  topRows.forEach((row) => selectedKeys.add(rowKey(row)));
+}
+
+function renderSelectionStatus(selectedKeys) {
+  const selectionStatus = document.getElementById("selectionStatus");
+  if (selectionStatus) {
+    selectionStatus.textContent = `Selected athletes: ${selectedKeys.size}`;
+  }
+}
+
+function renderSidebarTable(rows, selectedKeys) {
+  const tbody = document.getElementById("athleteTableBody");
+  if (!tbody) {
+    return;
+  }
+
+  if (!rows.length) {
+    tbody.innerHTML = '<tr><td colspan="5" class="note">No athletes match current filters.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = rows
+    .map((row) => {
+      const key = rowKey(row);
+      const checked = selectedKeys.has(key) ? "checked" : "";
+      const name = String(row.athlete_name || row.athlete_slug || "Unknown");
+      const event = String(row.event || "-");
+      const performance = formatPerformance(row.performance_m);
+      const videoUrl = String(row.video_url || "").trim();
+      const videoCell = videoUrl
+        ? `<a href="${videoUrl}" target="_blank" rel="noopener noreferrer">Watch</a>`
+        : "-";
+
+      return `
+        <tr>
+          <td><input type="checkbox" class="athlete-check" data-athlete-key="${key}" ${checked} /></td>
+          <td>${name}</td>
+          <td>${event}</td>
+          <td>${performance}</td>
+          <td>${videoCell}</td>
+        </tr>
+      `;
+    })
+    .join("");
+}
+
+function renderEventChecklist(containerId, events, selectedEventIds, setType, allLabel) {
+  const container = document.getElementById(containerId);
   if (!container) {
     return;
   }
 
   container.textContent = "";
+  const allChecked = events.length > 0 && selectedEventIds.size === events.length;
 
-  const entries = (manifest.cross_event_distributions?.DNF || []).filter((entry) => entry && typeof entry === "object");
-  const availableEntries = entries.filter((entry) => typeof entry.path === "string" && entry.path.trim());
+  const allWrap = document.createElement("label");
+  allWrap.className = "event-filter-item";
+  allWrap.innerHTML = `<input type="checkbox" class="event-filter-input" data-event-set="${setType}" data-event-all="true" ${allChecked ? "checked" : ""} /> ${allLabel}`;
+  container.appendChild(allWrap);
 
-  if (!availableEntries.length) {
-    placeholderDistributionEntries().forEach((entry) => {
-      const figure = document.createElement("article");
-      figure.className = "figure-card";
-      figure.innerHTML = `
-        <p class="kpi-label">Placeholder</p>
-        <h3>${entry.label}</h3>
-        <p class="note">${entry.note}</p>
-        <p class="note mono">expected key: ${entry.key}</p>
-      `;
-      container.appendChild(figure);
-    });
-
-    if (status) {
-      status.textContent = "No cross-event distribution artifacts found yet. Showing consumer-contract placeholders.";
-    }
-    return;
-  }
-
-  availableEntries.forEach((entry) => {
-    const figure = document.createElement("figure");
-    figure.className = "figure-card";
-    const label = entry.label || entry.key || "Cross-event distribution";
-    figure.innerHTML = `
-      <img src="${toPortalAssetPath(entry.path)}" alt="${label}" loading="lazy" />
-      <figcaption class="figure-caption">${label}</figcaption>
-    `;
-    container.appendChild(figure);
+  events.forEach((eventId) => {
+    const item = document.createElement("label");
+    item.className = "event-filter-item";
+    const checked = selectedEventIds.has(eventId) ? "checked" : "";
+    item.innerHTML = `<input type="checkbox" class="event-filter-input" data-event-set="${setType}" data-event-id="${eventId}" ${checked} /> ${eventId}`;
+    container.appendChild(item);
   });
+}
 
-  if (status) {
-    status.textContent = `Showing ${availableEntries.length} cross-event distribution artifact(s).`;
+function setSidebarStatus(message) {
+  const sidebarStatus = document.getElementById("sidebarStatus");
+  if (sidebarStatus) {
+    sidebarStatus.textContent = message;
   }
 }
 
+async function loadAthleteRows(categoryEntry) {
+  const path = categoryEntry?.athlete_rows_path;
+  if (typeof path !== "string" || !path.trim()) {
+    return [];
+  }
+
+  const payload = await fetchJson(path.trim());
+  if (!Array.isArray(payload)) {
+    return [];
+  }
+  return payload;
+}
+
+function renderCategorySelect(categories, selectedCategory) {
+  const select = document.getElementById("categorySelect");
+  if (!select) {
+    return;
+  }
+
+  select.textContent = "";
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.textContent = slugToLabel(category.id);
+    select.appendChild(option);
+  });
+  select.value = selectedCategory;
+}
+
+function getCurrentSidebarWidth(layout, sidebar) {
+  const cssValue = layout.style.getPropertyValue("--sidebar-width").trim();
+  if (cssValue.endsWith("px")) {
+    const parsed = Number(cssValue.replace("px", ""));
+    if (Number.isFinite(parsed)) {
+      return parsed;
+    }
+  }
+  return sidebar.getBoundingClientRect().width;
+}
+
+function clampSidebarWidth(width) {
+  return Math.max(SIDEBAR_MIN_WIDTH, Math.min(SIDEBAR_MAX_WIDTH, width));
+}
+
+function setSidebarWidth(layout, width) {
+  layout.style.setProperty("--sidebar-width", `${clampSidebarWidth(width)}px`);
+}
+
+function attachSidebarResize(layout, sidebar, handle) {
+  let dragState = null;
+
+  handle.addEventListener("mousedown", (event) => {
+    if (sidebar.classList.contains("is-collapsed")) {
+      return;
+    }
+
+    event.preventDefault();
+    dragState = {
+      startX: event.clientX,
+      startWidth: getCurrentSidebarWidth(layout, sidebar),
+    };
+  });
+
+  window.addEventListener("mousemove", (event) => {
+    if (!dragState) {
+      return;
+    }
+    const deltaX = event.clientX - dragState.startX;
+    const width = dragState.startWidth + deltaX;
+    setSidebarWidth(layout, width);
+  });
+
+  window.addEventListener("mouseup", () => {
+    dragState = null;
+  });
+}
+
+function setSidebarCollapsed(layout, sidebar, button, collapsed) {
+  layout.classList.toggle("is-sidebar-collapsed", collapsed);
+  sidebar.classList.toggle("is-collapsed", collapsed);
+  const icon = button.querySelector(".sidebar-toggle-icon");
+  const text = button.querySelector(".sidebar-toggle-text");
+  if (icon) {
+    icon.textContent = collapsed ? ">" : "<";
+  }
+  if (text) {
+    text.textContent = collapsed ? "Unfold" : "Fold";
+  } else {
+    button.textContent = collapsed ? "Unfold" : "Fold";
+  }
+  button.setAttribute("aria-expanded", String(!collapsed));
+  button.setAttribute("aria-label", collapsed ? "Expand athlete controls panel" : "Collapse athlete controls panel");
+}
+
 async function main() {
-  const status = document.getElementById("overviewStatus");
-  if (status) {
-    status.textContent = "Loading discipline-wide aggregate overview...";
+  const overviewStatus = document.getElementById("overviewStatus");
+  const speedProfileSections = document.getElementById("speedProfileSections");
+  const categorySelect = document.getElementById("categorySelect");
+  const sortSelect = document.getElementById("sortSelect");
+  const top5Button = document.getElementById("top5Button");
+  const clearSelectionButton = document.getElementById("clearSelectionButton");
+  const athleteSearchInput = document.getElementById("athleteSearchInput");
+  const tablePrevPage = document.getElementById("tablePrevPage");
+  const tableNextPage = document.getElementById("tableNextPage");
+  const tablePageStatus = document.getElementById("tablePageStatus");
+  const tablePageSizeSelect = document.getElementById("tablePageSizeSelect");
+  const athleteTableBody = document.getElementById("athleteTableBody");
+  const topEventChecklist = document.getElementById("topEventChecklist");
+  const trainingEventChecklist = document.getElementById("trainingEventChecklist");
+  const overviewLayout = document.querySelector(".overview-layout");
+  const athleteSidebar = document.querySelector(".athlete-sidebar");
+  const sidebarResizeHandle = document.getElementById("sidebarResizeHandle");
+  const sidebarToggleButton = document.getElementById("sidebarToggleButton");
+
+  if (
+    !overviewStatus ||
+    !speedProfileSections ||
+    !categorySelect ||
+    !sortSelect ||
+    !top5Button ||
+    !clearSelectionButton ||
+    !athleteSearchInput ||
+    !tablePrevPage ||
+    !tableNextPage ||
+    !tablePageStatus ||
+    !tablePageSizeSelect ||
+    !athleteTableBody ||
+    !topEventChecklist ||
+    !trainingEventChecklist ||
+    !overviewLayout ||
+    !athleteSidebar ||
+    !sidebarResizeHandle ||
+    !sidebarToggleButton
+  ) {
+    return;
+  }
+
+  let categories = [];
+  let currentCategoryId = "";
+  let allAthleteRows = [];
+  let sortMode = "performance_desc";
+  let availableEvents = [];
+  let topEvents = [];
+  let trainingEvents = [];
+  let eventTypeByEventId = new Map();
+  const selectedKeys = new Set();
+  const selectedTopEventIds = new Set();
+  const selectedTrainingEventIds = new Set();
+  let searchQuery = "";
+  let currentPage = 1;
+  let currentTotalPages = 1;
+  let pageSize = DEFAULT_TABLE_PAGE_SIZE;
+  let sidebarCollapsed = false;
+
+  function renderSidebar() {
+    availableEvents = uniqueEvents(allAthleteRows);
+    ({ topEvents, trainingEvents } = splitEventsByType(availableEvents, eventTypeByEventId));
+
+    [...selectedTopEventIds].forEach((eventId) => {
+      if (!topEvents.includes(eventId)) {
+        selectedTopEventIds.delete(eventId);
+      }
+    });
+    [...selectedTrainingEventIds].forEach((eventId) => {
+      if (!trainingEvents.includes(eventId)) {
+        selectedTrainingEventIds.delete(eventId);
+      }
+    });
+
+    renderEventChecklist("topEventChecklist", topEvents, selectedTopEventIds, "top", "All top events");
+    renderEventChecklist(
+      "trainingEventChecklist",
+      trainingEvents,
+      selectedTrainingEventIds,
+      "training",
+      "All training events"
+    );
+    const eventFilteredRows = applyFiltersAndSort(allAthleteRows, selectedTopEventIds, selectedTrainingEventIds, sortMode);
+    const visibleRows = filterRowsByName(eventFilteredRows, searchQuery);
+    const pagination = paginateRows(visibleRows, currentPage, pageSize);
+    currentPage = pagination.currentPage;
+    currentTotalPages = pagination.totalPages;
+    renderSidebarTable(pagination.pageRows, selectedKeys);
+    renderSelectionStatus(selectedKeys);
+
+    tablePrevPage.disabled = currentPage <= 1;
+    tableNextPage.disabled = currentPage >= currentTotalPages;
+    tablePageStatus.textContent = `Page ${currentPage} / ${currentTotalPages}`;
+
+    const mergedEventIds = new Set([...selectedTopEventIds, ...selectedTrainingEventIds]);
+    const eventScope = !availableEvents.length
+      ? "no events"
+      : mergedEventIds.size === availableEvents.length
+        ? "all events"
+        : `${mergedEventIds.size} merged event(s)`;
+    const rangeText = pagination.totalRows
+      ? `rows ${pagination.startIndex + 1}-${pagination.endIndex} of ${pagination.totalRows}`
+      : "rows 0 of 0";
+    setSidebarStatus(
+      `Showing ${rangeText}, ${eventScope}. Top: ${selectedTopEventIds.size}/${topEvents.length}, Training: ${selectedTrainingEventIds.size}/${trainingEvents.length}.`
+    );
+  }
+
+  async function loadCategory(categoryId) {
+    currentCategoryId = categoryId;
+    updateCategoryQuery(currentCategoryId);
+
+    const categoryEntry = categories.find((entry) => entry.id === currentCategoryId);
+    if (!categoryEntry) {
+      speedProfileSections.innerHTML = '<p class="note">Selected category is unavailable.</p>';
+      allAthleteRows = [];
+      selectedTopEventIds.clear();
+      selectedTrainingEventIds.clear();
+      renderSidebar();
+      return;
+    }
+
+    renderSpeedProfileCard(speedProfileSections, categoryEntry);
+    allAthleteRows = await loadAthleteRows(categoryEntry);
+    sortMode = "performance_desc";
+    sortSelect.value = sortMode;
+    availableEvents = uniqueEvents(allAthleteRows);
+    ({ topEvents, trainingEvents } = splitEventsByType(availableEvents, eventTypeByEventId));
+
+    selectedTopEventIds.clear();
+    selectedTrainingEventIds.clear();
+    topEvents.forEach((eventId) => selectedTopEventIds.add(eventId));
+    trainingEvents.forEach((eventId) => selectedTrainingEventIds.add(eventId));
+
+    applyTop5Preset(allAthleteRows, selectedKeys);
+    searchQuery = "";
+    athleteSearchInput.value = "";
+    currentPage = 1;
+    renderSidebar();
+
+    overviewStatus.textContent = `Showing speed profile and controls for ${slugToLabel(currentCategoryId)}.`;
   }
 
   try {
+    overviewStatus.textContent = "Loading analysis charts...";
     const manifest = await loadManifest();
-    const slices = await loadSlices(manifest);
-    const summaryRows = slices.map((slice) => eventSummaryRow(slice));
-    const athleteRows = flattenAthleteRows(slices);
+    eventTypeByEventId = buildEventTypeByEventId(manifest);
+    categories = manifest?.analysis?.DNF?.categories || [];
 
-    renderKpis(summaryRows, athleteRows);
-    renderPerformanceAnswers(athleteRows);
-    renderMilestones(athleteRows);
-    renderTechnique(athleteRows);
-    renderEventTable(summaryRows);
-    renderCrossEventDistributions(manifest);
-
-    if (status) {
-      status.textContent = `Showing discipline-wide aggregate overview across ${summaryRows.length} event category slice(s).`;
+    if (!Array.isArray(categories) || !categories.length) {
+      overviewStatus.textContent = "No DNF analysis categories found in manifest.";
+      speedProfileSections.innerHTML = '<p class="note">Run data curation to publish analysis charts into public/data.</p>';
+      allAthleteRows = [];
+      selectedTopEventIds.clear();
+      selectedTrainingEventIds.clear();
+      renderSidebar();
+      return;
     }
+
+    const requestedCategory = getRequestedCategory();
+    const categoryIds = categories.map((entry) => entry.id);
+    currentCategoryId = categoryIds.includes(requestedCategory) ? requestedCategory : categoryIds[0];
+    renderCategorySelect(categories, currentCategoryId);
+
+    attachSidebarResize(overviewLayout, athleteSidebar, sidebarResizeHandle);
+    setSidebarCollapsed(overviewLayout, athleteSidebar, sidebarToggleButton, sidebarCollapsed);
+
+    categorySelect.addEventListener("change", async () => {
+      await loadCategory(categorySelect.value);
+    });
+
+    sortSelect.addEventListener("change", () => {
+      sortMode = sortSelect.value;
+      currentPage = 1;
+      renderSidebar();
+    });
+
+    top5Button.addEventListener("click", () => {
+      applyTop5Preset(allAthleteRows, selectedKeys);
+      currentPage = 1;
+      renderSidebar();
+    });
+
+    clearSelectionButton.addEventListener("click", () => {
+      selectedKeys.clear();
+      renderSidebar();
+    });
+
+    athleteSearchInput.addEventListener("input", () => {
+      searchQuery = athleteSearchInput.value.trim();
+      currentPage = 1;
+      renderSidebar();
+    });
+
+    tablePrevPage.addEventListener("click", () => {
+      if (currentPage <= 1) {
+        return;
+      }
+      currentPage -= 1;
+      renderSidebar();
+    });
+
+    tableNextPage.addEventListener("click", () => {
+      if (currentPage >= currentTotalPages) {
+        return;
+      }
+      currentPage += 1;
+      renderSidebar();
+    });
+
+    tablePageSizeSelect.addEventListener("change", () => {
+      const parsed = Number(tablePageSizeSelect.value);
+      if (Number.isFinite(parsed) && parsed > 0) {
+        pageSize = Math.floor(parsed);
+      }
+      currentPage = 1;
+      renderSidebar();
+    });
+
+    sidebarToggleButton.addEventListener("click", () => {
+      sidebarCollapsed = !sidebarCollapsed;
+      setSidebarCollapsed(overviewLayout, athleteSidebar, sidebarToggleButton, sidebarCollapsed);
+    });
+
+    const handleEventChecklistChange = (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement) || !target.classList.contains("event-filter-input")) {
+        return;
+      }
+
+      const setType = target.dataset.eventSet;
+      const targetSet = setType === "training" ? selectedTrainingEventIds : selectedTopEventIds;
+
+      if (target.dataset.eventAll === "true") {
+        targetSet.clear();
+        if (target.checked) {
+          const source = setType === "training" ? trainingEvents : topEvents;
+          source.forEach((eventId) => targetSet.add(eventId));
+        }
+      } else {
+        const eventId = target.dataset.eventId || "";
+        if (!eventId) {
+          return;
+        }
+        if (target.checked) {
+          targetSet.add(eventId);
+        } else {
+          targetSet.delete(eventId);
+        }
+      }
+
+      currentPage = 1;
+      renderSidebar();
+    };
+    topEventChecklist.addEventListener("change", handleEventChecklistChange);
+    trainingEventChecklist.addEventListener("change", handleEventChecklistChange);
+
+    athleteTableBody.addEventListener("change", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement) || !target.classList.contains("athlete-check")) {
+        return;
+      }
+      const key = target.dataset.athleteKey || "";
+      if (!key) {
+        return;
+      }
+      if (target.checked) {
+        selectedKeys.add(key);
+      } else {
+        selectedKeys.delete(key);
+      }
+      renderSelectionStatus(selectedKeys);
+    });
+
+    await loadCategory(currentCategoryId);
   } catch (error) {
-    if (status) {
-      status.textContent = `Failed to load aggregate overview: ${error.message}`;
-    }
+    overviewStatus.textContent = `Failed to load DNF Overview: ${error.message}`;
+    setSidebarStatus("Failed to load athlete controls.");
   }
 }
 

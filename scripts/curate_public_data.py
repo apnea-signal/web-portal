@@ -7,11 +7,13 @@ import shutil
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Iterable, List, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 DEFAULT_CACHE_ROOT = Path("cache")
 DEFAULT_PUBLIC_DATA_ROOT = Path("public/data")
 DEFAULT_TARGETS_FILE = Path("sync-targets.txt")
+KNOWN_DISCIPLINE = "DNF"
+DEFAULT_EVENT_TYPE = "competition"
 
 
 def parse_args() -> argparse.Namespace:
@@ -47,26 +49,29 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def parse_targets_file(path: Path) -> List[Tuple[str, str]]:
+def parse_targets_file(path: Path) -> List[Tuple[str, str, str]]:
     if not path.exists():
         raise FileNotFoundError(f"Targets file not found: {path}")
 
-    targets: List[Tuple[str, str]] = []
+    targets: List[Tuple[str, str, str]] = []
     for line_no, raw_line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
         line = raw_line.split("#", 1)[0].strip()
         if not line:
             continue
 
         if "," in line:
-            parts = [part.strip() for part in line.split(",", 1)]
+            parts = [part.strip() for part in line.split(",")]
         else:
             parts = line.split()
 
-        if len(parts) != 2 or not parts[0] or not parts[1]:
+        if len(parts) not in (2, 3) or not parts[0] or not parts[1]:
             raise ValueError(
-                f"Invalid target at {path}:{line_no}. Use 'stream,category' or 'stream category'."
+                f"Invalid target at {path}:{line_no}. Use 'stream,category[,event_type]' or whitespace-separated equivalent."
             )
-        targets.append((parts[0], parts[1]))
+        event_type = parts[2].strip().lower() if len(parts) == 3 else DEFAULT_EVENT_TYPE
+        if not event_type:
+            event_type = DEFAULT_EVENT_TYPE
+        targets.append((parts[0], parts[1], event_type))
 
     if not targets:
         raise ValueError(f"No sync targets found in {path}")
@@ -94,6 +99,38 @@ def copy_if_exists(source: Path, destination: Path) -> bool:
     return True
 
 
+def to_float(value: object) -> Optional[float]:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if number == number else None
+
+
+def detect_athlete_slugs(cache_root: Path, stream: str, category: str) -> Set[str]:
+    source_dir = cache_root / stream / "athlete_videos" / category
+    if not source_dir.exists():
+        return set()
+
+    suffixes = (
+        ".annotations.json",
+        ".propulsion.refined.json",
+        ".refined.propulsion.stats.json",
+        ".propulsion.stats.json",
+    )
+    slugs: Set[str] = set()
+    for path in sorted(source_dir.iterdir()):
+        if not path.is_file():
+            continue
+        for suffix in suffixes:
+            if path.name.endswith(suffix):
+                slug = path.name[: -len(suffix)].strip()
+                if slug:
+                    slugs.add(slug)
+                break
+    return slugs
+
+
 def detect_disciplines(cache_root: Path, stream: str, category: str) -> Set[str]:
     disciplines: Set[str] = set()
     source_dir = cache_root / stream / "athlete_videos" / category
@@ -118,6 +155,7 @@ def curate_target(
     public_data_root: Path,
     stream: str,
     category: str,
+    event_type: str,
 ) -> Dict:
     source_stream_root = cache_root / stream
     if not source_stream_root.exists():
@@ -130,21 +168,19 @@ def curate_target(
     summary_files: Dict[str, str] = {}
     athletes_by_checkpoint: Dict[str, Set[str]] = defaultdict(set)
 
-    for summary_source in sorted(source_summaries.glob(f"*-{category}.json")):
-        checkpoint = summary_source.name[: -len(f"-{category}.json")]
-        summary_destination = destination_summaries / summary_source.name
-        copy_if_exists(summary_source, summary_destination)
+    if source_summaries.exists():
+        for summary_source in sorted(source_summaries.glob(f"*-{category}.json")):
+            checkpoint = summary_source.name[: -len(f"-{category}.json")]
+            summary_destination = destination_summaries / summary_source.name
+            copy_if_exists(summary_source, summary_destination)
 
-        summary_files[checkpoint] = to_public_relative(summary_destination, public_data_root)
+            summary_files[checkpoint] = to_public_relative(summary_destination, public_data_root)
 
-        payload = read_json(summary_source)
-        for athlete in payload.get("athletes", []):
-            slug = athlete.get("athlete")
-            if isinstance(slug, str) and slug.strip():
-                athletes_by_checkpoint[checkpoint].add(slug.strip())
-
-    if not summary_files:
-        raise ValueError(f"No summary files found for {stream}/{category}")
+            payload = read_json(summary_source)
+            for athlete in payload.get("athletes", []):
+                slug = athlete.get("athlete")
+                if isinstance(slug, str) and slug.strip():
+                    athletes_by_checkpoint[checkpoint].add(slug.strip())
 
     distribution_images: Dict[str, List[str]] = defaultdict(list)
     source_distributions = source_stream_root / "distributions"
@@ -169,28 +205,136 @@ def curate_target(
                     )
 
     disciplines = sorted(detect_disciplines(cache_root, stream, category))
-    athlete_union = sorted({slug for values in athletes_by_checkpoint.values() for slug in values})
+    athlete_union = {slug for values in athletes_by_checkpoint.values() for slug in values}
+    athlete_union.update(detect_athlete_slugs(cache_root, stream, category))
 
     return {
         "stream": stream,
         "category": category,
+        "event_type": event_type,
         "disciplines": disciplines,
         "checkpoints": sorted(summary_files.keys()),
         "summary_files": summary_files,
         "distribution_images": {key: values for key, values in sorted(distribution_images.items())},
-        "athletes": athlete_union,
+        "athletes": sorted(athlete_union),
     }
 
 
-def build_manifest(curated_targets: Iterable[Dict]) -> Dict:
+def curate_analysis(
+    *,
+    cache_root: Path,
+    public_data_root: Path,
+    targets: Iterable[Tuple[str, str, str]],
+    discipline: str = KNOWN_DISCIPLINE,
+) -> Dict[str, Dict[str, List[Dict[str, str]]]]:
+    targets_by_category: Dict[str, Set[str]] = defaultdict(set)
+    for stream, category, _event_type in targets:
+        targets_by_category[category].add(stream)
+
+    rows: List[Dict[str, str]] = []
+    for category in sorted(targets_by_category.keys()):
+        source_dir = cache_root / "analysis" / discipline / category / "charts"
+        destination_dir = public_data_root / "analysis" / discipline / category / "charts"
+        destination_category_root = public_data_root / "analysis" / discipline / category
+
+        speed_profile_chart = ""
+        if source_dir.exists():
+            for source_artifact in sorted(path for path in source_dir.iterdir() if path.is_file()):
+                destination_artifact = destination_dir / source_artifact.name
+                copy_if_exists(source_artifact, destination_artifact)
+                if source_artifact.name == "speed-profile-top-athletes.png":
+                    speed_profile_chart = to_public_relative(destination_artifact, public_data_root)
+
+        athlete_rows: List[Dict[str, object]] = []
+        for stream in sorted(targets_by_category[category]):
+            performance_by_slug: Dict[str, Optional[float]] = {}
+            total_summary_path = cache_root / stream / "summaries" / f"total-{category}.json"
+            if total_summary_path.exists():
+                try:
+                    total_payload = read_json(total_summary_path)
+                    for athlete_row in total_payload.get("athletes", []):
+                        slug = athlete_row.get("athlete")
+                        if isinstance(slug, str) and slug.strip():
+                            performance_by_slug[slug.strip()] = to_float(athlete_row.get("distance_m"))
+                except (json.JSONDecodeError, OSError):
+                    pass
+
+            athlete_videos_dir = cache_root / stream / "athlete_videos" / category
+            annotation_by_slug: Dict[str, Dict[str, object]] = {}
+            if athlete_videos_dir.exists():
+                for annotation_path in sorted(athlete_videos_dir.glob("*.annotations.json")):
+                    slug = annotation_path.name[: -len(".annotations.json")]
+                    try:
+                        annotation_payload = read_json(annotation_path)
+                    except (json.JSONDecodeError, OSError):
+                        continue
+                    metadata = annotation_payload.get("metadata") or {}
+                    annotation_by_slug[slug] = {
+                        "athlete_name": str(metadata.get("athlete_name") or slug_to_name(slug)),
+                        "video_url": str(metadata.get("online_url") or ""),
+                        "performance_m": to_float(metadata.get("total_distance_m")),
+                    }
+
+            for slug in sorted(set(performance_by_slug.keys()) | set(annotation_by_slug.keys())):
+                annotation = annotation_by_slug.get(slug, {})
+                summary_performance = performance_by_slug.get(slug)
+                annotation_performance = to_float(annotation.get("performance_m"))
+                athlete_rows.append(
+                    {
+                        "athlete_slug": slug,
+                        "athlete_name": annotation.get("athlete_name") or slug_to_name(slug),
+                        "event": stream,
+                        "category": category,
+                        "performance_m": summary_performance if summary_performance is not None else annotation_performance,
+                        "video_url": annotation.get("video_url") or "",
+                    }
+                )
+
+        athlete_rows.sort(
+            key=lambda row: (
+                -(row.get("performance_m") if isinstance(row.get("performance_m"), float) else float("-inf")),
+                str(row.get("athlete_name", "")),
+                str(row.get("event", "")),
+            )
+        )
+        athlete_rows_path = destination_category_root / "athletes.json"
+        athlete_rows_path.parent.mkdir(parents=True, exist_ok=True)
+        athlete_rows_path.write_text(
+            json.dumps(athlete_rows, indent=2, sort_keys=False) + "\n",
+            encoding="utf-8",
+        )
+
+        rows.append(
+            {
+                "id": category,
+                "speed_profile_chart": speed_profile_chart,
+                "athlete_rows_path": to_public_relative(athlete_rows_path, public_data_root),
+            }
+        )
+
+    return {
+        discipline: {
+            "categories": rows,
+        }
+    }
+
+
+def build_manifest(curated_targets: Iterable[Dict], analysis: Dict) -> Dict:
     event_rows: Dict[str, List[Dict]] = defaultdict(list)
+    event_types: Dict[str, str] = {}
     athlete_index: Dict[str, Dict] = {}
 
     for target in curated_targets:
         event_id = target["stream"]
         category = target["category"]
+        event_type = str(target.get("event_type") or DEFAULT_EVENT_TYPE)
         checkpoints = target["checkpoints"]
         disciplines = target["disciplines"]
+        existing_type = event_types.get(event_id)
+        if existing_type is None:
+            event_types[event_id] = event_type
+        elif existing_type != "training" and event_type == "training":
+            event_types[event_id] = "training"
 
         event_rows[event_id].append(
             {
@@ -213,6 +357,7 @@ def build_manifest(curated_targets: Iterable[Dict]) -> Dict:
                 {
                     "event": event_id,
                     "stream": event_id,
+                    "event_type": event_type,
                     "category": category,
                     "disciplines": disciplines,
                     "checkpoints": checkpoints,
@@ -222,6 +367,7 @@ def build_manifest(curated_targets: Iterable[Dict]) -> Dict:
     events = [
         {
             "id": event_id,
+            "event_type": event_types.get(event_id, DEFAULT_EVENT_TYPE),
             "categories": sorted(categories, key=lambda row: row["id"]),
         }
         for event_id, categories in sorted(event_rows.items(), key=lambda item: item[0])
@@ -236,6 +382,7 @@ def build_manifest(curated_targets: Iterable[Dict]) -> Dict:
         "cross_event_distributions": {
             "DNF": []
         },
+        "analysis": analysis,
         "athletes": athletes,
     }
 
@@ -263,11 +410,20 @@ def main() -> None:
             public_data_root=public_data_root,
             stream=stream,
             category=category,
+            event_type=event_type,
         )
-        for stream, category in targets
+        for stream, category, event_type in targets
     ]
 
-    manifest = build_manifest(curated)
+    manifest = build_manifest(
+        curated,
+        analysis=curate_analysis(
+            cache_root=cache_root,
+            public_data_root=public_data_root,
+            targets=targets,
+            discipline=KNOWN_DISCIPLINE,
+        ),
+    )
     manifest_path = write_manifest(manifest, public_data_root)
 
     print(f"Curated {len(curated)} target(s) into {public_data_root}")

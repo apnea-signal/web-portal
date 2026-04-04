@@ -16,6 +16,7 @@ DEFAULT_CACHE_ROOT = Path("cache")
 DEFAULT_CONFIG_PATH = Path("config.yaml")
 DEFAULT_TARGETS_FILE = Path("sync-targets.txt")
 FOLDER_NAME = "athlete_videos"
+KNOWN_DISCIPLINE = "DNF"
 
 # Per-athlete artifacts that power profile and comparison views.
 ATHLETE_INCLUDE_PATTERNS = (
@@ -24,11 +25,9 @@ ATHLETE_INCLUDE_PATTERNS = (
     "*.propulsion.stats.json",
 )
 
-# Stream-level derived artifacts used for cohort benchmark and distribution views.
+# Cross-stream derived chart artifacts used for cohort benchmark views.
 STREAM_INCLUDE_PATTERNS = (
-    "summaries/*-{category}.json",
-    "distributions/*/{category}/*",
-    "distributions/*/functions.json",
+    "analysis/{discipline}/{category}/charts/*",
 )
 
 
@@ -74,7 +73,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
             "Synchronise source data from S3 into the local cache "
-            "(athlete artifacts + summaries/distributions)."
+            "(athlete artifacts + analysis charts)."
         )
     )
     parser.add_argument(
@@ -141,15 +140,24 @@ def parse_targets_file(path: Path) -> List[Tuple[str, str]]:
             continue
 
         if "," in line:
-            parts = [part.strip() for part in line.split(",", 1)]
+            parts = [part.strip() for part in line.split(",")]
+            if len(parts) not in (2, 3):
+                raise ValueError(
+                    f"Invalid target at {path}:{line_no}. Expected 'stream,category[,event_type]'."
+                )
         else:
             parts = line.split()
+            if len(parts) not in (2, 3):
+                raise ValueError(
+                    f"Invalid target at {path}:{line_no}. Expected 'stream category [event_type]'."
+                )
 
-        if len(parts) != 2 or not parts[0] or not parts[1]:
+        stream, category = parts[0], parts[1]
+        if not stream or not category:
             raise ValueError(
-                f"Invalid target at {path}:{line_no}. Expected 'stream,category' or 'stream category'."
+                f"Invalid target at {path}:{line_no}. Stream and category are required."
             )
-        targets.append((parts[0], parts[1]))
+        targets.append((stream, category))
     return targets
 
 
@@ -226,7 +234,8 @@ def sync_target(
     stream_root.mkdir(parents=True, exist_ok=True)
 
     athlete_s3_prefix = f"s3://{bucket}/{stream}/{FOLDER_NAME}/{category}/"
-    stream_s3_prefix = f"s3://{bucket}/{stream}/"
+    analysis_s3_prefix = f"s3://{bucket}/"
+    analysis_destination = cache_root
 
     athlete_command = build_sync_command(
         source=athlete_s3_prefix,
@@ -244,19 +253,22 @@ def sync_target(
     if exit_code != 0:
         return exit_code
 
-    stream_patterns = [pattern.format(category=category) for pattern in STREAM_INCLUDE_PATTERNS]
-    stream_command = build_sync_command(
-        source=stream_s3_prefix,
-        destination=stream_root,
-        include_patterns=stream_patterns,
+    analysis_patterns = [
+        pattern.format(discipline=KNOWN_DISCIPLINE, category=category)
+        for pattern in STREAM_INCLUDE_PATTERNS
+    ]
+    analysis_command = build_sync_command(
+        source=analysis_s3_prefix,
+        destination=analysis_destination,
+        include_patterns=analysis_patterns,
         profile=profile,
         dry_run=dry_run,
     )
 
-    print(f"Syncing summaries/distributions {stream_s3_prefix} -> {stream_root}")
+    print(f"Syncing analysis charts {analysis_s3_prefix} -> {analysis_destination}")
     return run_command_with_sigterm_forwarding(
-        stream_command,
-        description="aws s3 sync (download summaries/distributions)",
+        analysis_command,
+        description="aws s3 sync (download analysis charts)",
     )
 
 
