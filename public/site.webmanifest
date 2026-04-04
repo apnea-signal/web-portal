@@ -1,0 +1,15 @@
+{
+  "name": "Apnea Signal",
+  "short_name": "Apnea",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#1272b6",
+  "background_color": "#08345d",
+  "display": "standalone"
+}

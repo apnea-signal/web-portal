@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="portal-base" content="../../" />
     <title>DNF Overview · Apnea Signal</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="../../site.webmanifest" />
     <link rel="stylesheet" href="../../assets/css/site.css" />
   </head>
   <body class="overview-page">
@@ -12,13 +14,16 @@
       <div class="container">
         <div class="brand-row">
           <div class="overview-header-left">
-            <a class="brand-title" href="../../">Apnea Signal</a>
+            <a class="brand-title brand-title-with-mark" href="../../">
+              <img class="brand-mark" src="../../assets/branding/logo_mark.svg" alt="" aria-hidden="true" />
+              <span>Apnea Signal</span>
+            </a>
           </div>
           <h1 class="overview-header-title">DNF Overview</h1>
           <div class="header-controls" aria-label="Overview controls">
             <div class="header-control header-control-inline">
-              <select id="categorySelect" aria-label="Category"></select>
               <span class="header-inline-label">Category</span>
+              <select id="categorySelect" aria-label="Category"></select>
             </div>
           </div>
         </div>
@@ -115,12 +120,12 @@
 
       <footer class="project-footer">
         <p>
-          This is a passion project designed to bring more focus and structure into freediving pool training.
+          I'm building this as a personal project for freediving pool training. If you like what you see, help me bring in more data.
         </p>
         <p class="project-footer-hint" data-contact-reveal>
-          If you have suggestions or would like to contribute, please
+          Annotating videos takes a lot of time, and I can always use help. If you want to contribute, please
           <button type="button" class="contact-reveal-button" data-contact-reveal-button>
-            reveal contact email
+            get in touch
           </button>
           <span class="contact-reveal-value mono" data-contact-reveal-value hidden></span>
         </p>

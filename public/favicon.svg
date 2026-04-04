@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Apnea Signal Favicon</title>
+  <desc id="desc">Apnea Signal wave and fin mark on a blue rounded-square tile.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#08345d"/>
+      <stop offset="52%" stop-color="#1272b6"/>
+      <stop offset="100%" stop-color="#7dd7f0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="url(#bg)"/>
+
+  <g transform="translate(256 256)">
+    <circle r="116" fill="#ffffff" fill-opacity="0.12"/>
+    <circle r="108" fill="none" stroke="#ffffff" stroke-opacity="0.88" stroke-width="10"/>
+
+    <path d="M -98 34 C -62 -2 -32 10 -8 34 C 14 52 34 52 56 38 C 74 28 88 24 102 28"
+      fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round"/>
+
+    <path d="M 38 -28 C 48 -64 82 -82 116 -72 C 104 -52 82 -30 50 -22 Z"
+      fill="#ffffff" fill-opacity="0.96"/>
+  </g>
+</svg>
