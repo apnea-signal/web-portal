@@ -2408,5 +2408,63 @@
     "technique_leg_kick_glide_time_s": 1.75,
     "event_strip_path": "data/analysis/DNF/seniors-male/event-strips/athens-2025-day1/ahmed-elkholy.propulsion.refined.event-strip.png",
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2214.100"
+  },
+  {
+    "athlete_slug": "cameron",
+    "athlete_name": "Cameron",
+    "event": "victoria-2025-12-09",
+    "category": "seniors-male",
+    "performance_m": 33.0,
+    "speed_mps": 0.696208017334778,
+    "time_25m_s": 37.23,
+    "time_50m_s": null,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 37.23
+      },
+      {
+        "distance_m": 32.13,
+        "time_s": 46.15
+      }
+    ],
+    "technique_wall_push_glide_distance_m": 6.71,
+    "technique_wall_push_glide_time_s": 8.11,
+    "technique_cycle_glide_distance_m": 5.59,
+    "technique_cycle_glide_time_s": 9.69,
+    "technique_leg_kick_glide_distance_m": 2.14,
+    "technique_leg_kick_glide_time_s": 4.0,
+    "event_strip_path": "data/analysis/DNF/seniors-male/event-strips/victoria-2025-12-09/cameron.propulsion.refined.event-strip.png",
+    "video_url": "none://"
+  },
+  {
+    "athlete_slug": "julian",
+    "athlete_name": "Julian",
+    "event": "victoria-2025-12-09",
+    "category": "seniors-male",
+    "performance_m": 32.0,
+    "speed_mps": 0.7297173063663526,
+    "time_25m_s": 33.6,
+    "time_50m_s": null,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 33.6
+      },
+      {
+        "distance_m": 31.75,
+        "time_s": 43.51
+      }
+    ],
+    "technique_wall_push_glide_distance_m": 5.61,
+    "technique_wall_push_glide_time_s": 6.44,
+    "technique_cycle_glide_distance_m": 5.32,
+    "technique_cycle_glide_time_s": 7.98,
+    "technique_leg_kick_glide_distance_m": 1.91,
+    "technique_leg_kick_glide_time_s": 3.19,
+    "event_strip_path": "data/analysis/DNF/seniors-male/event-strips/victoria-2025-12-09/julian.propulsion.refined.event-strip.png",
+    "video_url": "none://"
   }
 ]

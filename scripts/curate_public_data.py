@@ -14,6 +14,7 @@ DEFAULT_PUBLIC_DATA_ROOT = Path("public/data")
 DEFAULT_TARGETS_FILE = Path("sync-targets.txt")
 KNOWN_DISCIPLINE = "DNF"
 DEFAULT_EVENT_TYPE = "competition"
+ATHLETE_FOLDER_NAME = "athlete_videos"
 TECHNIQUE_CHART_ARTIFACTS = {
     "wall_push_glide_2d_25m": "wall-push-glide-2d-25m.png",
     "cycle_glide_2d_25m": "cycle-glide-2d-25m.png",
@@ -44,7 +45,10 @@ def parse_args() -> argparse.Namespace:
         "--targets-file",
         type=Path,
         default=DEFAULT_TARGETS_FILE,
-        help="Targets list in stream,category format.",
+        help=(
+            "Targets list in stream[,category[,event_type]] format. "
+            "When category is omitted, categories are discovered from cache."
+        ),
     )
     parser.add_argument(
         "--clear",
@@ -54,7 +58,15 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def parse_targets_file(path: Path) -> List[Tuple[str, str, str]]:
+def discover_stream_categories(cache_root: Path, stream: str) -> List[str]:
+    stream_dir = cache_root / stream / ATHLETE_FOLDER_NAME
+    if not stream_dir.exists():
+        return []
+    categories = [path.name for path in sorted(stream_dir.iterdir()) if path.is_dir()]
+    return categories
+
+
+def parse_targets_file(path: Path, cache_root: Path) -> List[Tuple[str, str, str]]:
     if not path.exists():
         raise FileNotFoundError(f"Targets file not found: {path}")
 
@@ -69,18 +81,40 @@ def parse_targets_file(path: Path) -> List[Tuple[str, str, str]]:
         else:
             parts = line.split()
 
-        if len(parts) not in (2, 3) or not parts[0] or not parts[1]:
+        if len(parts) not in (1, 2, 3) or not parts[0]:
             raise ValueError(
-                f"Invalid target at {path}:{line_no}. Use 'stream,category[,event_type]' or whitespace-separated equivalent."
+                f"Invalid target at {path}:{line_no}. Use 'stream[,category[,event_type]]' or whitespace-separated equivalent."
             )
+        stream = parts[0].strip()
+        category = parts[1].strip() if len(parts) >= 2 else ""
         event_type = parts[2].strip().lower() if len(parts) == 3 else DEFAULT_EVENT_TYPE
         if not event_type:
             event_type = DEFAULT_EVENT_TYPE
-        targets.append((parts[0], parts[1], event_type))
 
-    if not targets:
+        if category:
+            targets.append((stream, category, event_type))
+            continue
+
+        discovered_categories = discover_stream_categories(cache_root, stream)
+        if not discovered_categories:
+            raise ValueError(
+                f"Invalid target at {path}:{line_no}. No categories found under "
+                f"{cache_root / stream / ATHLETE_FOLDER_NAME}."
+            )
+        for discovered_category in discovered_categories:
+            targets.append((stream, discovered_category, event_type))
+
+    deduped_targets: List[Tuple[str, str, str]] = []
+    seen: Set[Tuple[str, str, str]] = set()
+    for target in targets:
+        if target in seen:
+            continue
+        seen.add(target)
+        deduped_targets.append(target)
+
+    if not deduped_targets:
         raise ValueError(f"No sync targets found in {path}")
-    return targets
+    return deduped_targets
 
 
 def slug_to_name(slug: str) -> str:
@@ -628,7 +662,7 @@ def main() -> None:
     if args.clear and public_data_root.exists():
         shutil.rmtree(public_data_root)
 
-    targets = parse_targets_file(args.targets_file)
+    targets = parse_targets_file(args.targets_file, cache_root)
 
     curated = [
         curate_target(

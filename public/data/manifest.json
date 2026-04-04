@@ -1,9 +1,24 @@
 {
-  "generated_at": "2026-04-04T09:51:26.391194+00:00",
+  "generated_at": "2026-04-04T11:31:18.763167+00:00",
   "events": [
     {
       "id": "athens-2025-day1",
       "event_type": "competition",
+      "categories": [
+        {
+          "id": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [],
+          "summary_files": {},
+          "distribution_images": {}
+        }
+      ]
+    },
+    {
+      "id": "victoria-2025-12-09",
+      "event_type": "training",
       "categories": [
         {
           "id": "seniors-male",
@@ -21,6 +36,21 @@
     {
       "id": "athens-2025-day1",
       "event_type": "competition",
+      "categories": [
+        {
+          "id": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [],
+          "summary_files": {},
+          "distribution_images": {}
+        }
+      ]
+    },
+    {
+      "id": "victoria-2025-12-09",
+      "event_type": "training",
       "categories": [
         {
           "id": "seniors-male",
@@ -184,6 +214,22 @@
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
           "event_type": "competition",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": []
+        }
+      ]
+    },
+    {
+      "slug": "cameron",
+      "display_name": "Cameron",
+      "entries": [
+        {
+          "event": "victoria-2025-12-09",
+          "stream": "victoria-2025-12-09",
+          "event_type": "training",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
@@ -424,6 +470,22 @@
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
           "event_type": "competition",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": []
+        }
+      ]
+    },
+    {
+      "slug": "julian",
+      "display_name": "Julian",
+      "entries": [
+        {
+          "event": "victoria-2025-12-09",
+          "stream": "victoria-2025-12-09",
+          "event_type": "training",
           "category": "seniors-male",
           "disciplines": [
             "DNF"

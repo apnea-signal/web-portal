@@ -9,6 +9,10 @@ Static web portal for apnea-signal analysis artifacts.
 python3 01_sync_from_s3.py
 ```
 
+By default this auto-discovers stream/category targets from S3 under `athlete_videos/`.
+Use explicit args for a focused sync (`python3 01_sync_from_s3.py <stream> [category]`) or
+pass `--targets-file sync-targets.txt` to use a curated batch list.
+
 ### 2) Curate tracked web snapshot (when cache changes)
 Copies selected event/category and analysis artifacts from `cache/` into `public/data/` and builds `public/data/manifest.json`.
 

@@ -908,6 +908,52 @@ footer {
   font-size: 0.82rem;
 }
 
+.project-footer {
+  margin: 1.6rem 0 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f9fcff 0%, #f1f8ff 100%);
+  color: var(--ink);
+}
+
+.project-footer p {
+  margin: 0;
+}
+
+.project-footer p + p {
+  margin-top: 0.48rem;
+}
+
+.project-footer-hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.contact-reveal-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  margin: 0 0.25rem;
+  color: var(--ink);
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.contact-reveal-button:hover,
+.contact-reveal-button:focus-visible {
+  background: #edf6ff;
+}
+
+.contact-reveal-value {
+  margin-left: 0.25rem;
+  color: var(--ink);
+}
+
 @media (max-width: 900px) {
   .split {
     grid-template-columns: 1fr;
