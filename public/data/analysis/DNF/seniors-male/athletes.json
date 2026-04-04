@@ -5,6 +5,52 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 239.0,
+    "speed_mps": 0.8987417615338525,
+    "time_25m_s": 24.64,
+    "time_50m_s": 53.84,
+    "time_100m_s": 112.01,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 24.64
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 53.84
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 81.97
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 112.01
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 138.81
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 168.96
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 196.66
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 225.34
+      },
+      {
+        "distance_m": 225.0,
+        "time_s": 251.29
+      },
+      {
+        "distance_m": 240.0,
+        "time_s": 267.04
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9657.220"
   },
   {
@@ -13,6 +59,52 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 235.5,
+    "speed_mps": 0.8578637815858263,
+    "time_25m_s": 25.08,
+    "time_50m_s": 55.94,
+    "time_100m_s": 114.53,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.08
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 55.94
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 84.41
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 114.53
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 144.55
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 175.76
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 206.46
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 237.63
+      },
+      {
+        "distance_m": 225.0,
+        "time_s": 263.9
+      },
+      {
+        "distance_m": 236.29,
+        "time_s": 275.44
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9255.840"
   },
   {
@@ -21,6 +113,52 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 225.5,
+    "speed_mps": 0.9384226239840769,
+    "time_25m_s": 25.5,
+    "time_50m_s": 57.54,
+    "time_100m_s": 114.49,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.5
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 57.54
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 85.54
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 114.49
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 139.67
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 167.26
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 191.95
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 216.48
+      },
+      {
+        "distance_m": 225.0,
+        "time_s": 238.91
+      },
+      {
+        "distance_m": 226.31,
+        "time_s": 241.16
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7249.600"
   },
   {
@@ -29,6 +167,48 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 221.5,
+    "speed_mps": 0.812371813653677,
+    "time_25m_s": 25.94,
+    "time_50m_s": 60.18,
+    "time_100m_s": 124.32,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.94
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 60.18
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 89.19
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 124.32
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 153.65
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 187.94
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 217.06
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 252.14
+      },
+      {
+        "distance_m": 221.81,
+        "time_s": 273.04
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8868.840"
   },
   {
@@ -37,6 +217,48 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 203.5,
+    "speed_mps": 0.9272503644314869,
+    "time_25m_s": 25.39,
+    "time_50m_s": 56.96,
+    "time_100m_s": 113.0,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.39
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 56.96
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 83.49
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 113.0
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 138.75
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 167.0
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 191.59
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 216.73
+      },
+      {
+        "distance_m": 203.55,
+        "time_s": 219.52
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9657.220"
   },
   {
@@ -45,6 +267,48 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 203.0,
+    "speed_mps": 0.9002841413603268,
+    "time_25m_s": 25.13,
+    "time_50m_s": 55.29,
+    "time_100m_s": 112.57,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.13
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 55.29
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 83.93
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 112.57
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 139.48
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 169.45
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 195.82
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 222.68
+      },
+      {
+        "distance_m": 202.78,
+        "time_s": 225.24
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8131.840"
   },
   {
@@ -53,6 +317,48 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 202.5,
+    "speed_mps": 0.9142766382283536,
+    "time_25m_s": 26.01,
+    "time_50m_s": 55.77,
+    "time_100m_s": 110.38,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 26.01
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 55.77
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 81.39
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 110.38
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 136.12
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 165.83
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 191.98
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 218.72
+      },
+      {
+        "distance_m": 201.47,
+        "time_s": 220.36
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=9255.840"
   },
   {
@@ -61,6 +367,48 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 202.0,
+    "speed_mps": 0.9182516459400146,
+    "time_25m_s": 25.21,
+    "time_50m_s": 57.44,
+    "time_100m_s": 116.14,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.21
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 57.44
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 85.79
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 116.14
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 143.29
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 171.18
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 194.72
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 217.93
+      },
+      {
+        "distance_m": 200.84,
+        "time_s": 218.72
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6334.680"
   },
   {
@@ -69,6 +417,48 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 200.0,
+    "speed_mps": 0.9097727272727273,
+    "time_25m_s": 27.69,
+    "time_50m_s": 60.4,
+    "time_100m_s": 118.8,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 27.69
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 60.4
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 88.95
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 118.8
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 144.3
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 172.63
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 196.37
+      },
+      {
+        "distance_m": 200.0,
+        "time_s": 219.87
+      },
+      {
+        "distance_m": 200.15,
+        "time_s": 220.0
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7839.480"
   },
   {
@@ -77,6 +467,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 199.5,
+    "speed_mps": 0.9407163053722903,
+    "time_25m_s": 23.0,
+    "time_50m_s": 51.91,
+    "time_100m_s": 105.83,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 23.0
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 51.91
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 76.7
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 105.83
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 130.7
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 159.69
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 184.24
+      },
+      {
+        "distance_m": 199.62,
+        "time_s": 212.2
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8131.840"
   },
   {
@@ -85,6 +513,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 195.0,
+    "speed_mps": 0.8374101950051317,
+    "time_25m_s": 25.76,
+    "time_50m_s": 59.25,
+    "time_100m_s": 121.27,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.76
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 59.25
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 88.5
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 121.27
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 149.64
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 181.78
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 209.41
+      },
+      {
+        "distance_m": 195.82,
+        "time_s": 233.84
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7530.600"
   },
   {
@@ -93,6 +559,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 182.0,
+    "speed_mps": 0.795224817009411,
+    "time_25m_s": 31.26,
+    "time_50m_s": 69.63,
+    "time_100m_s": 135.53,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.26
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 69.63
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 101.76
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 135.53
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 164.96
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 195.97
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 220.73
+      },
+      {
+        "distance_m": 182.52,
+        "time_s": 229.52
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=8868.840"
   },
   {
@@ -101,6 +605,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 180.5,
+    "speed_mps": 0.9159247268312424,
+    "time_25m_s": 27.33,
+    "time_50m_s": 57.08,
+    "time_100m_s": 113.06,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 27.33
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 57.08
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 83.7
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 113.06
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 139.16
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 167.33
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 190.95
+      },
+      {
+        "distance_m": 181.06,
+        "time_s": 197.68
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7249.600"
   },
   {
@@ -109,6 +651,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 180.5,
+    "speed_mps": 0.8314828408882363,
+    "time_25m_s": 27.45,
+    "time_50m_s": 61.35,
+    "time_100m_s": 122.87,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 27.45
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 61.35
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 90.5
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 122.87
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 152.79
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 184.13
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 210.49
+      },
+      {
+        "distance_m": 181.23,
+        "time_s": 217.96
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6644.680"
   },
   {
@@ -117,6 +697,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 175.5,
+    "speed_mps": 0.7876339285714286,
+    "time_25m_s": 27.26,
+    "time_50m_s": 61.41,
+    "time_100m_s": 126.79,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 27.26
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 61.41
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 92.57
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 126.79
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 156.75
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 191.8
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 221.97
+      },
+      {
+        "distance_m": 176.43,
+        "time_s": 224.0
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7530.600"
   },
   {
@@ -125,6 +743,44 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 175.5,
+    "speed_mps": 0.8546002723205604,
+    "time_25m_s": 30.15,
+    "time_50m_s": 61.72,
+    "time_100m_s": 121.66,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.15
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 61.72
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 91.49
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 121.66
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 150.32
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 178.39
+      },
+      {
+        "distance_m": 175.0,
+        "time_s": 204.6
+      },
+      {
+        "distance_m": 175.74,
+        "time_s": 205.64
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6025.380"
   },
   {
@@ -133,6 +789,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 168.0,
+    "speed_mps": 0.8067637478444146,
+    "time_25m_s": 26.46,
+    "time_50m_s": 59.82,
+    "time_100m_s": 123.46,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 26.46
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 59.82
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 88.63
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 123.46
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 152.37
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 187.55
+      },
+      {
+        "distance_m": 168.42,
+        "time_s": 208.76
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4848.080"
   },
   {
@@ -141,6 +831,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 167.0,
+    "speed_mps": 0.7920132325141778,
+    "time_25m_s": 30.52,
+    "time_50m_s": 64.12,
+    "time_100m_s": 127.61,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.52
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 64.12
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 94.66
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 127.61
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 157.63
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 191.22
+      },
+      {
+        "distance_m": 167.59,
+        "time_s": 211.6
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=7839.480"
   },
   {
@@ -149,6 +873,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 165.0,
+    "speed_mps": 0.8062597503900155,
+    "time_25m_s": 28.06,
+    "time_50m_s": 60.7,
+    "time_100m_s": 123.6,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.06
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 60.7
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 89.01
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 123.6
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 153.38
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 189.55
+      },
+      {
+        "distance_m": 165.38,
+        "time_s": 205.12
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5754.800"
   },
   {
@@ -157,6 +915,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 164.0,
+    "speed_mps": 0.8200897308075773,
+    "time_25m_s": 27.4,
+    "time_50m_s": 60.33,
+    "time_100m_s": 123.01,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 27.4
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 60.33
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 91.33
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 123.01
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 153.5
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 184.5
+      },
+      {
+        "distance_m": 164.51,
+        "time_s": 200.6
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6644.680"
   },
   {
@@ -165,6 +957,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 159.5,
+    "speed_mps": 0.9142235455794778,
+    "time_25m_s": 24.66,
+    "time_50m_s": 54.67,
+    "time_100m_s": 109.46,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 24.66
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 54.67
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 80.5
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 109.46
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 135.29
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 164.32
+      },
+      {
+        "distance_m": 159.66,
+        "time_s": 174.64
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=1856.000"
   },
   {
@@ -173,6 +999,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 159.0,
+    "speed_mps": 0.8586370498166919,
+    "time_25m_s": 26.31,
+    "time_50m_s": 58.23,
+    "time_100m_s": 116.35,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 26.31
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 58.23
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 86.33
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 116.35
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 144.93
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 177.16
+      },
+      {
+        "distance_m": 159.26,
+        "time_s": 185.48
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4602.420"
   },
   {
@@ -181,6 +1041,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 159.0,
+    "speed_mps": 0.717169436416185,
+    "time_25m_s": 31.77,
+    "time_50m_s": 72.38,
+    "time_100m_s": 143.66,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.77
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 72.38
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 105.07
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 143.66
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 176.34
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 212.73
+      },
+      {
+        "distance_m": 158.81,
+        "time_s": 221.44
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5754.800"
   },
   {
@@ -189,6 +1083,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 158.0,
+    "speed_mps": 0.7202272727272727,
+    "time_25m_s": 30.8,
+    "time_50m_s": 69.14,
+    "time_100m_s": 140.33,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.8
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 69.14
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 101.81
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 140.33
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 174.42
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 212.35
+      },
+      {
+        "distance_m": 158.45,
+        "time_s": 220.0
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2701.300"
   },
   {
@@ -197,6 +1125,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 158.0,
+    "speed_mps": 0.883318395697961,
+    "time_25m_s": 24.7,
+    "time_50m_s": 56.21,
+    "time_100m_s": 111.64,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 24.7
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 56.21
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 82.92
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 111.64
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 138.97
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 170.09
+      },
+      {
+        "distance_m": 157.69,
+        "time_s": 178.52
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4602.420"
   },
   {
@@ -205,6 +1167,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 156.5,
+    "speed_mps": 0.8659731395860855,
+    "time_25m_s": 26.32,
+    "time_50m_s": 58.88,
+    "time_100m_s": 117.42,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 26.32
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 58.88
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 86.82
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 117.42
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 144.6
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 174.38
+      },
+      {
+        "distance_m": 157.33,
+        "time_s": 181.68
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6334.680"
   },
   {
@@ -213,6 +1209,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 156.5,
+    "speed_mps": 0.9393594049904032,
+    "time_25m_s": 24.65,
+    "time_50m_s": 53.03,
+    "time_100m_s": 106.92,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 24.65
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 53.03
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 79.24
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 106.92
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 133.24
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 161.18
+      },
+      {
+        "distance_m": 156.61,
+        "time_s": 166.72
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4848.080"
   },
   {
@@ -221,6 +1251,40 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 154.5,
+    "speed_mps": 0.8833446866485014,
+    "time_25m_s": 23.36,
+    "time_50m_s": 52.89,
+    "time_100m_s": 110.25,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 23.36
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 52.89
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 79.37
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 110.25
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 137.95
+      },
+      {
+        "distance_m": 150.0,
+        "time_s": 171.01
+      },
+      {
+        "distance_m": 155.61,
+        "time_s": 176.16
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6950.680"
   },
   {
@@ -229,6 +1293,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 149.0,
+    "speed_mps": 0.8918773854961832,
+    "time_25m_s": 24.34,
+    "time_50m_s": 53.18,
+    "time_100m_s": 108.56,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 24.34
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 53.18
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 79.14
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 108.56
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 136.41
+      },
+      {
+        "distance_m": 149.55,
+        "time_s": 167.68
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5138.880"
   },
   {
@@ -237,6 +1331,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 148.5,
+    "speed_mps": 0.7371082903609678,
+    "time_25m_s": 31.37,
+    "time_50m_s": 68.58,
+    "time_100m_s": 137.55,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.37
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 68.58
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 100.31
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 137.55
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 169.83
+      },
+      {
+        "distance_m": 148.66,
+        "time_s": 201.68
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5138.880"
   },
   {
@@ -245,6 +1369,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 144.5,
+    "speed_mps": 0.7582878724297105,
+    "time_25m_s": 28.26,
+    "time_50m_s": 63.25,
+    "time_100m_s": 130.06,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.26
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 63.25
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 94.73
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 130.06
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 163.08
+      },
+      {
+        "distance_m": 144.56,
+        "time_s": 190.64
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5406.340"
   },
   {
@@ -253,6 +1407,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 142.5,
+    "speed_mps": 0.7626278772378516,
+    "time_25m_s": 28.21,
+    "time_50m_s": 63.01,
+    "time_100m_s": 129.07,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.21
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 63.01
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 94.95
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 129.07
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 162.2
+      },
+      {
+        "distance_m": 143.13,
+        "time_s": 187.68
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4351.960"
   },
   {
@@ -261,6 +1445,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 141.0,
+    "speed_mps": 0.8316098707403056,
+    "time_25m_s": 25.66,
+    "time_50m_s": 59.73,
+    "time_100m_s": 120.66,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 25.66
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 59.73
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 87.97
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 120.66
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 148.94
+      },
+      {
+        "distance_m": 141.54,
+        "time_s": 170.2
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4095.800"
   },
   {
@@ -269,6 +1483,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 138.5,
+    "speed_mps": 0.8313173652694612,
+    "time_25m_s": 28.38,
+    "time_50m_s": 60.28,
+    "time_100m_s": 122.61,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.38
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 60.28
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 91.9
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 122.61
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 150.95
+      },
+      {
+        "distance_m": 138.83,
+        "time_s": 167.0
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4351.960"
   },
   {
@@ -277,6 +1521,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 132.5,
+    "speed_mps": 0.8861346765641569,
+    "time_25m_s": 26.17,
+    "time_50m_s": 53.46,
+    "time_100m_s": 110.05,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 26.17
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 53.46
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 80.73
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 110.05
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 138.79
+      },
+      {
+        "distance_m": 133.7,
+        "time_s": 150.88
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3893.260"
   },
   {
@@ -285,6 +1559,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 131.5,
+    "speed_mps": 0.7337561192701381,
+    "time_25m_s": 31.82,
+    "time_50m_s": 68.03,
+    "time_100m_s": 138.3,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.82
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 68.03
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 101.8
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 138.3
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 169.54
+      },
+      {
+        "distance_m": 131.9,
+        "time_s": 179.76
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=5406.340"
   },
   {
@@ -293,6 +1597,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 128.0,
+    "speed_mps": 0.9329232995658467,
+    "time_25m_s": 26.19,
+    "time_50m_s": 57.51,
+    "time_100m_s": 109.26,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 26.19
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 57.51
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 82.83
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 109.26
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 133.56
+      },
+      {
+        "distance_m": 128.93,
+        "time_s": 138.2
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3662.540"
   },
   {
@@ -301,6 +1635,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 127.5,
+    "speed_mps": 0.816819688854884,
+    "time_25m_s": 27.28,
+    "time_50m_s": 61.16,
+    "time_100m_s": 123.81,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 27.28
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 61.16
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 90.7
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 123.81
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 152.09
+      },
+      {
+        "distance_m": 128.11,
+        "time_s": 156.84
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=6025.380"
   },
   {
@@ -309,6 +1673,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 127.0,
+    "speed_mps": 0.7714956647398843,
+    "time_25m_s": 30.88,
+    "time_50m_s": 66.16,
+    "time_100m_s": 130.21,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.88
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 66.16
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 96.46
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 130.21
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 162.73
+      },
+      {
+        "distance_m": 128.13,
+        "time_s": 166.08
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2701.300"
   },
   {
@@ -317,6 +1711,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 126.5,
+    "speed_mps": 1.0108383806184253,
+    "time_25m_s": 22.38,
+    "time_50m_s": 51.43,
+    "time_100m_s": 102.64,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 22.38
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 51.43
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 76.14
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 102.64
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 123.76
+      },
+      {
+        "distance_m": 126.84,
+        "time_s": 125.48
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3662.540"
   },
   {
@@ -325,6 +1749,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 126.0,
+    "speed_mps": 0.7806877002711363,
+    "time_25m_s": 28.43,
+    "time_50m_s": 62.04,
+    "time_100m_s": 126.0,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.43
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 62.04
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 91.9
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 126.0
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 158.93
+      },
+      {
+        "distance_m": 126.69,
+        "time_s": 162.28
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3181.880"
   },
   {
@@ -333,6 +1787,36 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 126.0,
+    "speed_mps": 0.7676921206225681,
+    "time_25m_s": 28.74,
+    "time_50m_s": 65.15,
+    "time_100m_s": 131.54,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.74
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 65.15
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 96.34
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 131.54
+      },
+      {
+        "distance_m": 125.0,
+        "time_s": 162.19
+      },
+      {
+        "distance_m": 126.27,
+        "time_s": 164.48
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=4095.800"
   },
   {
@@ -341,6 +1825,32 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 124.0,
+    "speed_mps": 0.8940287769784172,
+    "time_25m_s": 24.48,
+    "time_50m_s": 55.68,
+    "time_100m_s": 113.25,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 24.48
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 55.68
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 82.31
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 113.25
+      },
+      {
+        "distance_m": 124.27,
+        "time_s": 139.0
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2457.080"
   },
   {
@@ -349,6 +1859,32 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 122.0,
+    "speed_mps": 0.7230778274159417,
+    "time_25m_s": 31.96,
+    "time_50m_s": 65.34,
+    "time_100m_s": 135.8,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.96
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 65.34
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 98.65
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 135.8
+      },
+      {
+        "distance_m": 123.01,
+        "time_s": 170.12
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3420.400"
   },
   {
@@ -357,6 +1893,32 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 104.5,
+    "speed_mps": 0.7831878386514148,
+    "time_25m_s": 30.95,
+    "time_50m_s": 65.8,
+    "time_100m_s": 128.42,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.95
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 65.8
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 96.86
+      },
+      {
+        "distance_m": 100.0,
+        "time_s": 128.42
+      },
+      {
+        "distance_m": 104.07,
+        "time_s": 132.88
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3893.260"
   },
   {
@@ -365,6 +1927,28 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 92.0,
+    "speed_mps": 0.7687001329787234,
+    "time_25m_s": 31.1,
+    "time_50m_s": 65.15,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.1
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 65.15
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 97.17
+      },
+      {
+        "distance_m": 92.49,
+        "time_s": 120.32
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2214.100"
   },
   {
@@ -373,6 +1957,28 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 81.5,
+    "speed_mps": 0.845724907063197,
+    "time_25m_s": 28.53,
+    "time_50m_s": 59.19,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 28.53
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 59.19
+      },
+      {
+        "distance_m": 75.0,
+        "time_s": 87.92
+      },
+      {
+        "distance_m": 81.9,
+        "time_s": 96.84
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2457.080"
   },
   {
@@ -381,6 +1987,24 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 72.5,
+    "speed_mps": 0.8118845120859445,
+    "time_25m_s": 30.63,
+    "time_50m_s": 65.21,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.63
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 65.21
+      },
+      {
+        "distance_m": 72.55,
+        "time_s": 89.36
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=3420.400"
   },
   {
@@ -389,6 +2013,24 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 71.0,
+    "speed_mps": 0.7860892388451444,
+    "time_25m_s": 31.87,
+    "time_50m_s": 65.8,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 31.87
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 65.8
+      },
+      {
+        "distance_m": 71.88,
+        "time_s": 91.44
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=1856.000"
   },
   {
@@ -397,6 +2039,24 @@
     "event": "athens-2025-day1",
     "category": "seniors-male",
     "performance_m": 70.5,
+    "speed_mps": 0.7760034527406128,
+    "time_25m_s": 32.97,
+    "time_50m_s": 68.29,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 32.97
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 68.29
+      },
+      {
+        "distance_m": 71.92,
+        "time_s": 92.68
+      }
+    ],
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2214.100"
   }
 ]

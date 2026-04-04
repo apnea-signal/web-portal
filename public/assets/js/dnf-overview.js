@@ -1,13 +1,9 @@
 import { fetchJson, loadManifest } from "./data.js";
 
-const SPEED_BAND_MPS = {
-  min: 0.81,
-  max: 0.94,
-};
-
 const SIDEBAR_MIN_WIDTH = 380;
 const SIDEBAR_MAX_WIDTH = 860;
 const DEFAULT_TABLE_PAGE_SIZE = 10;
+const OVERLAY_LINE_COLORS = ["#0f1824", "#1a3250", "#243e2a", "#4a2b25", "#3a2b5a", "#42510f"];
 
 function slugToLabel(slug) {
   return String(slug || "")
@@ -26,6 +22,19 @@ function toPortalAssetPath(path) {
     return `../../${normalized}`;
   }
   return normalized;
+}
+
+function getSpeedProfileOverlayJsonPath(categoryEntry) {
+  const explicit = String(categoryEntry?.speed_profile_overlay_path || "").trim();
+  if (explicit) {
+    return explicit;
+  }
+
+  const chartPath = String(categoryEntry?.speed_profile_chart || "").trim();
+  if (!chartPath.endsWith(".png")) {
+    return "";
+  }
+  return chartPath.replace(/\.png$/i, ".overlay.json");
 }
 
 function getRequestedCategory() {
@@ -56,13 +65,6 @@ function formatDuration(seconds) {
   return `${minutes}:${String(sec).padStart(2, "0")}`;
 }
 
-function timeForDistanceAtSpeed(distanceMeters, speedMps) {
-  if (!Number.isFinite(distanceMeters) || !Number.isFinite(speedMps) || speedMps <= 0) {
-    return Number.NaN;
-  }
-  return distanceMeters / speedMps;
-}
-
 function toPerformanceNumber(value) {
   if (value === null || value === undefined || value === "") {
     return Number.NaN;
@@ -76,8 +78,457 @@ function formatPerformance(value) {
   return Number.isFinite(number) ? `${Math.round(number)} m` : "-";
 }
 
+function formatSpeed(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? `${number.toFixed(2)} m/s` : "-";
+}
+
 function rowKey(row) {
   return `${row.event}::${row.athlete_slug}`;
+}
+
+function normalizeOverlayMetadata(payload) {
+  const schemaVersion = String(payload?.schema_version || "").trim();
+  if (!schemaVersion.startsWith("2.")) {
+    return null;
+  }
+
+  const normalized = payload?.plot_area?.normalized || {};
+  const left = Number(normalized.left);
+  const top = Number(normalized.top);
+  const right = Number(normalized.right);
+  const bottom = Number(normalized.bottom);
+  const xMin = Number(payload?.axes?.x?.min);
+  const xMax = Number(payload?.axes?.x?.max);
+  const yMin = Number(payload?.axes?.y?.min);
+  const yMax = Number(payload?.axes?.y?.max);
+
+  if (
+    !Number.isFinite(left) ||
+    !Number.isFinite(top) ||
+    !Number.isFinite(right) ||
+    !Number.isFinite(bottom) ||
+    !Number.isFinite(xMin) ||
+    !Number.isFinite(xMax) ||
+    !Number.isFinite(yMin) ||
+    !Number.isFinite(yMax) ||
+    right <= left ||
+    bottom <= top ||
+    xMax <= xMin ||
+    yMax <= yMin
+  ) {
+    return null;
+  }
+
+  return {
+    plotNormalized: { left, top, right, bottom },
+    axes: { xMin, xMax, yMin, yMax },
+  };
+}
+
+function normalizeSpeedProfilePoints(points) {
+  if (!Array.isArray(points)) {
+    return [];
+  }
+
+  const normalized = [];
+  points.forEach((point) => {
+    if (!point || typeof point !== "object") {
+      return;
+    }
+    const distance = Number(point.distance_m);
+    const time = Number(point.time_s);
+    if (!Number.isFinite(distance) || !Number.isFinite(time) || time <= 0) {
+      return;
+    }
+    normalized.push({ distance_m: distance, time_s: time });
+  });
+
+  normalized.sort((a, b) => (a.distance_m !== b.distance_m ? a.distance_m - b.distance_m : a.time_s - b.time_s));
+  return normalized;
+}
+
+function projectOverlayPoint(point, overlayMetadata, width, height) {
+  if (!overlayMetadata || !point) {
+    return null;
+  }
+
+  const { plotNormalized, axes } = overlayMetadata;
+  const plotLeft = plotNormalized.left * width;
+  const plotTop = plotNormalized.top * height;
+  const plotRight = plotNormalized.right * width;
+  const plotBottom = plotNormalized.bottom * height;
+
+  const tx = (point.distance_m - axes.xMin) / (axes.xMax - axes.xMin);
+  const ty = (point.time_s - axes.yMin) / (axes.yMax - axes.yMin);
+
+  return {
+    x: plotLeft + tx * (plotRight - plotLeft),
+    y: plotBottom - ty * (plotBottom - plotTop),
+    plotLeft,
+    plotTop,
+    plotRight,
+    plotBottom,
+  };
+}
+
+function overlayPathData(projectedPoints) {
+  if (!projectedPoints.length) {
+    return "";
+  }
+  const [first, ...rest] = projectedPoints;
+  return `M ${first.x.toFixed(2)} ${first.y.toFixed(2)} ${rest
+    .map((point) => `L ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+    .join(" ")}`;
+}
+
+function clampNumber(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function pointInRect(point, rect) {
+  return point.x >= rect.left && point.x <= rect.right && point.y >= rect.top && point.y <= rect.bottom;
+}
+
+function rectsIntersect(a, b) {
+  return !(a.right < b.left || b.right < a.left || a.bottom < b.top || b.bottom < a.top);
+}
+
+function cross(ax, ay, bx, by, cx, cy) {
+  return (bx - ax) * (cy - ay) - (by - ay) * (cx - ax);
+}
+
+function onSegment(ax, ay, bx, by, cx, cy) {
+  return (
+    Math.min(ax, bx) <= cx &&
+    cx <= Math.max(ax, bx) &&
+    Math.min(ay, by) <= cy &&
+    cy <= Math.max(ay, by)
+  );
+}
+
+function segmentsIntersect(segA, segB) {
+  const x1 = segA.x1;
+  const y1 = segA.y1;
+  const x2 = segA.x2;
+  const y2 = segA.y2;
+  const x3 = segB.x1;
+  const y3 = segB.y1;
+  const x4 = segB.x2;
+  const y4 = segB.y2;
+
+  const d1 = cross(x1, y1, x2, y2, x3, y3);
+  const d2 = cross(x1, y1, x2, y2, x4, y4);
+  const d3 = cross(x3, y3, x4, y4, x1, y1);
+  const d4 = cross(x3, y3, x4, y4, x2, y2);
+
+  if (d1 === 0 && onSegment(x1, y1, x2, y2, x3, y3)) {
+    return true;
+  }
+  if (d2 === 0 && onSegment(x1, y1, x2, y2, x4, y4)) {
+    return true;
+  }
+  if (d3 === 0 && onSegment(x3, y3, x4, y4, x1, y1)) {
+    return true;
+  }
+  if (d4 === 0 && onSegment(x3, y3, x4, y4, x2, y2)) {
+    return true;
+  }
+
+  return (d1 > 0) !== (d2 > 0) && (d3 > 0) !== (d4 > 0);
+}
+
+function segmentIntersectsRect(segment, rect) {
+  const p1 = { x: segment.x1, y: segment.y1 };
+  const p2 = { x: segment.x2, y: segment.y2 };
+  if (pointInRect(p1, rect) || pointInRect(p2, rect)) {
+    return true;
+  }
+
+  const edges = [
+    { x1: rect.left, y1: rect.top, x2: rect.right, y2: rect.top },
+    { x1: rect.right, y1: rect.top, x2: rect.right, y2: rect.bottom },
+    { x1: rect.right, y1: rect.bottom, x2: rect.left, y2: rect.bottom },
+    { x1: rect.left, y1: rect.bottom, x2: rect.left, y2: rect.top },
+  ];
+  return edges.some((edge) => segmentsIntersect(segment, edge));
+}
+
+function connectorSegmentToRect(anchorPoint, rect, side) {
+  const targetY = clampNumber(anchorPoint.y, rect.top + 3, rect.bottom - 3);
+  const targetX = side === "right" ? rect.left : rect.right;
+  return {
+    x1: anchorPoint.x,
+    y1: anchorPoint.y,
+    x2: targetX,
+    y2: targetY,
+  };
+}
+
+function renderSpeedProfileOverlay({ rows, selectedKeys, overlayMetadata, imageElement, svgElement }) {
+  if (!svgElement) {
+    return;
+  }
+
+  svgElement.replaceChildren();
+  if (!overlayMetadata || !imageElement) {
+    return;
+  }
+
+  const bounds = imageElement.getBoundingClientRect();
+  const width = Math.round(bounds.width);
+  const height = Math.round(bounds.height);
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+    return;
+  }
+
+  svgElement.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+  const selectedRows = rows.filter((row) => selectedKeys.has(rowKey(row)));
+  if (!selectedRows.length) {
+    return;
+  }
+
+  const firstProjectPoint = projectOverlayPoint({ distance_m: 0, time_s: 1 }, overlayMetadata, width, height);
+  if (!firstProjectPoint) {
+    return;
+  }
+
+  const svgNs = "http://www.w3.org/2000/svg";
+  const defs = document.createElementNS(svgNs, "defs");
+  const clipPath = document.createElementNS(svgNs, "clipPath");
+  clipPath.setAttribute("id", "speedProfilePlotClip");
+  const clipRect = document.createElementNS(svgNs, "rect");
+  clipRect.setAttribute("x", firstProjectPoint.plotLeft.toFixed(2));
+  clipRect.setAttribute("y", firstProjectPoint.plotTop.toFixed(2));
+  clipRect.setAttribute("width", (firstProjectPoint.plotRight - firstProjectPoint.plotLeft).toFixed(2));
+  clipRect.setAttribute("height", (firstProjectPoint.plotBottom - firstProjectPoint.plotTop).toFixed(2));
+  clipPath.appendChild(clipRect);
+  defs.appendChild(clipPath);
+  svgElement.appendChild(defs);
+
+  const overlayGroup = document.createElementNS(svgNs, "g");
+  overlayGroup.setAttribute("clip-path", "url(#speedProfilePlotClip)");
+  svgElement.appendChild(overlayGroup);
+
+  let colorIndex = 0;
+  const labelItems = [];
+  const guideSegments = [];
+  selectedRows.forEach((row) => {
+    const points = normalizeSpeedProfilePoints(row.speed_profile_points);
+    if (points.length < 2) {
+      return;
+    }
+
+    const projectedPoints = points
+      .map((point) => projectOverlayPoint(point, overlayMetadata, width, height))
+      .filter((point) => point && Number.isFinite(point.x) && Number.isFinite(point.y));
+    if (projectedPoints.length < 2) {
+      return;
+    }
+
+    const color = OVERLAY_LINE_COLORS[colorIndex % OVERLAY_LINE_COLORS.length];
+    colorIndex += 1;
+
+    for (let index = 1; index < projectedPoints.length; index += 1) {
+      const previous = projectedPoints[index - 1];
+      const current = projectedPoints[index];
+      guideSegments.push({
+        x1: previous.x,
+        y1: previous.y,
+        x2: current.x,
+        y2: current.y,
+      });
+    }
+
+    const path = document.createElementNS(svgNs, "path");
+    path.setAttribute("d", overlayPathData(projectedPoints));
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", color);
+    path.setAttribute("stroke-width", "2");
+    path.setAttribute("stroke-linejoin", "round");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-dasharray", "6 5");
+    path.setAttribute("opacity", "0.92");
+    overlayGroup.appendChild(path);
+
+    projectedPoints.forEach((point) => {
+      const marker = document.createElementNS(svgNs, "circle");
+      marker.setAttribute("cx", point.x.toFixed(2));
+      marker.setAttribute("cy", point.y.toFixed(2));
+      marker.setAttribute("r", "3");
+      marker.setAttribute("fill", color);
+      marker.setAttribute("stroke", "#f7fbff");
+      marker.setAttribute("stroke-width", "0.9");
+      overlayGroup.appendChild(marker);
+    });
+
+    const endPoint = projectedPoints[projectedPoints.length - 1];
+    const athleteName = String(row.athlete_name || row.athlete_slug || "Unknown");
+    const speedMps = Number(row.speed_mps);
+    const speedText = Number.isFinite(speedMps) ? `${speedMps.toFixed(2)} m/s` : "- m/s";
+    labelItems.push({
+      x: endPoint.x,
+      y: endPoint.y,
+      color,
+      nameText: athleteName,
+      metaText: speedText,
+    });
+  });
+
+  if (!labelItems.length) {
+    return;
+  }
+
+  const labelsGroup = document.createElementNS(svgNs, "g");
+  svgElement.appendChild(labelsGroup);
+
+  const labelTop = firstProjectPoint.plotTop + 12;
+  const labelBottom = firstProjectPoint.plotBottom - 12;
+  const labelSpacing = 22;
+  const labelGapFromPoint = 14;
+  const placedLabelRects = [];
+  const placedConnectorSegments = [];
+  [...labelItems]
+    .sort((a, b) => a.y - b.y)
+    .forEach((label) => {
+      const estimatedWidth = Math.max(label.nameText.length, label.metaText.length) * 7.1 + 18;
+      const estimatedHeight = 28;
+      const candidateYOffset = [0, -labelSpacing, labelSpacing, -2 * labelSpacing, 2 * labelSpacing];
+      const candidateXOffset = [0, 18, 34];
+      const candidateSides = ["right", "left"];
+      const preferredY = clampNumber(label.y, labelTop, labelBottom);
+      let bestCandidate = null;
+
+      candidateSides.forEach((side) => {
+        candidateXOffset.forEach((xOffset) => {
+          const idealX =
+            side === "right"
+              ? label.x + labelGapFromPoint + xOffset
+              : label.x - labelGapFromPoint - xOffset - estimatedWidth;
+          const clampedX = clampNumber(idealX, 6, Math.max(6, width - estimatedWidth - 6));
+
+          candidateYOffset.forEach((offset) => {
+            const y = clampNumber(preferredY + offset, labelTop, labelBottom);
+            const rect = {
+              left: clampedX - 4,
+              top: y - 2,
+              right: clampedX - 4 + estimatedWidth + 8,
+              bottom: y - 2 + estimatedHeight,
+            };
+            const connector = connectorSegmentToRect(label, rect, side);
+
+            const guideHits = guideSegments.reduce(
+              (count, segment) => count + (segmentIntersectsRect(segment, rect) ? 1 : 0),
+              0
+            );
+            const connectorHits = placedConnectorSegments.reduce(
+              (count, segment) => count + (segmentIntersectsRect(segment, rect) ? 1 : 0),
+              0
+            );
+            const labelHits = placedLabelRects.reduce(
+              (count, existing) => count + (rectsIntersect(existing, rect) ? 1 : 0),
+              0
+            );
+            const endpointCovered = pointInRect(label, rect) ? 1 : 0;
+            const connectorThroughLabels = placedLabelRects.reduce(
+              (count, existing) => count + (segmentIntersectsRect(connector, existing) ? 1 : 0),
+              0
+            );
+            const connectorCrosses = placedConnectorSegments.reduce(
+              (count, segment) => count + (segmentsIntersect(connector, segment) ? 1 : 0),
+              0
+            );
+            const connectorLength = Math.hypot(connector.x2 - connector.x1, connector.y2 - connector.y1);
+
+            const score =
+              guideHits * 1100 +
+              connectorHits * 900 +
+              labelHits * 1000 +
+              endpointCovered * 1300 +
+              connectorThroughLabels * 320 +
+              connectorCrosses * 1500 +
+              connectorLength * 0.18 +
+              Math.abs(offset) * 0.7 +
+              xOffset * 0.35 +
+              (side === "left" ? 1 : 0);
+
+            if (!bestCandidate || score < bestCandidate.score) {
+              bestCandidate = { side, x: clampedX, y, rect, score };
+            }
+          });
+        });
+      });
+
+      if (!bestCandidate) {
+        return;
+      }
+
+      const text = document.createElementNS(svgNs, "text");
+      text.setAttribute("x", bestCandidate.x.toFixed(2));
+      text.setAttribute("y", bestCandidate.y.toFixed(2));
+      text.setAttribute("font-size", "11.5");
+      text.setAttribute("dominant-baseline", "hanging");
+      text.setAttribute("fill", "#1f2b37");
+      const nameLine = document.createElementNS(svgNs, "tspan");
+      nameLine.setAttribute("x", bestCandidate.x.toFixed(2));
+      nameLine.setAttribute("dy", "0");
+      nameLine.setAttribute("font-weight", "700");
+      nameLine.textContent = label.nameText;
+      text.appendChild(nameLine);
+
+      const metaLine = document.createElementNS(svgNs, "tspan");
+      metaLine.setAttribute("x", bestCandidate.x.toFixed(2));
+      metaLine.setAttribute("dy", "13");
+      metaLine.setAttribute("font-weight", "600");
+      metaLine.textContent = label.metaText;
+      text.appendChild(metaLine);
+      labelsGroup.appendChild(text);
+
+      const bbox = text.getBBox();
+      const bg = document.createElementNS(svgNs, "rect");
+      bg.setAttribute("x", (bbox.x - 4).toFixed(2));
+      bg.setAttribute("y", (bbox.y - 2).toFixed(2));
+      bg.setAttribute("width", (bbox.width + 8).toFixed(2));
+      bg.setAttribute("height", (bbox.height + 4).toFixed(2));
+      bg.setAttribute("rx", "3");
+      bg.setAttribute("ry", "3");
+      bg.setAttribute("fill", "rgba(241, 245, 248, 0.92)");
+      bg.setAttribute("stroke", "#4d5966");
+      bg.setAttribute("stroke-width", "0.8");
+      labelsGroup.insertBefore(bg, text);
+
+      const boxLeft = bbox.x - 4;
+      const boxRight = bbox.x + bbox.width + 4;
+      const boxTop = bbox.y - 2;
+      const boxBottom = bbox.y + bbox.height + 2;
+      const connectorTargetX = bestCandidate.side === "right" ? boxLeft : boxRight;
+      const connectorTargetY = Math.max(boxTop + 3, Math.min(label.y, boxBottom - 3));
+
+      const connector = document.createElementNS(svgNs, "line");
+      connector.setAttribute("x1", label.x.toFixed(2));
+      connector.setAttribute("y1", label.y.toFixed(2));
+      connector.setAttribute("x2", connectorTargetX.toFixed(2));
+      connector.setAttribute("y2", connectorTargetY.toFixed(2));
+      connector.setAttribute("stroke", label.color);
+      connector.setAttribute("stroke-width", "1.25");
+      connector.setAttribute("stroke-linecap", "round");
+      connector.setAttribute("opacity", "0.82");
+      labelsGroup.insertBefore(connector, text);
+
+      placedLabelRects.push({
+        left: boxLeft,
+        top: boxTop,
+        right: boxRight,
+        bottom: boxBottom,
+      });
+      placedConnectorSegments.push({
+        x1: label.x,
+        y1: label.y,
+        x2: connectorTargetX,
+        y2: connectorTargetY,
+      });
+    });
 }
 
 function sortRows(rows, sortMode) {
@@ -129,7 +580,10 @@ function renderSpeedProfileCard(container, categoryEntry) {
 
   const chartMarkup = chartPath
     ? `<figure class="speed-profile-figure">
-         <img src="${chartPath}" alt="Speed profile top athletes for ${slugToLabel(categoryId)}" loading="lazy" />
+         <div class="speed-profile-stage">
+           <img id="speedProfileImage" src="${chartPath}" alt="Speed profile top athletes for ${slugToLabel(categoryId)}" loading="lazy" />
+           <svg id="speedProfileOverlay" class="speed-profile-overlay" aria-hidden="true"></svg>
+         </div>
          <figcaption class="figure-caption">Category: ${slugToLabel(categoryId)}</figcaption>
        </figure>`
     : `<div class="speed-profile-missing">
@@ -140,34 +594,58 @@ function renderSpeedProfileCard(container, categoryEntry) {
     <article class="speed-profile-card">
       <div class="speed-profile-visual">${chartMarkup}</div>
       <div class="speed-profile-notes">
-        <h3>Training Notes</h3>
-        <p class="note">Top athletes speeds range between <strong>${SPEED_BAND_MPS.min.toFixed(2)} and ${SPEED_BAND_MPS.max.toFixed(2)} m/s</strong>.</p>
         <div class="table-wrap speed-reference-wrap">
           <table>
             <thead>
               <tr>
+                <th>Athlete</th>
                 <th>Speed</th>
                 <th>Time to 25m</th>
                 <th>Time to 50m</th>
+                <th>Time to 100m</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>${SPEED_BAND_MPS.min.toFixed(2)} m/s</td>
-                <td>${formatDuration(timeForDistanceAtSpeed(25, SPEED_BAND_MPS.min))}</td>
-                <td>${formatDuration(timeForDistanceAtSpeed(50, SPEED_BAND_MPS.min))}</td>
-              </tr>
-              <tr>
-                <td>${SPEED_BAND_MPS.max.toFixed(2)} m/s</td>
-                <td>${formatDuration(timeForDistanceAtSpeed(25, SPEED_BAND_MPS.max))}</td>
-                <td>${formatDuration(timeForDistanceAtSpeed(50, SPEED_BAND_MPS.max))}</td>
-              </tr>
+            <tbody id="speedProfileSplitTableBody">
+              <tr><td colspan="5" class="note">Loading athlete splits...</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </article>
   `;
+}
+
+function renderSpeedProfileSplitTable(rows, selectedKeys) {
+  const tbody = document.getElementById("speedProfileSplitTableBody");
+  if (!tbody) {
+    return;
+  }
+
+  const selectedRows = rows.filter((row) => selectedKeys.has(rowKey(row)));
+  if (!selectedRows.length) {
+    tbody.innerHTML = '<tr><td colspan="5" class="note">No selected athletes.</td></tr>';
+    return;
+  }
+
+  const orderedRows = sortRows(selectedRows, "performance_desc");
+  tbody.innerHTML = orderedRows
+    .map((row) => {
+      const name = String(row.athlete_name || row.athlete_slug || "Unknown");
+      const speed = formatSpeed(row.speed_mps);
+      const time25 = formatDuration(Number(row.time_25m_s));
+      const time50 = formatDuration(Number(row.time_50m_s));
+      const time100 = formatDuration(Number(row.time_100m_s));
+      return `
+        <tr>
+          <td>${name}</td>
+          <td>${speed}</td>
+          <td>${time25}</td>
+          <td>${time50}</td>
+          <td>${time100}</td>
+        </tr>
+      `;
+    })
+    .join("");
 }
 
 function uniqueEvents(rows) {
@@ -462,6 +940,41 @@ async function main() {
   let currentTotalPages = 1;
   let pageSize = DEFAULT_TABLE_PAGE_SIZE;
   let sidebarCollapsed = false;
+  let speedProfileOverlayMetadata = null;
+  let speedProfileImageElement = null;
+  let speedProfileOverlayElement = null;
+  let speedProfileResizeObserver = null;
+  let overlayRenderScheduled = false;
+
+  function scheduleOverlayRender() {
+    if (overlayRenderScheduled) {
+      return;
+    }
+    overlayRenderScheduled = true;
+    requestAnimationFrame(() => {
+      overlayRenderScheduled = false;
+      renderSpeedProfileOverlay({
+        rows: allAthleteRows,
+        selectedKeys,
+        overlayMetadata: speedProfileOverlayMetadata,
+        imageElement: speedProfileImageElement,
+        svgElement: speedProfileOverlayElement,
+      });
+    });
+  }
+
+  async function loadSpeedProfileOverlay(categoryEntry) {
+    const path = getSpeedProfileOverlayJsonPath(categoryEntry);
+    if (!path) {
+      return null;
+    }
+    try {
+      const payload = await fetchJson(path);
+      return normalizeOverlayMetadata(payload);
+    } catch {
+      return null;
+    }
+  }
 
   function renderSidebar() {
     availableEvents = uniqueEvents(allAthleteRows);
@@ -493,6 +1006,7 @@ async function main() {
     currentTotalPages = pagination.totalPages;
     renderSidebarTable(pagination.pageRows, selectedKeys);
     renderSelectionStatus(selectedKeys);
+    renderSpeedProfileSplitTable(allAthleteRows, selectedKeys);
 
     tablePrevPage.disabled = currentPage <= 1;
     tableNextPage.disabled = currentPage >= currentTotalPages;
@@ -510,6 +1024,7 @@ async function main() {
     setSidebarStatus(
       `Showing ${rangeText}, ${eventScope}. Top: ${selectedTopEventIds.size}/${topEvents.length}, Training: ${selectedTrainingEventIds.size}/${trainingEvents.length}.`
     );
+    scheduleOverlayRender();
   }
 
   async function loadCategory(categoryId) {
@@ -527,6 +1042,24 @@ async function main() {
     }
 
     renderSpeedProfileCard(speedProfileSections, categoryEntry);
+    speedProfileImageElement = document.getElementById("speedProfileImage");
+    speedProfileOverlayElement = document.getElementById("speedProfileOverlay");
+    if (speedProfileResizeObserver) {
+      speedProfileResizeObserver.disconnect();
+      speedProfileResizeObserver = null;
+    }
+    if (speedProfileImageElement) {
+      speedProfileImageElement.addEventListener("load", () => {
+        scheduleOverlayRender();
+      });
+      if (typeof ResizeObserver !== "undefined") {
+        speedProfileResizeObserver = new ResizeObserver(() => {
+          scheduleOverlayRender();
+        });
+        speedProfileResizeObserver.observe(speedProfileImageElement);
+      }
+    }
+    speedProfileOverlayMetadata = await loadSpeedProfileOverlay(categoryEntry);
     allAthleteRows = await loadAthleteRows(categoryEntry);
     sortMode = "performance_desc";
     sortSelect.value = sortMode;
@@ -543,6 +1076,7 @@ async function main() {
     athleteSearchInput.value = "";
     currentPage = 1;
     renderSidebar();
+    scheduleOverlayRender();
 
     overviewStatus.textContent = `Showing speed profile and controls for ${slugToLabel(currentCategoryId)}.`;
   }
@@ -570,6 +1104,7 @@ async function main() {
 
     attachSidebarResize(overviewLayout, athleteSidebar, sidebarResizeHandle);
     setSidebarCollapsed(overviewLayout, athleteSidebar, sidebarToggleButton, sidebarCollapsed);
+    window.addEventListener("resize", scheduleOverlayRender);
 
     categorySelect.addEventListener("change", async () => {
       await loadCategory(categorySelect.value);
@@ -676,6 +1211,7 @@ async function main() {
         selectedKeys.delete(key);
       }
       renderSelectionStatus(selectedKeys);
+      scheduleOverlayRender();
     });
 
     await loadCategory(currentCategoryId);

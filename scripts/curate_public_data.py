@@ -107,6 +107,74 @@ def to_float(value: object) -> Optional[float]:
     return number if number == number else None
 
 
+def parse_speed_profile_stats(
+    stats_payload: Dict,
+) -> Tuple[List[Dict[str, float]], Optional[float], Optional[float], Optional[float], Optional[float]]:
+    checkpoints = stats_payload.get("checkpoints")
+    if not isinstance(checkpoints, list):
+        return [], None, None, None, None
+
+    points: List[Dict[str, float]] = []
+    speed_mps: Optional[float] = None
+    time_25m_s: Optional[float] = None
+    time_50m_s: Optional[float] = None
+    time_100m_s: Optional[float] = None
+    for checkpoint in checkpoints:
+        if not isinstance(checkpoint, dict):
+            continue
+
+        distance_m = to_float(checkpoint.get("distance_m"))
+        time_s = to_float(checkpoint.get("time_s"))
+        if distance_m is not None and time_s is not None and time_s > 0:
+            points.append({"distance_m": distance_m, "time_s": time_s})
+
+        tags = checkpoint.get("tags")
+        tag_values = [str(tag).strip().lower() for tag in tags] if isinstance(tags, list) else []
+        if time_s is not None and time_s > 0:
+            if "25m" in tag_values and time_25m_s is None:
+                time_25m_s = time_s
+            if "50m" in tag_values and time_50m_s is None:
+                time_50m_s = time_s
+            if "100m" in tag_values and time_100m_s is None:
+                time_100m_s = time_s
+        if "total" in tag_values and distance_m is not None and time_s is not None and time_s > 0:
+            speed_mps = distance_m / time_s
+
+    points.sort(key=lambda row: (row["distance_m"], row["time_s"]))
+    if time_25m_s is None:
+        for point in points:
+            if abs(point["distance_m"] - 25.0) <= 0.5:
+                time_25m_s = point["time_s"]
+                break
+    if time_50m_s is None:
+        for point in points:
+            if abs(point["distance_m"] - 50.0) <= 0.5:
+                time_50m_s = point["time_s"]
+                break
+    if time_100m_s is None:
+        for point in points:
+            if abs(point["distance_m"] - 100.0) <= 0.5:
+                time_100m_s = point["time_s"]
+                break
+    return points, speed_mps, time_25m_s, time_50m_s, time_100m_s
+
+
+def load_stats_for_slug(
+    athlete_videos_dir: Path,
+    slug: str,
+) -> Tuple[List[Dict[str, float]], Optional[float], Optional[float], Optional[float], Optional[float]]:
+    for suffix in (".refined.propulsion.stats.json", ".propulsion.stats.json"):
+        stats_path = athlete_videos_dir / f"{slug}{suffix}"
+        if not stats_path.exists():
+            continue
+        try:
+            payload = read_json(stats_path)
+        except (json.JSONDecodeError, OSError):
+            continue
+        return parse_speed_profile_stats(payload)
+    return [], None, None, None, None
+
+
 def detect_athlete_slugs(cache_root: Path, stream: str, category: str) -> Set[str]:
     source_dir = cache_root / stream / "athlete_videos" / category
     if not source_dir.exists():
@@ -226,24 +294,27 @@ def curate_analysis(
     public_data_root: Path,
     targets: Iterable[Tuple[str, str, str]],
     discipline: str = KNOWN_DISCIPLINE,
-) -> Dict[str, Dict[str, List[Dict[str, str]]]]:
+) -> Dict[str, Dict[str, List[Dict[str, object]]]]:
     targets_by_category: Dict[str, Set[str]] = defaultdict(set)
     for stream, category, _event_type in targets:
         targets_by_category[category].add(stream)
 
-    rows: List[Dict[str, str]] = []
+    rows: List[Dict[str, object]] = []
     for category in sorted(targets_by_category.keys()):
         source_dir = cache_root / "analysis" / discipline / category / "charts"
         destination_dir = public_data_root / "analysis" / discipline / category / "charts"
         destination_category_root = public_data_root / "analysis" / discipline / category
 
         speed_profile_chart = ""
+        speed_profile_overlay_path = ""
         if source_dir.exists():
             for source_artifact in sorted(path for path in source_dir.iterdir() if path.is_file()):
                 destination_artifact = destination_dir / source_artifact.name
                 copy_if_exists(source_artifact, destination_artifact)
                 if source_artifact.name == "speed-profile-top-athletes.png":
                     speed_profile_chart = to_public_relative(destination_artifact, public_data_root)
+                elif source_artifact.name == "speed-profile-top-athletes.overlay.json":
+                    speed_profile_overlay_path = to_public_relative(destination_artifact, public_data_root)
 
         athlete_rows: List[Dict[str, object]] = []
         for stream in sorted(targets_by_category[category]):
@@ -277,6 +348,9 @@ def curate_analysis(
 
             for slug in sorted(set(performance_by_slug.keys()) | set(annotation_by_slug.keys())):
                 annotation = annotation_by_slug.get(slug, {})
+                speed_profile_points, speed_mps, time_25m_s, time_50m_s, time_100m_s = load_stats_for_slug(
+                    athlete_videos_dir, slug
+                )
                 summary_performance = performance_by_slug.get(slug)
                 annotation_performance = to_float(annotation.get("performance_m"))
                 athlete_rows.append(
@@ -286,6 +360,11 @@ def curate_analysis(
                         "event": stream,
                         "category": category,
                         "performance_m": summary_performance if summary_performance is not None else annotation_performance,
+                        "speed_mps": speed_mps,
+                        "time_25m_s": time_25m_s,
+                        "time_50m_s": time_50m_s,
+                        "time_100m_s": time_100m_s,
+                        "speed_profile_points": speed_profile_points,
                         "video_url": annotation.get("video_url") or "",
                     }
                 )
@@ -308,6 +387,7 @@ def curate_analysis(
             {
                 "id": category,
                 "speed_profile_chart": speed_profile_chart,
+                "speed_profile_overlay_path": speed_profile_overlay_path,
                 "athlete_rows_path": to_public_relative(athlete_rows_path, public_data_root),
             }
         )

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-03T23:51:34.068895+00:00",
+  "generated_at": "2026-04-04T00:38:45.181891+00:00",
   "events": [
     {
       "id": "athens-2025-day1",
@@ -43,6 +43,7 @@
         {
           "id": "seniors-male",
           "speed_profile_chart": "data/analysis/DNF/seniors-male/charts/speed-profile-top-athletes.png",
+          "speed_profile_overlay_path": "data/analysis/DNF/seniors-male/charts/speed-profile-top-athletes.overlay.json",
           "athlete_rows_path": "data/analysis/DNF/seniors-male/athletes.json"
         }
       ]
