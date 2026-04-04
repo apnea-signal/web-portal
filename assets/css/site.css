@@ -1,6 +1,18 @@
 :root {
   --font-body: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
   --font-display: "Sora", "Avenir Next Condensed", "Trebuchet MS", sans-serif;
+  --text-2xs: 0.76rem;
+  --text-xs: 0.82rem;
+  --text-sm: 0.92rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.35rem;
+  --text-hero: clamp(1.5rem, 4vw, 2rem);
+  --leading-tight: 1.22;
+  --leading-normal: 1.4;
+  --leading-body: 1.55;
+  --tracking-tight: 0.02em;
+  --tracking-wide: 0.05em;
   --bg: #edf7ff;
   --card: #f9fcff;
   --ink: #0f2438;
@@ -25,6 +37,8 @@ body {
 
 body {
   font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
   color: var(--ink);
   background:
     radial-gradient(circle at 90% 0%, #d6f1ff 0%, transparent 36%),
@@ -35,6 +49,31 @@ body {
 
 a {
   color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+h1 {
+  font-size: var(--text-xl);
+}
+
+h2 {
+  font-size: var(--text-lg);
+}
+
+h3 {
+  font-size: var(--text-md);
+}
+
+p {
+  line-height: var(--leading-body);
 }
 
 .container {
@@ -73,9 +112,8 @@ a {
 .overview-header-title {
   margin: 0;
   justify-self: center;
-  font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.35vw, 1.1rem);
-  letter-spacing: 0.02em;
+  font-size: clamp(var(--text-sm), 1.35vw, 1.1rem);
+  letter-spacing: var(--tracking-tight);
   color: #fff;
 }
 
@@ -100,9 +138,9 @@ a {
 }
 
 .header-inline-label {
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   text-transform: none;
-  letter-spacing: 0.01em;
+  letter-spacing: var(--tracking-tight);
   color: rgba(255, 255, 255, 0.96);
   font-weight: 700;
 }
@@ -137,16 +175,29 @@ a {
 .brand-title {
   margin: 0;
   font-family: var(--font-display);
-  letter-spacing: 0.02em;
-  font-size: 1.2rem;
-  font-weight: 800;
+  letter-spacing: 0.03em;
+  font-size: var(--text-lg);
+  font-weight: 700;
   text-decoration: none;
+}
+
+.brand-title-with-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-mark {
+  width: 1.35rem;
+  height: 1.35rem;
+  display: block;
+  flex: 0 0 auto;
 }
 
 .brand-subtitle {
   margin: 0;
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: var(--text-xs);
 }
 
 .nav-tabs {
@@ -164,7 +215,7 @@ a {
   color: var(--ink);
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   font-weight: 650;
   transition: all 0.18s ease;
 }
@@ -197,9 +248,9 @@ a {
 }
 
 label {
-  font-size: 0.82rem;
+  font-size: var(--text-xs);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--tracking-wide);
   color: var(--muted);
   font-weight: 700;
 }
@@ -208,7 +259,7 @@ select,
 input,
 button {
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
 }
 
 select,
@@ -231,8 +282,20 @@ input[type="search"] {
 
 .hero h1 {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-size: var(--text-hero);
+}
+
+.hero-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.hero-mark {
+  width: clamp(1.6rem, 3.8vw, 2.2rem);
+  height: clamp(1.6rem, 3.8vw, 2.2rem);
+  display: block;
+  flex: 0 0 auto;
 }
 
 .hero p {
@@ -252,7 +315,6 @@ input[type="search"] {
 .card h3 {
   margin-top: 0;
   margin-bottom: 0.7rem;
-  font-family: var(--font-display);
 }
 
 .grid {
@@ -273,15 +335,16 @@ input[type="search"] {
 
 .kpi-label {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-wide);
 }
 
 .kpi-value {
   margin: 0.35rem 0 0;
-  font-size: 1.3rem;
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
   font-weight: 700;
 }
 
@@ -300,13 +363,13 @@ td {
   border-bottom: 1px solid var(--line);
   padding: 0.56rem;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
 }
 
 th {
   color: var(--muted);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
 
@@ -332,7 +395,7 @@ th {
 
 .figure-caption {
   margin: 0.45rem 0 0;
-  font-size: 0.82rem;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 
@@ -438,7 +501,7 @@ th {
 
 .technique-chart-card h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--text-md);
 }
 
 .technique-chart-card .note {
@@ -480,8 +543,8 @@ th {
 
 .technique-strip-name {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.25;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
 }
 
 .technique-strip-card img {
@@ -545,8 +608,8 @@ th {
 
 .sidebar-hint {
   margin: 0.38rem 0 0.68rem;
-  font-size: 0.74rem;
-  letter-spacing: 0.02em;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-tight);
 }
 
 .sidebar-resize-handle {
@@ -595,7 +658,7 @@ th {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.84rem;
+  font-size: var(--text-xs);
 }
 
 .overview-layout.is-sidebar-collapsed {
@@ -633,7 +696,7 @@ th {
   content: "Controls";
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-size: 0.7rem;
+  font-size: var(--text-2xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -692,15 +755,15 @@ th {
 }
 
 .sidebar-pagination-status {
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   color: var(--muted);
   font-weight: 650;
   min-width: 84px;
 }
 
 .sidebar-pagination-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.03em;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-tight);
   margin-left: auto;
 }
 
@@ -718,14 +781,14 @@ th {
 
 .mini-table th,
 .mini-table td {
-  font-size: 0.79rem;
+  font-size: var(--text-2xs);
   padding: 0.42rem 0.36rem;
 }
 
 .note {
   margin: 0;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: var(--text-sm);
 }
 
 .discipline-grid {
@@ -753,7 +816,6 @@ th {
 
 .discipline-card h3 {
   margin: 0;
-  font-family: var(--font-display);
 }
 
 .discipline-card p {
@@ -770,9 +832,9 @@ th {
 
 .discipline-state {
   margin-top: 0.8rem;
-  font-size: 0.76rem;
+  font-size: var(--text-2xs);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: var(--tracking-wide);
   color: var(--accent-strong);
   font-weight: 700;
 }
@@ -829,7 +891,7 @@ th {
   transform: translateX(-50%);
   bottom: -1.5rem;
   white-space: nowrap;
-  font-size: 0.76rem;
+  font-size: var(--text-2xs);
   color: var(--muted);
 }
 
@@ -874,7 +936,7 @@ th {
 
 .list-item .meta {
   display: block;
-  font-size: 0.8rem;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 
@@ -905,7 +967,7 @@ th {
 footer {
   margin: 2rem 0 1rem;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--text-xs);
 }
 
 .project-footer {
@@ -927,7 +989,7 @@ footer {
 
 .project-footer-hint {
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: var(--text-xs);
 }
 
 .contact-reveal-button {

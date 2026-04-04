@@ -5,47 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="portal-base" content="./" />
     <title>Apnea Signal Portal</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./site.webmanifest" />
     <link rel="stylesheet" href="./assets/css/site.css" />
   </head>
   <body>
     <main class="container">
       <section class="hero">
-        <h1>Apnea Signal Web Portal</h1>
+        <h1 class="hero-title">
+          <img class="hero-mark" src="./assets/branding/logo_mark.svg" alt="" aria-hidden="true" />
+          <span>Apnea Signal Web Portal</span>
+        </h1>
         <p>
-          Choose a discipline branch. DNF is active with a single Overview workspace.
+          Choose a discipline.
         </p>
       </section>
 
       <section class="card">
-        <h2>Discipline Fork</h2>
-        <p class="note">Select the discipline to enter its analysis pages.</p>
+        <h2>Disciplines</h2>
         <div class="discipline-grid">
           <a class="discipline-card" href="./dnf/overview/">
             <h3>DNF</h3>
-            <p>Active branch: cross-event speed profile + athlete control sidebar.</p>
             <p class="discipline-state">Available</p>
           </a>
           <article class="discipline-card is-disabled" aria-disabled="true">
             <h3>DYNB</h3>
-            <p>Discipline route reserved.</p>
-            <p class="discipline-state">Disabled</p>
+            <p class="discipline-state">NOT ENOUGH DATA</p>
           </article>
           <article class="discipline-card is-disabled" aria-disabled="true">
             <h3>DYN</h3>
-            <p>Discipline route reserved.</p>
-            <p class="discipline-state">Disabled</p>
+            <p class="discipline-state">NOT ENOUGH DATA</p>
           </article>
         </div>
       </section>
 
       <footer class="project-footer">
         <p>
-          This is a passion project designed to bring more focus and structure into freediving pool training.
+          I'm building this as a personal project for freediving pool training. If you like what you see, help me bring in more data.
         </p>
         <p class="project-footer-hint" data-contact-reveal>
-          If you have suggestions or would like to contribute, please
+          Annotating videos takes a lot of time, and I can always use help. If you want to contribute, please
           <button type="button" class="contact-reveal-button" data-contact-reveal-button>
-            reveal contact email
+            get in touch
           </button>
           <span class="contact-reveal-value mono" data-contact-reveal-value hidden></span>
         </p>
