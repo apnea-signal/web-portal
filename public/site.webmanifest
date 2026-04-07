@@ -3,7 +3,7 @@
   "short_name": "Apnea",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/favicon.svg?v=5",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
