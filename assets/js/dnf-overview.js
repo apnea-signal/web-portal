@@ -1,6 +1,6 @@
 import { fetchJson, loadManifest } from "./data.js";
 
-const SIDEBAR_MIN_WIDTH = 380;
+const SIDEBAR_MIN_WIDTH = 300;
 const SIDEBAR_MAX_WIDTH = 860;
 const DEFAULT_TABLE_PAGE_SIZE = 10;
 const OVERLAY_LINE_COLORS = ["#0f1824", "#1a3250", "#243e2a", "#4a2b25", "#3a2b5a", "#42510f"];
