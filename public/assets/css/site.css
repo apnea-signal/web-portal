@@ -1016,7 +1016,36 @@ footer {
   color: var(--ink);
 }
 
+@media (max-width: 1200px) and (min-width: 901px) {
+  .overview-layout {
+    --sidebar-width: min(42vw, 460px);
+  }
+}
+
 @media (max-width: 900px) {
+  .container,
+  .hero,
+  .card,
+  .project-footer,
+  .speed-profile-card,
+  .technique-chart-card,
+  .technique-strips-card {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
+
+  .speed-profile-section {
+    order: 2;
+  }
+
+  .technique-section {
+    order: 3;
+  }
+
+  .athlete-sidebar {
+    order: 1;
+  }
+
   .split {
     grid-template-columns: 1fr;
   }
@@ -1075,6 +1104,23 @@ footer {
   .header-control-inline select {
     min-width: 0;
     flex: 1;
+  }
+
+  .sidebar-toggle-button,
+  .sidebar-actions button,
+  .sidebar-pagination-button,
+  .contact-reveal-button,
+  select,
+  input[type="search"] {
+    min-height: 44px;
+  }
+
+  .sidebar-actions {
+    gap: 0.6rem;
+  }
+
+  .sidebar-pagination {
+    gap: 0.55rem;
   }
 
   .controls-bar {
