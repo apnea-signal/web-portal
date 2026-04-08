@@ -146,8 +146,8 @@ p {
 }
 
 .page-header {
-  position: sticky;
-  top: 0;
+  position: static;
+  top: auto;
   z-index: 30;
   background: rgba(244, 244, 239, 0.92);
   border-bottom: 1px solid var(--line);
@@ -185,11 +185,19 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.brand-title-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .brand-mark {
-  width: 1.35rem;
-  height: 1.35rem;
+  width: clamp(1.1rem, 1em + 0.2rem, 1.45rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
   display: block;
   flex: 0 0 auto;
 }
@@ -286,14 +294,22 @@ input[type="search"] {
 }
 
 .hero-title {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+  min-width: 0;
   gap: 0.55rem;
 }
 
+.hero-title-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .hero-mark {
-  width: clamp(1.6rem, 3.8vw, 2.2rem);
-  height: clamp(1.6rem, 3.8vw, 2.2rem);
+  width: clamp(1.45rem, 1em + 0.45rem, 2.2rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
   display: block;
   flex: 0 0 auto;
 }
@@ -566,8 +582,8 @@ th {
   grid-column: 1;
   grid-row: 1;
   position: sticky;
-  top: 56px;
-  max-height: calc(100vh - 76px);
+  top: 0.75rem;
+  max-height: calc(100vh - 1.5rem);
   overflow: auto;
 }
 
@@ -1093,12 +1109,18 @@ footer {
   .overview-page .header-controls {
     justify-self: start;
     width: 100%;
+    min-width: 0;
   }
 
   .header-control,
   .header-control-inline {
     min-width: 0;
     width: 100%;
+  }
+
+  .header-control-inline {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
   }
 
   .header-control-inline select {
