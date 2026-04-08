@@ -1057,14 +1057,31 @@ function renderEventChecklist(containerId, events, selectedEventIds, setType, al
 
   const allWrap = document.createElement("label");
   allWrap.className = "event-filter-item";
-  allWrap.innerHTML = `<input type="checkbox" class="event-filter-input" data-event-set="${setType}" data-event-all="true" ${allChecked ? "checked" : ""} /> ${allLabel}`;
+  const allInput = document.createElement("input");
+  allInput.type = "checkbox";
+  allInput.className = "event-filter-input";
+  allInput.dataset.eventSet = setType;
+  allInput.dataset.eventAll = "true";
+  allInput.checked = allChecked;
+  const allText = document.createElement("span");
+  allText.className = "event-filter-label";
+  allText.textContent = allLabel;
+  allWrap.append(allInput, allText);
   container.appendChild(allWrap);
 
   events.forEach((eventId) => {
     const item = document.createElement("label");
     item.className = "event-filter-item";
-    const checked = selectedEventIds.has(eventId) ? "checked" : "";
-    item.innerHTML = `<input type="checkbox" class="event-filter-input" data-event-set="${setType}" data-event-id="${eventId}" ${checked} /> ${eventId}`;
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.className = "event-filter-input";
+    input.dataset.eventSet = setType;
+    input.dataset.eventId = eventId;
+    input.checked = selectedEventIds.has(eventId);
+    const text = document.createElement("span");
+    text.className = "event-filter-label";
+    text.textContent = eventId;
+    item.append(input, text);
     container.appendChild(item);
   });
 }

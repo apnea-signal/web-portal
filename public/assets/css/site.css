@@ -131,10 +131,12 @@ p {
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+  max-width: 100%;
 }
 
 .header-control-inline select {
   min-width: 180px;
+  max-width: 100%;
 }
 
 .header-inline-label {
@@ -277,6 +279,12 @@ input[type="search"] {
   padding: 0.58rem 0.68rem;
   background: #fff;
   color: var(--ink);
+}
+
+.control select,
+.control input[type="search"],
+.header-control-inline select {
+  width: 100%;
 }
 
 .hero {
@@ -664,6 +672,8 @@ th {
   gap: 0.34rem;
   max-height: 140px;
   overflow: auto;
+  width: 100%;
+  min-width: 0;
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 0.45rem;
@@ -671,10 +681,24 @@ th {
 }
 
 .event-filter-item {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
   gap: 0.4rem;
+  width: 100%;
+  min-width: 0;
   font-size: var(--text-xs);
+}
+
+.event-filter-item input {
+  flex: 0 0 auto;
+  margin-top: 0.16rem;
+}
+
+.event-filter-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: var(--leading-normal);
 }
 
 .overview-layout.is-sidebar-collapsed {
@@ -722,6 +746,7 @@ th {
 .sidebar-controls {
   display: grid;
   gap: 0.7rem;
+  min-width: 0;
 }
 
 .sidebar-actions {
@@ -785,6 +810,7 @@ th {
 
 .sidebar-pagination-size {
   width: 72px;
+  max-width: 100%;
 }
 
 .mini-table-wrap {
@@ -1119,13 +1145,23 @@ footer {
   }
 
   .header-control-inline {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
     row-gap: 0.35rem;
   }
 
   .header-control-inline select {
     min-width: 0;
-    flex: 1;
+    width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .sidebar-pagination-label {
+    margin-left: 0;
+  }
+
+  .sidebar-pagination-size {
+    flex: 1 1 72px;
   }
 
   .sidebar-toggle-button,
