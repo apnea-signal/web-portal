@@ -2,3 +2,4 @@
 # stream-only entries sync cache/<stream>/athlete_videos (all categories)
 athens-2025-day1,seniors-male,competition
 victoria-2025-12-09,,training
+victoria-2026-04-21-dnf,,training

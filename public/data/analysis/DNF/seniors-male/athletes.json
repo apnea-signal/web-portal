@@ -2410,6 +2410,68 @@
     "video_url": "https://tv.cmas.org/sportitem/68234fc9a298818ef67e4329?currenttime=2214.100"
   },
   {
+    "athlete_slug": "julian",
+    "athlete_name": "Julian",
+    "event": "victoria-2026-04-21-dnf",
+    "category": "seniors-male",
+    "performance_m": 50.0,
+    "speed_mps": 0.7303928727910033,
+    "time_25m_s": 33.96,
+    "time_50m_s": 68.46,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 33.96
+      },
+      {
+        "distance_m": 50.0,
+        "time_s": 68.46
+      },
+      {
+        "distance_m": 50.01,
+        "time_s": 68.47
+      }
+    ],
+    "technique_wall_push_glide_distance_m": 6.74,
+    "technique_wall_push_glide_time_s": 6.81,
+    "technique_cycle_glide_distance_m": 4.52,
+    "technique_cycle_glide_time_s": 7.39,
+    "technique_leg_kick_glide_distance_m": 1.63,
+    "technique_leg_kick_glide_time_s": 2.76,
+    "event_strip_path": "data/analysis/DNF/seniors-male/event-strips/victoria-2026-04-21-dnf/julian.propulsion.refined.event-strip.png",
+    "video_url": "none://"
+  },
+  {
+    "athlete_slug": "maxime",
+    "athlete_name": "Maxime",
+    "event": "victoria-2026-04-21-dnf",
+    "category": "seniors-male",
+    "performance_m": 50.0,
+    "speed_mps": 0.8010071474983755,
+    "time_25m_s": 30.35,
+    "time_50m_s": null,
+    "time_100m_s": null,
+    "speed_profile_points": [
+      {
+        "distance_m": 25.0,
+        "time_s": 30.35
+      },
+      {
+        "distance_m": 49.31,
+        "time_s": 61.56
+      }
+    ],
+    "technique_wall_push_glide_distance_m": 3.39,
+    "technique_wall_push_glide_time_s": 3.07,
+    "technique_cycle_glide_distance_m": 4.73,
+    "technique_cycle_glide_time_s": 6.34,
+    "technique_leg_kick_glide_distance_m": 1.88,
+    "technique_leg_kick_glide_time_s": 2.64,
+    "event_strip_path": "data/analysis/DNF/seniors-male/event-strips/victoria-2026-04-21-dnf/maxime.propulsion.refined.event-strip.png",
+    "video_url": "none://"
+  },
+  {
     "athlete_slug": "cameron",
     "athlete_name": "Cameron",
     "event": "victoria-2025-12-09",
