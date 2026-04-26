@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T11:31:18.763167+00:00",
+  "generated_at": "2026-04-26T15:23:48.923676+00:00",
   "events": [
     {
       "id": "athens-2025-day1",
@@ -18,6 +18,21 @@
     },
     {
       "id": "victoria-2025-12-09",
+      "event_type": "training",
+      "categories": [
+        {
+          "id": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [],
+          "summary_files": {},
+          "distribution_images": {}
+        }
+      ]
+    },
+    {
+      "id": "victoria-2026-04-21-dnf",
       "event_type": "training",
       "categories": [
         {
@@ -50,6 +65,21 @@
     },
     {
       "id": "victoria-2025-12-09",
+      "event_type": "training",
+      "categories": [
+        {
+          "id": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": [],
+          "summary_files": {},
+          "distribution_images": {}
+        }
+      ]
+    },
+    {
+      "id": "victoria-2026-04-21-dnf",
       "event_type": "training",
       "categories": [
         {
@@ -491,6 +521,16 @@
             "DNF"
           ],
           "checkpoints": []
+        },
+        {
+          "event": "victoria-2026-04-21-dnf",
+          "stream": "victoria-2026-04-21-dnf",
+          "event_type": "training",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": []
         }
       ]
     },
@@ -630,6 +670,22 @@
           "event": "athens-2025-day1",
           "stream": "athens-2025-day1",
           "event_type": "competition",
+          "category": "seniors-male",
+          "disciplines": [
+            "DNF"
+          ],
+          "checkpoints": []
+        }
+      ]
+    },
+    {
+      "slug": "maxime",
+      "display_name": "Maxime",
+      "entries": [
+        {
+          "event": "victoria-2026-04-21-dnf",
+          "stream": "victoria-2026-04-21-dnf",
+          "event_type": "training",
           "category": "seniors-male",
           "disciplines": [
             "DNF"
