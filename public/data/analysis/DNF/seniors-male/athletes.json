@@ -2448,25 +2448,25 @@
     "event": "victoria-2026-04-21-dnf",
     "category": "seniors-male",
     "performance_m": 50.0,
-    "speed_mps": 0.8010071474983755,
-    "time_25m_s": 30.35,
-    "time_50m_s": null,
+    "speed_mps": 0.8071231094486908,
+    "time_25m_s": 30.59,
+    "time_50m_s": 61.49,
     "time_100m_s": null,
     "speed_profile_points": [
       {
         "distance_m": 25.0,
-        "time_s": 30.35
+        "time_s": 30.59
       },
       {
-        "distance_m": 49.31,
-        "time_s": 61.56
+        "distance_m": 49.63,
+        "time_s": 61.49
       }
     ],
-    "technique_wall_push_glide_distance_m": 3.39,
+    "technique_wall_push_glide_distance_m": 4.0,
     "technique_wall_push_glide_time_s": 3.07,
-    "technique_cycle_glide_distance_m": 4.73,
+    "technique_cycle_glide_distance_m": 4.5,
     "technique_cycle_glide_time_s": 6.34,
-    "technique_leg_kick_glide_distance_m": 1.88,
+    "technique_leg_kick_glide_distance_m": 1.86,
     "technique_leg_kick_glide_time_s": 2.64,
     "event_strip_path": "data/analysis/DNF/seniors-male/event-strips/victoria-2026-04-21-dnf/maxime.propulsion.refined.event-strip.png",
     "video_url": "none://"
