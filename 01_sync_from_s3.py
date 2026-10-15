@@ -12,7 +12,7 @@ from pathlib import Path
 from types import FrameType
 from typing import Dict, List, Optional, Tuple
 
-DEFAULT_BUCKET = "apnea-signal-videos"
+DEFAULT_BUCKET = "apnea-signal-videos-970295636255-eu-west-2"
 DEFAULT_CACHE_ROOT = Path("cache")
 DEFAULT_CONFIG_PATH = Path("config.yaml")
 FOLDER_NAME = "athlete_videos"
@@ -120,7 +120,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--profile",
-        default=config.get("aws_profile") or os.environ.get("AWS_PROFILE"),
+        default=config.get("aws_profile") or "exocode-apnea-prod-admin",
         help="AWS CLI profile to use",
     )
     parser.add_argument(

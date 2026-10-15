@@ -58,3 +58,19 @@ python3 -m http.server 8000 --directory site
 - `.github/workflows/pr-previews.yml`: deploys per-PR previews under `gh-pages/pr-preview/`
 
 These workflows are static-only (no MkDocs).
+
+## AWS video library
+
+The live research library is in Apnea Prod (`970295636255`), London
+(`eu-west-2`), bucket `apnea-signal-videos-970295636255-eu-west-2`. Sync/upload
+scripts default to named SSO profile `exocode-apnea-prod-admin`; use `--profile`
+for a deliberate override. Configurable scripts also accept `aws_profile` in
+config.yaml. The profile supplies the London default region.
+
+```sh
+aws sso login --sso-session exocode-admin --no-browser
+aws sts get-caller-identity --profile exocode-apnea-prod-admin
+```
+
+No static credentials are required. Legacy is retained temporarily for migration
+recovery, not ongoing writes. Existing local caches do not need to be deleted.

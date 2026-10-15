@@ -4,6 +4,6 @@
 # stream: athens-2025-day1
 # category: seniors-male
 # targets_file: sync-targets.txt
-bucket: apnea-signal-videos
+bucket: apnea-signal-videos-970295636255-eu-west-2
 cache_root: cache
-# aws_profile: default
+aws_profile: exocode-apnea-prod-admin
